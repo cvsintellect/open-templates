@@ -285,6 +285,7 @@
 </#if>
 <#-- personal -->
 <#if sectionDetail.isPersonalSection()>
+<#if helper.atleastOneIsNotEmpty("${resume.personal.gender}", "${resume.personal.dateOfBirth}", "${resume.personal.maritalStatus}", "${resume.personal.nationality}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
 
 \section{${sectionDetail.heading}}
 \cvitem{}{
@@ -310,6 +311,7 @@
 \end{tabular}
 }
 \cvitem{}{\hfill}
+</#if>
 </#if>
 <#-- custom section -->
 <#if sectionDetail.isCustomSection()>

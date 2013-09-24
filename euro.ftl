@@ -326,6 +326,7 @@
 </#if>
 <#-- personal -->
 <#if sectionDetail.isPersonalSection()>
+<#if helper.atleastOneIsNotEmpty("${resume.personal.maritalStatus}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
 
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#if helper.isNotEmpty("${resume.personal.maritalStatus}")>
@@ -336,6 +337,7 @@
 </#if>
 <#if helper.isNotEmpty("${resume.personal.hobbies}")>
 \ecvitem{Hobbies}{${resume.personal.hobbies}}
+</#if>
 </#if>
 </#if>
 <#-- custom section -->
