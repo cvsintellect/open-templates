@@ -37,7 +37,7 @@
 \phone{${resume.contact.phoneNumber}}
 </#if>
 <#if helper.isNotEmpty("${resume.contact.emailId}")>
-\email{${resume.contact.emailId}}}}
+\email{${resume.contact.emailId}}
 </#if>
 
 \begin{document}
