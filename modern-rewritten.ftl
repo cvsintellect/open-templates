@@ -31,108 +31,108 @@
 
 <#-- objective -->
 <#if sectionDetail.isObjectiveSection()>
-  <#if resume.hasObjective()>
-    \section{${sectionDetail.heading}}
-    \cvitem{}{${resume.objective.text}}
-  </#if>
+<#if resume.hasObjective()>
+\section{${sectionDetail.heading}}
+\cvitem{}{${resume.objective.text}}
+</#if>
 </#if>
 
 <#-- positions -->
 <#if sectionDetail.isPositionSection()>
-  <#if resume.hasPositions()>
-    \section{${sectionDetail.heading}}
-    <#list resume.positions as position>
-    \cventry{${position.startDateAndEndDate}}{${position.title}}{${position.companyName}}{}{}{${position.summary}}
-    </#list>
-  </#if>
+<#if resume.hasPositions()>
+\section{${sectionDetail.heading}}
+<#list resume.positions as position>
+\cventry{${position.startDateAndEndDate}}{${position.title}}{${position.companyName}}{}{}{${position.summary}}
+</#list>
+</#if>
 </#if>
 
 <#-- education -->
 <#if sectionDetail.isEducationSection()>
-  <#if resume.hasEducation()>
-  \section{${sectionDetail.heading}}
-  <#list resume.educations as education>
-    <#assign degreeString = helper. joinStringsWith(" in ", "${education.degree}", "${education.fieldOfStudy}")>
-    <#assign collegeString = helper.getCommaSeperatedString("${education.university}", "${education.schoolName}")>
-    \cventry{${education.startDateAndEndDate}}{${degreeString}}{${collegeString}}{}{}{${education.summary}}
-  </#list>
-  </#if>
+<#if resume.hasEducation()>
+\section{${sectionDetail.heading}}
+<#list resume.educations as education>
+<#assign degreeString = helper. joinStringsWith(" in ", "${education.degree}", "${education.fieldOfStudy}")>
+<#assign collegeString = helper.getCommaSeperatedString("${education.university}", "${education.schoolName}")>
+\cventry{${education.startDateAndEndDate}}{${degreeString}}{${collegeString}}{}{}{${education.summary}}
+</#list>
+</#if>
 </#if>
 
 <#-- projects -->
 <#if sectionDetail.isProjectSection()>
-  <#if resume.hasProjects()>
-  \section{${sectionDetail.heading}}
-  <#list resume.projects as project>
-  <#assign projectString = helper. joinStringsWith(" on ", "${project.role}", "${project.name}")>
-  <#assign companyString = helper. joinStringsWith(" for ", "${project.companyName}", "${project.clientName}")>
-  \cventry{${project.startDateAndEndDate}}{${projectString}}{${companyString}}{}{}{${project.summary}}
-  </#list>
-  </#if>
+<#if resume.hasProjects()>
+\section{${sectionDetail.heading}}
+<#list resume.projects as project>
+<#assign projectString = helper. joinStringsWith(" on ", "${project.role}", "${project.name}")>
+<#assign companyString = helper. joinStringsWith(" for ", "${project.companyName}", "${project.clientName}")>
+\cventry{${project.startDateAndEndDate}}{${projectString}}{${companyString}}{}{}{${project.summary}}
+</#list>
+</#if>
 </#if>
 
 <#-- skills -->
 <#if sectionDetail.isSkillsSection()>
-  <#if resume.hasSkills()>
-  \section{${sectionDetail.heading}}
-  <#list resume.skillGroups as skillGroup>
-  \cvitem{${skillGroup.skillGroup}}{${skillGroup.skills}}
-  </#list>
-  </#if>
+<#if resume.hasSkills()>
+\section{${sectionDetail.heading}}
+<#list resume.skillGroups as skillGroup>
+\cvitem{${skillGroup.skillGroup}}{${skillGroup.skills}}
+</#list>
+</#if>
 </#if>
 
 <#-- achievements -->
 <#if sectionDetail.isAchievementSection()>
-  <#if resume.hasAchievements()>
-  \section{${sectionDetail.heading}}
-  <#list resume.achievements as achievement>
-  \cvitem{${achievement.heading}}{${achievement.description}}
-  </#list>
-  </#if>
+<#if resume.hasAchievements()>
+\section{${sectionDetail.heading}}
+<#list resume.achievements as achievement>
+\cvitem{${achievement.heading}}{${achievement.description}}
+</#list>
+</#if>
 </#if>
 
 <#-- personal -->
 <#if sectionDetail.isPersonalSection()>
 <#if helper.atleastOneIsNotEmpty("${resume.personal.gender}", "${resume.personal.dateOfBirth}", "${resume.personal.maritalStatus}", "${resume.personal.nationality}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
 \section{${sectionDetail.heading}}
-  <#if helper.isNotEmpty("${resume.personal.gender}")>\cvitem{Gender}{${resume.personal.gender}}</#if>
-  <#if helper.isNotEmpty("${resume.personal.dateOfBirth}")>\cvitem{Date of Birth}{${resume.personal.dateOfBirth}}</#if>
-  <#if helper.isNotEmpty("${resume.personal.maritalStatus}")>\cvitem{Marital Status}{${resume.personal.maritalStatus}}</#if>
-  <#if helper.isNotEmpty("${resume.personal.nationality}")>\cvitem{Nationality}{${resume.personal.nationality}}</#if>
-  <#if helper.isNotEmpty("${resume.personal.languages}")>\cvitem{Languages}{${resume.personal.languages}}</#if>
-  <#if helper.isNotEmpty("${resume.personal.hobbies}")>\cvitem{Hobbies}{${resume.personal.hobbies}}</#if>
+<#if helper.isNotEmpty("${resume.personal.gender}")>\cvitem{Gender}{${resume.personal.gender}}</#if>
+<#if helper.isNotEmpty("${resume.personal.dateOfBirth}")>\cvitem{Date of Birth}{${resume.personal.dateOfBirth}}</#if>
+<#if helper.isNotEmpty("${resume.personal.maritalStatus}")>\cvitem{Marital Status}{${resume.personal.maritalStatus}}</#if>
+<#if helper.isNotEmpty("${resume.personal.nationality}")>\cvitem{Nationality}{${resume.personal.nationality}}</#if>
+<#if helper.isNotEmpty("${resume.personal.languages}")>\cvitem{Languages}{${resume.personal.languages}}</#if>
+<#if helper.isNotEmpty("${resume.personal.hobbies}")>\cvitem{Hobbies}{${resume.personal.hobbies}}</#if>
 </#if>
 </#if>
 
 <#-- custom -->
 <#if sectionDetail.isCustomSection()>
-  <#assign customSection = resume.getCustomSection("${sectionDetail.sectionId}")>
-  <#if customSection.hasCustomSectionEntries()>
-  \section{${sectionDetail.heading}}
-  <#list customSection.entries as entry>
-  \cvline{${entry.text}}
-  </#list>
-  </#if>
+<#assign customSection = resume.getCustomSection("${sectionDetail.sectionId}")>
+<#if customSection.hasCustomSectionEntries()>
+\section{${sectionDetail.heading}}
+<#list customSection.entries as entry>
+\cvline{${entry.text}}
+</#list>
+</#if>
 </#if>
 
 <#-- associations -->
 <#if sectionDetail.isAssociationSection()>
-  <#if resume.hasAssociations()>
-  \section{${sectionDetail.heading}}
-  <#list resume.associations as association>
-  \cvitem{${association.name}}{${association.description}}
-  </#list>
-  </#if>
+<#if resume.hasAssociations()>
+\section{${sectionDetail.heading}}
+<#list resume.associations as association>
+\cvitem{${association.name}}{${association.description}}
+</#list>
+</#if>
 </#if>
 
 <#-- recommendations -->
 <#if sectionDetail.isRecommendationSection()>
-  <#if resume.hasRecommendations()>
-  \section{${sectionDetail.heading}}
-  <#list resume.recommendations as recommendation>
-  \cventry{}{${recommendation.name}}{${recommendation.type}}{}{}{${recommendation.text}}
-  </#list>
-  </#if>
+<#if resume.hasRecommendations()>
+\section{${sectionDetail.heading}}
+<#list resume.recommendations as recommendation>
+\cventry{}{${recommendation.name}}{${recommendation.type}}{}{}{${recommendation.text}}
+</#list>
+</#if>
 </#if>
 
 <#-- talks -->
@@ -198,7 +198,6 @@
 <#-- resources -->
 <#if sectionDetail.isResourcesSection()>
 <#if resume.hasResources()>
-
 \section{${sectionDetail.heading}}
 <#list resume.resources as resource>
 \cventry{${resource.name}}{${resource.url}}{}{}{}{${resource.description}}
