@@ -1,9 +1,8 @@
 \documentclass[a4paper,${resume.configuration.fontSize}]{moderncv}
-\moderncvstyle{casual}
+\moderncvstyle{oldstyle}
 \moderncvcolor{${resume.configuration.color}}
 \usepackage[left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin}]{geometry}
 <#-- spacing -->
-\setlength{\hintscolumnwidth}{${resume.configuration.sectionIndent}}
 \linespread{${resume.configuration.lineSpacing}}
 <#-- font -->
 <#assign fontTypeValue = helper.getFontTypeValue("${resume.configuration.fontType}")>
