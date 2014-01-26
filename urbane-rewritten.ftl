@@ -29,22 +29,6 @@
 <#-- show sections based on order -->
 <#list resume.configuration.sectionDetails as sectionDetail>
 
-<#-- achievements -->
-<#if sectionDetail.isAchievementSection()><#if resume.hasAchievements()>
-  \section{${sectionDetail.heading}}
-  <#list resume.achievements as achievement>
-    \cvitem{${achievement.heading}}{${achievement.description}}
-  </#list>
-</#if></#if>
-
-<#-- associations -->
-<#if sectionDetail.isAssociationSection()><#if resume.hasAssociations()>
-  \section{${sectionDetail.heading}}
-  <#list resume.associations as association>
-    \cvitem{${association.name}}{${association.description}}
-  </#list>
-</#if></#if>
-
 <#-- certifications -->
 <#if sectionDetail.isCertificationSection()><#if resume.hasCertifications()>
   \section{${sectionDetail.heading}}
@@ -127,14 +111,6 @@
   \section{${sectionDetail.heading}}
   <#list resume.recommendations as recommendation>
     \cventry{}{${recommendation.name}}{${recommendation.type}}{}{}{${recommendation.text}}
-  </#list>
-</#if></#if>
-
-<#-- resources -->
-<#if sectionDetail.isResourcesSection()><#if resume.hasResources()>
-  \section{${sectionDetail.heading}}
-  <#list resume.resources as resource>
-    \cventry{${resource.name}}{${resource.url}}{}{}{}{${resource.description}}
   </#list>
 </#if></#if>
 

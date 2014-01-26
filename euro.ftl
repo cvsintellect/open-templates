@@ -263,38 +263,6 @@
 </#list>
 </#if>
 </#if>
-<#-- achievements -->
-<#if sectionDetail.isAchievementSection()>
-<#if resume.hasAchievements()>
-
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.achievements as achievement>
-\ecvitem{}{\textit{${achievement.heading}}}
-<#if helper.isNotEmpty("${achievement.description}")>
-\ecvitem{}{${achievement.description}}
-</#if>
-<#if achievement_has_next>
-\ecvitem{}{}
-</#if>
-</#list>
-</#if>
-</#if>
-<#-- associations -->
-<#if sectionDetail.isAssociationSection()>
-<#if resume.hasAssociations()>
-
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.associations as association>
-\ecvitem{}{\textit{${association.name}}}
-<#if helper.isNotEmpty("${association.description}")>
-\ecvitem{}{${association.description}}
-</#if>
-<#if association_has_next>
-\ecvitem{}{}
-</#if>
-</#list>
-</#if>
-</#if>
 <#-- skills -->
 <#if sectionDetail.isSkillsSection()>
 <#if resume.hasSkills()>
@@ -303,22 +271,6 @@
 <#list resume.skillGroups as skillGroup>
 \ecvitem{${skillGroup.skillGroup}}{${skillGroup.skills}}
 <#if skillGroup_has_next>
-\ecvitem{}{}
-</#if>
-</#list>
-</#if>
-</#if>
-<#-- resources -->
-<#if sectionDetail.isResourcesSection()>
-<#if resume.hasResources()>
-
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.resources as resource>
-\ecvitem{${resource.name}}{\url{${resource.url}}}
-<#if helper.isNotEmpty("${resource.description}")>
-\ecvitem{}{${resource.description}}
-</#if>
-<#if resource_has_next>
 \ecvitem{}{}
 </#if>
 </#list>

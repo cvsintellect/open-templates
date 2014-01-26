@@ -256,38 +256,6 @@ ${volunteer.summary}
 </#list>
 </#if>
 </#if>
-<#-- achievements -->
-<#if sectionDetail.isAchievementSection()>
-<#if resume.hasAchievements()>
-
-\section{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.achievements as achievement>
-\textit{${achievement.heading}}\\
-<#if helper.isNotEmpty("${achievement.description}")>
-${achievement.description}
-</#if>
-<#if achievement_has_next>
-\\
-</#if>
-</#list>
-</#if>
-</#if>
-<#-- associations -->
-<#if sectionDetail.isAssociationSection()>
-<#if resume.hasAssociations()>
-
-\section{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.associations as association>
-\textit{${association.name}}\\
-<#if helper.isNotEmpty("${association.description}")>
-${association.description}
-</#if>
-<#if association_has_next>
-\\
-</#if>
-</#list>
-</#if>
-</#if>
 <#-- skills -->
 <#if sectionDetail.isSkillsSection()>
 <#if resume.hasSkills()>
@@ -297,23 +265,6 @@ ${association.description}
 \textbf{${skillGroup.skillGroup}}\\
 ${skillGroup.skills}
 <#if skillGroup_has_next>
-\\
-</#if>
-</#list>
-</#if>
-</#if>
-<#-- resources -->
-<#if sectionDetail.isResourcesSection()>
-<#if resume.hasResources()>
-
-\section{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.resources as resource>
-${resource.name}\\
-\url{${resource.url}}\\
-<#if helper.isNotEmpty("${resource.description}")>
-${resource.description}
-</#if>
-<#if resource_has_next>
 \\
 </#if>
 </#list>

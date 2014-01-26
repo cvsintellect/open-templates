@@ -235,38 +235,6 @@ ${volunteer.summary} \\
 </#list>
 </#if>
 </#if>
-<#-- achievements -->
-<#if sectionDetail.isAchievementSection()>
-<#if resume.hasAchievements()>
-
-\section*{\centerline{${sectionDetail.heading}}}
-\vspace{4pt} \moveleft \hoffset \vbox{\hrule width\textwidth height 1pt} \smallskip
-<#list resume.achievements as achievement>
-\begin{longtable}{L}
-\textit{${achievement.heading}} \\
-<#if helper.isNotEmpty("${achievement.description}")>
-${achievement.description} \\
-</#if>
-\end{longtable}
-</#list>
-</#if>
-</#if>
-<#-- associations -->
-<#if sectionDetail.isAssociationSection()>
-<#if resume.hasAssociations()>
-
-\section*{\centerline{${sectionDetail.heading}}}
-\vspace{4pt} \moveleft \hoffset \vbox{\hrule width\textwidth height 1pt} \smallskip
-<#list resume.associations as association>
-\begin{longtable}{L}
-\textit{${association.name}} \\
-<#if helper.isNotEmpty("${association.description}")>
-${association.description} \\
-</#if>
-\end{longtable}
-</#list>
-</#if>
-</#if>
 <#-- skills -->
 <#if sectionDetail.isSkillsSection()>
 <#if resume.hasSkills()>
@@ -277,23 +245,6 @@ ${association.description} \\
 \begin{longtable}{L}
 \textbf{${skillGroup.skillGroup}} \\
 ${skillGroup.skills} \\
-\end{longtable}
-</#list>
-</#if>
-</#if>
-<#-- resources -->
-<#if sectionDetail.isResourcesSection()>
-<#if resume.hasResources()>
-
-\section*{\centerline{${sectionDetail.heading}}}
-\vspace{4pt} \moveleft \hoffset \vbox{\hrule width\textwidth height 1pt} \smallskip
-<#list resume.resources as resource>
-\begin{longtable}{L}
-${resource.name} \\
-\url{${resource.url}} \\
-<#if helper.isNotEmpty("${resource.description}")>
-${resource.description} \\
-</#if>
 \end{longtable}
 </#list>
 </#if>

@@ -221,36 +221,6 @@ ${testScore.date} & ${testScore.score} - \textit{${testScore.name}} \\
 </#list>
 </#if>
 </#if>
-<#-- achievements -->
-<#if sectionDetail.isAchievementSection()>
-<#if resume.hasAchievements()>
-
-\section*{${sectionDetail.heading}}
-<#list resume.achievements as achievement>
-\begin{longtable}{L!{\VRule}R}
- & \textit{${achievement.heading}} \\
-<#if helper.isNotEmpty("${achievement.description}")>
- & ${achievement.description} \\
-</#if>
-\end{longtable}
-</#list>
-</#if>
-</#if>
-<#-- associations -->
-<#if sectionDetail.isAssociationSection()>
-<#if resume.hasAssociations()>
-
-\section*{${sectionDetail.heading}}
-<#list resume.associations as association>
-\begin{longtable}{L!{\VRule}R}
- & \textit{${association.name}} \\
-<#if helper.isNotEmpty("${association.description}")>
- & ${association.description} \\
-</#if>
-\end{longtable}
-</#list>
-</#if>
-</#if>
 <#-- skills -->
 <#if sectionDetail.isSkillsSection()>
 <#if resume.hasSkills()>
@@ -259,21 +229,6 @@ ${testScore.date} & ${testScore.score} - \textit{${testScore.name}} \\
 <#list resume.skillGroups as skillGroup>
 \begin{longtable}{L!{\VRule}R}
 \textbf{${skillGroup.skillGroup}} & ${skillGroup.skills} \\
-\end{longtable}
-</#list>
-</#if>
-</#if>
-<#-- resources -->
-<#if sectionDetail.isResourcesSection()>
-<#if resume.hasResources()>
-
-\section*{${sectionDetail.heading}}
-<#list resume.resources as resource>
-\begin{longtable}{L!{\VRule}R}
-${resource.name} & \url{${resource.url}} \\
-<#if helper.isNotEmpty("${resource.description}")>
- & ${resource.description} \\
-</#if>
 \end{longtable}
 </#list>
 </#if>
