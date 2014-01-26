@@ -131,14 +131,6 @@
   </#list>
 </#if></#if>
 
-<#-- test scores -->
-<#if sectionDetail.isTestScoreSection()><#if resume.hasTestScores()>
-  \section{${sectionDetail.heading}}
-  <#list resume.testScores as testScore>
-    \cventry{${testScore.date}}{${testScore.score}}{${testScore.name}}{}{}{}
-  </#list>
-</#if></#if>
-
 <#-- volunteers -->
 <#if sectionDetail.isVolunteerSection()><#if resume.hasVolunteers()>
   \section{${sectionDetail.heading}}

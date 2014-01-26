@@ -226,19 +226,6 @@ ${certification.number}\\
 </#list>
 </#if>
 </#if>
-<#-- test scores -->
-<#if sectionDetail.isTestScoreSection()>
-<#if resume.hasTestScores()>
-
-\section{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.testScores as testScore>
-${testScore.score} - \textit{${testScore.name}}, ${testScore.date}\\
-<#if testScore_has_next>
-\\
-</#if>
-</#list>
-</#if>
-</#if>
 <#-- volunteers -->
 <#if sectionDetail.isVolunteerSection()>
 <#if resume.hasVolunteers()>

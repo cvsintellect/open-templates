@@ -233,19 +233,6 @@
 </#list>
 </#if>
 </#if>
-<#-- test scores -->
-<#if sectionDetail.isTestScoreSection()>
-<#if resume.hasTestScores()>
-
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.testScores as testScore>
-\ecvitem{${testScore.date}}{${testScore.score} - \textit{${testScore.name}}}
-<#if testScore_has_next>
-\ecvitem{}{}
-</#if>
-</#list>
-</#if>
-</#if>
 <#-- volunteers -->
 <#if sectionDetail.isVolunteerSection()>
 <#if resume.hasVolunteers()>

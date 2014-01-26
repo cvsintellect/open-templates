@@ -193,18 +193,6 @@ ${certification.startDateAndEndDate} & \textit{${certification.name}} - ${certif
 </#list>
 </#if>
 </#if>
-<#-- test scores -->
-<#if sectionDetail.isTestScoreSection()>
-<#if resume.hasTestScores()>
-
-\section*{${sectionDetail.heading}}
-<#list resume.testScores as testScore>
-\begin{longtable}{L!{\VRule}R}
-${testScore.date} & ${testScore.score} - \textit{${testScore.name}} \\
-\end{longtable}
-</#list>
-</#if>
-</#if>
 <#-- volunteers -->
 <#if sectionDetail.isVolunteerSection()>
 <#if resume.hasVolunteers()>

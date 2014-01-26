@@ -1,6 +1,7 @@
 <#-- font-size: large, font: default -->
 <#-- top: , bottom: , left: , right: , line-spacing: 1, has-section-indent?: true, section-indent: 90 -->
 <#-- color: black, date-format: numeric, newline-character:  -->
+
 \documentclass[${resume.configuration.fontSize}]{article}
 \usepackage{array, xcolor, bibentry}
 \usepackage[utf8]{inputenc}
@@ -200,20 +201,6 @@ ${patent.summary} \\
 ${certification.number} \\
 ${certification.startDateAndEndDate} \\
 </#if>
-\end{longtable}
-</#list>
-</#if>
-</#if>
-<#-- test scores -->
-<#if sectionDetail.isTestScoreSection()>
-<#if resume.hasTestScores()>
-
-\section*{\centerline{${sectionDetail.heading}}}
-\vspace{4pt} \moveleft \hoffset \vbox{\hrule width\textwidth height 1pt} \smallskip
-<#list resume.testScores as testScore>
-\begin{longtable}{L}
-${testScore.score} - \textit{${testScore.name}} \\
-${testScore.date} \\
 \end{longtable}
 </#list>
 </#if>
