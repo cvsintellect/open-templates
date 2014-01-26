@@ -2,6 +2,7 @@
 \moderncvstyle{casual}
 \moderncvcolor{${resume.configuration.color}}
 \usepackage[left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin}]{geometry}
+\usepackage{multicol}
 <#-- spacing -->
 \setlength{\hintscolumnwidth}{${resume.configuration.sectionIndent}}
 \linespread{${resume.configuration.lineSpacing}}
@@ -23,6 +24,9 @@
 <#if helper.isNotEmpty("${resume.contact.emailId}")>
   \email{${resume.contact.emailId}}
 </#if>
+<#if resume.hasSummary()>
+\quote{${resume.summary.headline}}
+</#if>
 
 \begin{document}
 \maketitle
@@ -42,7 +46,7 @@
 <#if sectionDetail.isCustomSection()><#assign customSection = resume.getCustomSection("${sectionDetail.sectionId}")><#if customSection.hasCustomSectionEntries()>
   \section{${sectionDetail.heading}}
   <#list customSection.entries as entry>
-    \cvline{${entry.text}}
+    \cvitem{${entry.heading}}{${entry.text}}
   </#list>
 </#if></#if>
 
@@ -52,7 +56,16 @@
   <#list resume.educations as education>
     <#assign degreeString = helper. joinStringsWith(" in ", "${education.degree}", "${education.fieldOfStudy}")>
     <#assign collegeString = helper.getCommaSeperatedString("${education.university}", "${education.schoolName}")>
-    \cventry{${education.startDateAndEndDate}}{${degreeString}}{${collegeString}}{}{}{${education.summary}}
+    <#assign scoreString = helper.joinStringsWith(": ", "${education.scoreType}", "${education.totalScore}")>
+    \cventry{${education.startDateAndEndDate}}{${degreeString}}{${collegeString}}{${scoreString}}{}{${education.summary}}
+  </#list>
+</#if></#if>
+
+<#-- languages -->
+<#if sectionDetail.isLanguageSection()><#if resume.hasLanguages()>
+  \section{${sectionDetail.heading}}
+  <#list resume.languages as language>
+    \cvitem{${language.name}}{${language.read} ${language.write} ${language.speak}}
   </#list>
 </#if></#if>
 
@@ -71,12 +84,15 @@
 </#if></#if>
 
 <#-- personal -->
-<#if sectionDetail.isPersonalSection()><#if helper.atleastOneIsNotEmpty("${resume.personal.gender}", "${resume.personal.dateOfBirth}", "${resume.personal.maritalStatus}", "${resume.personal.nationality}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
+<#if sectionDetail.isPersonalSection()><#if helper.atleastOneIsNotEmpty("${resume.personal.gender}", "${resume.personal.dateOfBirth}","${resume.personal.fathersName}","${resume.personal.mothersName}", "${resume.personal.maritalStatus}", "${resume.personal.nationality}","${resume.personal.passportNumber}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
   \section{${sectionDetail.heading}}
   <#if helper.isNotEmpty("${resume.personal.gender}")>\cvitem{Gender}{${resume.personal.gender}}</#if>
   <#if helper.isNotEmpty("${resume.personal.dateOfBirth}")>\cvitem{Date of Birth}{${resume.personal.dateOfBirth}}</#if>
+  <#if helper.isNotEmpty("${resume.personal.fathersName}")>\cvitem{Fathers Name}{${resume.personal.fathersName}}</#if>
+  <#if helper.isNotEmpty("${resume.personal.mothersName}")>\cvitem{Mothers Name}{${resume.personal.mothersName}}</#if>
   <#if helper.isNotEmpty("${resume.personal.maritalStatus}")>\cvitem{Marital Status}{${resume.personal.maritalStatus}}</#if>
   <#if helper.isNotEmpty("${resume.personal.nationality}")>\cvitem{Nationality}{${resume.personal.nationality}}</#if>
+  <#if helper.isNotEmpty("${resume.personal.passportNumber}")>\cvitem{Passport Number}{${resume.personal.passportNumber}}</#if>
   <#if helper.isNotEmpty("${resume.personal.languages}")>\cvitem{Languages}{${resume.personal.languages}}</#if>
   <#if helper.isNotEmpty("${resume.personal.hobbies}")>\cvitem{Hobbies}{${resume.personal.hobbies}}</#if>
 </#if></#if>
@@ -85,7 +101,7 @@
 <#if sectionDetail.isPositionSection()><#if resume.hasPositions()>
   \section{${sectionDetail.heading}}
   <#list resume.positions as position>
-    \cventry{${position.startDateAndEndDate}}{${position.title}}{${position.companyName}}{}{}{${position.summary}}
+    \cventry{${position.startDateAndEndDate}}{${position.title}}{${position.companyName}}{${position.companyURL}}{${position.companyLocation}}{${position.summary}}
   </#list>
 </#if></#if>
 
@@ -119,8 +135,28 @@
 <#if sectionDetail.isSkillsSection()><#if resume.hasSkills()>
   \section{${sectionDetail.heading}}
   <#list resume.skillGroups as skillGroup>
-    \cvitem{${skillGroup.skillGroup}}{${skillGroup.skills}}
+    \cvitem{${skillGroup.skillGroup}}{
+<#if skillGroup.skills??>
+\begin{multicols}{2}
+\begin{enumerate}
+<#list skillGroup.skills as skill>
+    \item ${skill}
+</#list>
+\end{enumerate}
+\end{multicols}
+</#if>
+${skillGroup.description}}
   </#list>
+</#if></#if>
+
+<#-- summary -->
+<#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
+  \section{${sectionDetail.heading}}
+  \cvitem{}{
+<#if resume.summary.keywords??>
+<#list resume.summary.keywords as keyword>${keyword} | </#list> \newline
+</#if>
+${resume.summary.summary}}
 </#if></#if>
 
 <#-- talks -->
