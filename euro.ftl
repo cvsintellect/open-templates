@@ -1,9 +1,4 @@
-<#-- font-size: large, font: avant garde -->
-<#-- top: 40, bottom: 40, left: 30, right: 30, line-spacing: 1, has-section-indent?: true, section-indent: 125 -->
-<#-- color: black, date-format: numeric, newline-character:  -->
-
 \documentclass[helvetica,notitle,logo]{europecv}
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[a4paper,left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin}]{geometry}
 \usepackage{ifpdf}
@@ -256,7 +251,7 @@
 
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.skillGroups as skillGroup>
-\ecvitem{${skillGroup.skillGroup}}{${skillGroup.skills}}
+\ecvitem{${skillGroup.skillGroup}}{}
 <#if skillGroup_has_next>
 \ecvitem{}{}
 </#if>

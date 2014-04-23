@@ -29,44 +29,32 @@
 
 %
 %% colors
-\colorlet{color0}{white}% for section title background
-\colorlet{color4}{white}%  for tcolorbox background
+\colorlet{color00}{black}% for section title text
+\colorlet{color1}{white}%  for section rule and vertical rule
+\colorlet{color2}{black}%  url color.
+\colorlet{color3}{black}%  for foot rule, footer and link
 
 <#if resume.configuration.isColorBlack()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color1}{${resume.configuration.color}}%  for section rule and vertical rule
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\colorlet{color0}{${resume.configuration.color}!2}% for section title background
+\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
 <#elseif resume.configuration.isColorBlue()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color1}{${resume.configuration.color}}%  for section rule and vertical rule
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\colorlet{color0}{${resume.configuration.color}!2}% for section title background
+\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
 <#elseif resume.configuration.isColorGreen()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color1}{${resume.configuration.color}}%  for section rule and vertical rule
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\colorlet{color0}{${resume.configuration.color}!2}% for section title background
+\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
 <#elseif resume.configuration.isColorOrange()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color1}{${resume.configuration.color}}%  for section rule and vertical rule
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\colorlet{color0}{${resume.configuration.color}!2}% for section title background
+\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
 <#elseif resume.configuration.isColorRed()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color1}{${resume.configuration.color}}%  for section rule and vertical rule
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\colorlet{color0}{${resume.configuration.color}!2}% for section title background
+\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
 <#elseif resume.configuration.isColorPurple()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color1}{${resume.configuration.color}}%  for section rule and vertical rule
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\colorlet{color0}{${resume.configuration.color}!2}% for section title background
+\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
 <#elseif resume.configuration.isColorGrey()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color1}{${resume.configuration.color}}%  for section rule and vertical rule
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\colorlet{color0}{${resume.configuration.color}!2}% for section title background
+\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
 </#if>
 
 %
@@ -76,12 +64,11 @@
             {\LARGE}
             {}
             {1em}
-            {\colorbox{color0}{\parbox[t]{%
-	           \dimexpr\linewidth-2\fboxsep\relax}%
-	               {\raggedright\rule[-4pt]{0pt}{20pt}%
-                    \textcolor{color00}{{#1}}}}%    Removed \uppercase
-            }
-            [\titleline{\color{color1}\titlerule[0.4pt]}]
+            {\tikz\node[fill=color0,rounded corners=5pt,minimum width=\linewidth,text width=\dimexpr\linewidth-1.4ex\relax,outer sep=0pt]{%
+                 \raggedright\rule[-4pt]{0pt}{20pt}%
+                    \textcolor{color00}{{#1}}};%    Removed \uppercase
+            }%
+            [\titleline{\color{color1}\titlerule[0pt]}]
 \titlespacing*{name=\section,numberless}{0cm}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
 %
 \usepackage[many]{tcolorbox}
@@ -103,7 +90,7 @@
 %	right=\dimexpr1.8in+\parindent\relax,
 	enlarge right by=-${resume.configuration.sectionIndent},
 	right=\dimexpr${resume.configuration.sectionIndent}+0.5ex\relax,
-	leftrule=0.4pt,
+	leftrule=0pt,
 	rightrule=0pt,
 	toprule=0pt,
 	bottomrule=0pt,
@@ -113,16 +100,16 @@
 	overlay unbroken and first={
 		\node[anchor=north east,inner ysep=0pt,align=right,text width=1.5in]
 		at ([yshift=-0.55ex]frame.north west) {\hfill#1};
-           \begin{tcbclipinterior}\fill[color4,opacity=0.25]
+           \begin{tcbclipinterior}\fill[rounded corners=5pt,color4,opacity=0.25]
            (frame.south west) rectangle ([xshift=-${resume.configuration.sectionIndent}]frame.north east);
         \end{tcbclipinterior},
 	},
    overlay middle={
-           \begin{tcbclipinterior}\fill[color4,opacity=0.25]
+           \begin{tcbclipinterior}\fill[rounded corners=5pt,color4,opacity=0.25]
            (frame.south west) rectangle ([xshift=-${resume.configuration.sectionIndent}]frame.north east);
         \end{tcbclipinterior}},
    overlay last={
-           \begin{tcbclipinterior}\fill[color4,opacity=0.25]
+           \begin{tcbclipinterior}\fill[rounded corners=5pt,color4,opacity=0.25]
            (frame.south west) rectangle ([xshift=-${resume.configuration.sectionIndent}]frame.north east);
         \end{tcbclipinterior}},
 	before=\vskip\itemsep\noindent
@@ -136,7 +123,7 @@
 \fancyhf{} % delete current setting for header and footer
 \fancyfoot[R]{{\textcolor{color3}{\thepage/\pageref{LastPage}}}{}}
 \renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
 \let\oldfootrule\footrule
 \renewcommand\footrule{\color{color3}\oldfootrule}
 %\renewcommand{\headrule}{\vbox to 0pt{\hbox to \headwidth{\dotfill}\hss}}
