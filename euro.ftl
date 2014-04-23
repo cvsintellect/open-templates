@@ -1,6 +1,4 @@
-\documentclass[helvetica,notitle,logo]{europecv}
-\usepackage[T1]{fontenc}
-\usepackage[a4paper,left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin}]{geometry}
+\documentclass[helvetica,totpages,notitle,nologo]{europecv}
 \usepackage{ifpdf}
 \usepackage{bibentry}
 \usepackage[english]{babel}
@@ -12,7 +10,10 @@
 \else
 \usepackage{graphicx}
 \fi
-\usepackage{color}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage[a4paper,left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin}]{geometry}
+
 <#-- color -->
 \definecolor{black}{rgb}{0,0,0}
 \definecolor{blue}{rgb}{0.22,0.45,0.70}
@@ -21,22 +22,20 @@
 \definecolor{purple}{rgb}{0.50,0.33,0.80}
 \definecolor{red}{rgb}{0.95,0.20,0.20}
 \definecolor{grey}{rgb}{0.45,0.45,0.45}
+
 <#-- font -->
-<#assign fontTypeValue = helper.getFontTypeValue("${resume.configuration.fontType}")>
-<#if helper.isRomanFont("${resume.configuration.fontType}")>
-\renewcommand{\rmdefault}{${fontTypeValue}}
-\renewcommand{\familydefault}{\rmdefault}
-<#elseif helper.isSansSerifFont("${resume.configuration.fontType}")>
-\renewcommand{\sfdefault}{${fontTypeValue}}
-\renewcommand{\familydefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage{${helper.getFontTypeValue("${resume.configuration.fontType}")}}
+<#if helper.isSansSerifFont("${resume.configuration.fontType}")>
+\renewcommand*\familydefault{\sfdefault}
 <#elseif helper.isTypeWriterFont("${resume.configuration.fontType}")>
-\renewcommand{\ttdefault}{${fontTypeValue}}
-\renewcommand{\familydefault}{\ttdefault}
+\renewcommand*\familydefault{\ttdefault}
 </#if>
+
 <#-- spacing -->
 \ecvLeftColumnWidth{${resume.configuration.sectionIndent}}
 \linespread{${resume.configuration.lineSpacing}}
-\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+\setitemize{nolistsep,labelsep=1ex,leftmargin=*}
 
 <#-- personal -->
 \ecvlastname{${resume.personal.lastName}}
@@ -67,35 +66,40 @@
 \begin{europecv}
 \ecvpersonalinfo[20pt]
 
+<#if resume.hasSummary()>
+\ecvitem{}{${resume.summary.headline}}
+</#if>
+
 <#-- show sections based on order -->
 <#list resume.configuration.sectionDetails as sectionDetail>
-<#if sectionDetail.isObjectiveSection()>
-<#-- objective -->
-<#if resume.hasObjective()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-\ecvitem{}{${resume.objective.text}}
-</#if>
-</#if>
-<#-- positions -->
-<#if sectionDetail.isPositionSection()>
-<#if resume.hasPositions()>
 
+<#-- certifications -->
+<#if sectionDetail.isCertificationSection()><#if resume.hasCertifications()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.positions as position>
-\ecvitem{${position.startDateAndEndDate}}{\textbf{${position.title}}, ${position.companyName}}
-<#if helper.isNotEmpty("${position.summary}")>
-\ecvitem{}{${position.summary}}
+<#list resume.certifications as certification>
+\ecvitem{${certification.startDateAndEndDate}}{\textit{${certification.name}} - ${certification.authorityName}}
+<#if helper.isNotEmpty("${certification.number}")>
+\ecvitem{}{${certification.number}}
 </#if>
-<#if position_has_next>
+<#if certification_has_next>
 \ecvitem{}{}
 </#if>
 </#list>
-</#if>
-</#if>
-<#-- education -->
-<#if sectionDetail.isEducationSection()>
-<#if resume.hasEducation()>
+</#if></#if>
 
+<#-- custom section -->
+<#if sectionDetail.isCustomSection()><#assign customSection = resume.getCustomSection("${sectionDetail.sectionId}")><#if customSection.hasCustomSectionEntries()>
+\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+<#list customSection.entries as entry>
+\ecvitem{${sectionDetail.heading}}{${entry.text}}
+<#if entry_has_next>
+\ecvitem{}{}
+</#if>
+</#list>
+</#if></#if>
+
+<#-- education -->
+<#if sectionDetail.isEducationSection()><#if resume.hasEducation()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.educations as education>
 \ecvitem{${education.startDateAndEndDate}}{\textbf{${education.degree}}, ${education.fieldOfStudy}}
@@ -108,12 +112,70 @@
 \ecvitem{}{}
 </#if>
 </#list>
-</#if>
-</#if>
-<#-- projects -->
-<#if sectionDetail.isProjectSection()>
-<#if resume.hasProjects()>
+</#if></#if>
 
+<#-- languages -->
+<#if sectionDetail.isLanguageSection()><#if resume.hasLanguages()>
+  \ecvsection{${sectionDetail.heading}}
+  <#list resume.languages as language>
+    \ecvitem{${language.name}}{${language.read} ${language.write} ${language.speak}}
+  </#list>
+</#if></#if>
+
+<#-- objective -->
+<#if sectionDetail.isObjectiveSection()><#if resume.hasObjective()>
+\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvitem{}{${resume.objective.text}}
+</#if></#if>
+
+<#-- patents -->
+<#if sectionDetail.isPatentSection()><#if resume.hasPatents()>
+\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+<#list resume.patents as patent>
+\ecvitem{${patent.date}}{\textit{${patent.title}} - ${patent.inventors}}
+<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.status}")>
+<#if helper.isNotEmpty("${patentString}")>
+\ecvitem{}{${patentString}}
+</#if>
+<#if helper.isNotEmpty("${patent.summary}")>
+\ecvitem{}{${patent.summary}}
+</#if>
+<#if patent_has_next>
+\ecvitem{}{}
+</#if>
+</#list>
+</#if></#if>
+
+<#-- personal -->
+<#if sectionDetail.isPersonalSection()><#if helper.atleastOneIsNotEmpty("${resume.personal.maritalStatus}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
+\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+<#if helper.isNotEmpty("${resume.personal.maritalStatus}")>
+\ecvitem{Marital Status}{${resume.personal.maritalStatus}}
+</#if>
+<#if helper.isNotEmpty("${resume.personal.languages}")>
+\ecvitem{Languages}{${resume.personal.languages}}
+</#if>
+<#if helper.isNotEmpty("${resume.personal.hobbies}")>
+\ecvitem{Hobbies}{${resume.personal.hobbies}}
+</#if>
+</#if></#if>
+
+<#-- positions -->
+<#if sectionDetail.isPositionSection()><#if resume.hasPositions()>
+\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+<#list resume.positions as position>
+\ecvitem{${position.startDateAndEndDate}}{\textbf{${position.title}}, ${position.companyName}}
+<#if helper.isNotEmpty("${position.summary}")>
+\ecvitem{}{${position.summary}}
+</#if>
+<#if position_has_next>
+\ecvitem{}{}
+</#if>
+</#list>
+</#if></#if>
+
+<#-- projects -->
+<#if sectionDetail.isProjectSection()><#if resume.hasProjects()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.projects as project>
 \ecvitem{${project.startDateAndEndDate}}{\textbf{${project.name}}}
@@ -133,47 +195,10 @@
 \ecvitem{}{}
 </#if>
 </#list>
-</#if>
-</#if>
-<#-- recommendations -->
-<#if sectionDetail.isRecommendationSection()>
-<#if resume.hasRecommendations()>
+</#if></#if>
 
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.recommendations as recommendation>
-<#assign recommendationString = helper.getCommaSeperatedString("\\textbf{${recommendation.name}}", "${recommendation.type}")>
-\ecvitem{}{${recommendationString}}
-\ecvitem{}{${recommendation.text}}
-<#if recommendation_has_next>
-\ecvitem{}{}
-</#if>
-</#list>
-</#if>
-</#if>
-<#-- talks -->
-<#if sectionDetail.isTalkSection()>
-<#if resume.hasTalks()>
-
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.talks as talk>
-\ecvitem{${talk.date}}{\textit{${talk.title}} - ${talk.speakers}}
-\ecvitem{}{${talk.event}}
-<#if helper.isNotEmpty("${talk.url}")>
-\ecvitem{}{${talk.url}}
-</#if>
-<#if helper.isNotEmpty("${talk.summary}")>
-\ecvitem{}{${talk.summary}}
-</#if>
-<#if talk_has_next>
-\ecvitem{}{}
-</#if>
-</#list>
-</#if>
-</#if>
 <#-- publications -->
-<#if sectionDetail.isPublicationSection()>
-<#if resume.hasPublications()>
-
+<#if sectionDetail.isPublicationSection()><#if resume.hasPublications()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.publications as publication>
 \ecvitem{${publication.date}}{\textit{${publication.title}} - ${publication.authors}}
@@ -190,48 +215,72 @@
 \ecvitem{}{}
 </#if>
 </#list>
-</#if>
-</#if>
-<#-- patents -->
-<#if sectionDetail.isPatentSection()>
-<#if resume.hasPatents()>
+</#if></#if>
 
+<#-- recommendations -->
+<#if sectionDetail.isRecommendationSection()><#if resume.hasRecommendations()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.patents as patent>
-\ecvitem{${patent.date}}{\textit{${patent.title}} - ${patent.inventors}}
-<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.status}")>
-<#if helper.isNotEmpty("${patentString}")>
-\ecvitem{}{${patentString}}
-</#if>
-<#if helper.isNotEmpty("${patent.summary}")>
-\ecvitem{}{${patent.summary}}
-</#if>
-<#if patent_has_next>
+<#list resume.recommendations as recommendation>
+<#assign recommendationString = helper.getCommaSeperatedString("\\textbf{${recommendation.name}}", "${recommendation.type}")>
+\ecvitem{}{${recommendationString}}
+\ecvitem{}{${recommendation.text}}
+<#if recommendation_has_next>
 \ecvitem{}{}
 </#if>
 </#list>
-</#if>
-</#if>
-<#-- certifications -->
-<#if sectionDetail.isCertificationSection()>
-<#if resume.hasCertifications()>
+</#if></#if>
 
+<#-- skills -->
+<#if sectionDetail.isSkillsSection()><#if resume.hasSkills()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.certifications as certification>
-\ecvitem{${certification.startDateAndEndDate}}{\textit{${certification.name}} - ${certification.authorityName}}
-<#if helper.isNotEmpty("${certification.number}")>
-\ecvitem{}{${certification.number}}
+<#list resume.skillGroups as skillGroup>
+\ecvitem{${skillGroup.skillGroup}}{<#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}</#if>
+<#if skillGroup.skills??>
+\begin{multicols}{3}
+\begin{itemize}
+<#list skillGroup.skills as skill>
+   \item ${skill}
+</#list>
+\end{itemize}
+\end{multicols}
 </#if>
-<#if certification_has_next>
+}
+<#if skillGroup_has_next>
 \ecvitem{}{}
 </#if>
 </#list>
+</#if></#if>
+
+<#-- summary -->
+<#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
+  \ecvsection{${sectionDetail.heading}}
+  \ecvitem{}{
+<#if resume.summary.keywords??>
+<#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list> \newline
 </#if>
+${resume.summary.summary}}
+</#if></#if>
+
+<#-- talks -->
+<#if sectionDetail.isTalkSection()><#if resume.hasTalks()>
+\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+<#list resume.talks as talk>
+\ecvitem{${talk.date}}{\textit{${talk.title}} - ${talk.speakers}}
+\ecvitem{}{${talk.event}}
+<#if helper.isNotEmpty("${talk.url}")>
+\ecvitem{}{${talk.url}}
 </#if>
+<#if helper.isNotEmpty("${talk.summary}")>
+\ecvitem{}{${talk.summary}}
+</#if>
+<#if talk_has_next>
+\ecvitem{}{}
+</#if>
+</#list>
+</#if></#if>
+
 <#-- volunteers -->
-<#if sectionDetail.isVolunteerSection()>
-<#if resume.hasVolunteers()>
-
+<#if sectionDetail.isVolunteerSection()><#if resume.hasVolunteers()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.volunteers as volunteer>
 \ecvitem{}{\textit{${volunteer.cause}}, ${volunteer.organizationName}}
@@ -243,52 +292,8 @@
 \ecvitem{}{}
 </#if>
 </#list>
-</#if>
-</#if>
-<#-- skills -->
-<#if sectionDetail.isSkillsSection()>
-<#if resume.hasSkills()>
+</#if></#if>
 
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list resume.skillGroups as skillGroup>
-\ecvitem{${skillGroup.skillGroup}}{}
-<#if skillGroup_has_next>
-\ecvitem{}{}
-</#if>
 </#list>
-</#if>
-</#if>
-<#-- personal -->
-<#if sectionDetail.isPersonalSection()>
-<#if helper.atleastOneIsNotEmpty("${resume.personal.maritalStatus}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
-
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#if helper.isNotEmpty("${resume.personal.maritalStatus}")>
-\ecvitem{Marital Status}{${resume.personal.maritalStatus}}
-</#if>
-<#if helper.isNotEmpty("${resume.personal.languages}")>
-\ecvitem{Languages}{${resume.personal.languages}}
-</#if>
-<#if helper.isNotEmpty("${resume.personal.hobbies}")>
-\ecvitem{Hobbies}{${resume.personal.hobbies}}
-</#if>
-</#if>
-</#if>
-<#-- custom section -->
-<#if sectionDetail.isCustomSection()>
-<#assign customSection = resume.getCustomSection("${sectionDetail.sectionId}")>
-<#if customSection.hasCustomSectionEntries()>
-
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-<#list customSection.entries as entry>
-\ecvitem{}{${entry.text}}
-<#if entry_has_next>
-\ecvitem{}{}
-</#if>
-</#list>
-</#if>
-</#if>
-</#list>
-
 \end{europecv}
 \end{document}
