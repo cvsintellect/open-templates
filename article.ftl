@@ -1,4 +1,3 @@
-\listfiles
 \documentclass[${resume.configuration.fontSize}]{article}
 \usepackage{etex}
 \usepackage{xcolor}
@@ -79,7 +78,7 @@
             {\colorbox{color0!0}{\parbox[t]{%
 	           \dimexpr\linewidth-2\fboxsep\relax}%
 	               {\rule[-4pt]{0pt}{20pt}%
-                    \textcolor{color00}{{#1}}}}%    Removed \uppercase
+                    \textcolor{color00}{{#1}}}}%
             }
             [\titleline{\color{color1}\titlerule[0pt]}]
 \titlespacing*{name=\section,numberless}{0cm}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}

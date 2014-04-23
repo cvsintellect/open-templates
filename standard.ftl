@@ -1,4 +1,3 @@
-\listfiles
 \documentclass[${resume.configuration.fontSize}]{article}
 \usepackage{etex}
 \usepackage{xcolor}
@@ -73,7 +72,7 @@
             {\colorbox{color0}{\parbox[t]{%
 	           \dimexpr\linewidth-2\fboxsep\relax}%
 	               {\raggedright\rule[-4pt]{0pt}{20pt}%
-                    \textcolor{color00}{{#1}}}}%    Removed \uppercase
+                    \textcolor{color00}{{#1}}}}%
             }
             [\titleline{\color{color1}\titlerule[0pt]}]
 \titlespacing*{name=\section,numberless}{0cm}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
@@ -93,8 +92,6 @@
 	arc=0pt,
 	outer arc=0pt,
 	enlarge left by=${resume.configuration.sectionIndent},
-%	enlarge right by=-\dimexpr1.8in+\parindent\relax,
-%	right=\dimexpr1.8in+\parindent\relax,
 	enlarge right by=-${resume.configuration.sectionIndent},
 	right=\dimexpr${resume.configuration.sectionIndent}+0.5ex\relax,
 	leftrule=0pt,
@@ -385,7 +382,7 @@
 \NewDocumentCommand\homepagedetail{O{}}
 {%
     \IfValueT{#1}{%
-        \href{https://www.facebook.com/#1}{%
+        \href{#1}{%
             \hspace*{-0.55ex}\makebox[0.4cm][l]{\homepagesymbol} \ttfamily \hspace{0.55ex} #1}
              \par%
             }%
@@ -456,18 +453,6 @@ ${resume.contact.addressLine} \par
 	\end{minipage}}
 \makeatother
 %
-%\def\myauthor{user name}
-%\def\mytitle{username-vita}
-%\def\myemail{somemail@marquette.edu}
-%\def\myweb{CVsintellect}
-%\def\myphone{414-241-1627}
-%\def\mykeywords{
-%  resume,
-%  curriculum,
-%  vita,
-%  curriculum vita,
-%  cv,
-%}
 
 \usepackage[
 	ocgcolorlinks,
