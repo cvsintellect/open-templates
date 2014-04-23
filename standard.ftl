@@ -34,33 +34,33 @@
 \colorlet{color4}{white}%  for tcolorbox background
 
 <#if resume.configuration.isColorBlack()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\definecolor{color00}{rgb}{0,0,0}% for section title text
+\definecolor{color2}{rgb}{0,0,0}%  url color
+\definecolor{color3}{rgb}{0,0,0}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorBlue()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\definecolor{color00}{rgb}{0.22,0.45,0.70}% for section title text
+\definecolor{color2}{rgb}{0.22,0.45,0.70}%  url color
+\definecolor{color3}{rgb}{0.22,0.45,0.70}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorGreen()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\definecolor{color00}{rgb}{0.35,0.70,0.30}% for section title text
+\definecolor{color2}{rgb}{0.35,0.70,0.30}%  url color
+\definecolor{color3}{rgb}{0.35,0.70,0.30}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorOrange()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\definecolor{color00}{rgb}{0.95,0.55,0.15}% for section title text
+\definecolor{color2}{rgb}{0.95,0.55,0.15}%  url color
+\definecolor{color3}{rgb}{0.95,0.55,0.15}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorRed()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\definecolor{color00}{rgb}{0.95,0.20,0.20}% for section title text
+\definecolor{color2}{rgb}{0.95,0.20,0.20}%  url color
+\definecolor{color3}{rgb}{0.95,0.20,0.20}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorPurple()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\definecolor{color00}{rgb}{0.50,0.33,0.80}% for section title text
+\definecolor{color2}{rgb}{0.50,0.33,0.80}%  url color
+\definecolor{color3}{rgb}{0.50,0.33,0.80}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorGrey()>
-\colorlet{color00}{${resume.configuration.color}}% for section title text
-\colorlet{color2}{${resume.configuration.color}}%  url color.
-\colorlet{color3}{${resume.configuration.color}}%  for foot rule, footer and link
+\definecolor{color00}{rgb}{0.55,0.55,0.55}% for section title text
+\definecolor{color2}{rgb}{0.55,0.55,0.55}%  url color
+\definecolor{color3}{rgb}{0.55,0.55,0.55}%  for foot rule, footer and link
 </#if>
 
 %
