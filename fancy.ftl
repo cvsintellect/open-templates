@@ -67,7 +67,6 @@
                  \raggedright\rule[-4pt]{0pt}{20pt}%
                     \textcolor{color00}{{#1}}};%
             }%
-            [\titleline{\color{color1}\titlerule[0pt]}]
 \titlespacing*{name=\section,numberless}{0cm}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
 %
 \usepackage[many]{tcolorbox}
@@ -112,7 +111,7 @@
 	before=\vskip\itemsep\noindent
 }
 %
-\title{\bfseries\Huge Srinivas Upadhya}
+\title{\bfseries\Huge ${resume.personal.firstName} ${resume.personal.lastName}}
 \author{}
 \date{}
 %
@@ -381,6 +380,12 @@
             }%
 }%
 
+% usage: \emaillink[optional text]{link}
+\newcommand*{\emaillink}[2][]{%
+  \ifthenelse{\equal{#1}{}}%
+    {\href{mailto:#2}{\emailsymbol~\ttfamily #2}}%
+    {\href{mailto:#2}{\emailsymbol~\ttfamily #1}}}
+
 \widowpenalty=8000
 \clubpenalty=8000
 
@@ -434,12 +439,12 @@ ${resume.contact.addressLine} \par
        \end{minipage}%
        \hfill
        \begin{minipage}[t]{0.33\textwidth}
-          \begin{tabular}[t]{@{}r!{:}l@{}}
+          \begin{tabular}[t]{@{}p{\linewidth}@{}}
 <#if helper.isNotEmpty("${resume.contact.phoneNumber}")>
-\color{black!65!white}\Large\fixedphonesymbol   & ${resume.contact.phoneNumber} \\
+{\Large\fixedphonesymbol}   ${resume.contact.phoneNumber} \\
 </#if>
 <#if helper.isNotEmpty("${resume.contact.emailId}")>
-\color{black!65!white}\emailsymbol              & ${resume.contact.emailId}
+\emaillink{${resume.contact.emailId}}
 </#if>
           \end{tabular}
        \end{minipage}
