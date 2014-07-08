@@ -78,7 +78,7 @@
             {\colorbox{color0!0}{\parbox[t]{%
 	           \dimexpr\linewidth-2\fboxsep\relax}%
 	               {\rule[-4pt]{0pt}{20pt}%
-                    \textcolor{color00}{{#1}}}}%
+                    \textcolor{color00}{{#1}}}}%    Removed \uppercase
             }
             [\titleline{\color{color1}\titlerule[0pt]}]
 \titlespacing*{name=\section,numberless}{0cm}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
@@ -108,7 +108,7 @@
     #1,
 }
 %
-\title{\bfseries\Huge Srinivas Upadhya}
+\title{\bfseries\Huge ${resume.personal.firstName} ${resume.personal.lastName}}
 \author{}
 \date{}
 %
@@ -504,59 +504,7 @@
 	%  pdfauthor={\myauthor},
 	%  pdfkeywords={\mykeywords}
 ]{hyperref}
-% fix ocgcolor link breaking
-\makeatletter
-\AtBeginDocument{%
-	\newlength{\temp@x}%
-	\newlength{\temp@y}%
-	\newlength{\temp@w}%
-	\newlength{\temp@h}%
-	\def\my@coords#1#2#3#4{%
-		\setlength{\temp@x}{#1}%
-		\setlength{\temp@y}{#2}%
-		\setlength{\temp@w}{#3}%
-		\setlength{\temp@h}{#4}%
-		\adjustlengths{}%
-		\my@pdfliteral{\strip@pt\temp@x\space\strip@pt\temp@y\space\strip@pt\temp@w\space\strip@pt\temp@h\space re}}%
-	\ifpdf
-	\typeout{In PDF mode}%
-	\def\my@pdfliteral#1{\pdfliteral page{#1}}
-	\def\adjustlengths{}%
-	\fi
-	\ifxetex
-	\def\my@pdfliteral #1{\special{pdf: literal direct #1}}% isn't equivalent to this one
-	\def\adjustlengths{\setlength{\temp@h}{-\temp@h}\addtolength{\temp@y}{1in}\addtolength{\temp@x}{-1in}}%
-	\fi%
-	\def\Hy@colorlink#1{%
-		\begingroup
-		\ifHy@ocgcolorlinks
-		\def\Hy@ocgcolor{#1}%
-		\my@pdfliteral{q}%
-		\my@pdfliteral{7 Tr}% Set text mode to clipping-only
-		\else
-		\HyColor@UseColor#1%
-		\fi
-	}%
-	\def\Hy@endcolorlink{%
-		\ifHy@ocgcolorlinks%
-		\my@pdfliteral{/OC/OCPrint BDC}%
-		\my@coords{0pt}{0pt}{\pdfpagewidth}{\pdfpageheight}%
-		\my@pdfliteral{F}% Fill clipping path (the url's text) with current color
-		\my@pdfliteral{EMC/OC/OCView BDC}%
-		\begingroup%
-		\expandafter\HyColor@UseColor\Hy@ocgcolor%
-		\my@coords{0pt}{0pt}{\pdfpagewidth}{\pdfpageheight}%
-		\my@pdfliteral{F}% Fill clipping path (the url's text) with \Hy@ocgcolor
-		\endgroup%
-		\my@pdfliteral{EMC}%
-		\my@pdfliteral{0 Tr}% Reset text to normal mode
-		\my@pdfliteral{Q}%
-		\fi
-		\endgroup
-	}%
-}
-\makeatother
-% end fixes
+
 %
 \begin{document}
 \maketitle

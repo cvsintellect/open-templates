@@ -81,7 +81,7 @@
 \newtcolorbox{cvitem}[1][]{%
 	colback=color4,
 	colframe=white,
-	left=2pt,
+	left=2pt, 
 	top=2pt,
 	bottom=2pt,
 	right=2pt,
