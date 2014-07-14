@@ -31,43 +31,43 @@
 \colorlet{color00}{black}% for section title text
 \colorlet{color1}{white}%  for section rule and vertical rule
 \colorlet{color2}{black}%  url color.
-\colorlet{color3}{black}%  for foot rule, footer and link
+\colorlet{color3}{white}%  for foot rule, footer and link
 
 <#if resume.configuration.isColorBlack()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{black!10}% for section title background
+\colorlet{color4}{black!20}%  for tcolorbox background
 <#elseif resume.configuration.isColorBlue()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{blue!10}% for section title background
+\colorlet{color4}{blue!20}%  for tcolorbox background
 <#elseif resume.configuration.isColorGreen()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{green!10}% for section title background
+\colorlet{color4}{green!20}%  for tcolorbox background
 <#elseif resume.configuration.isColorOrange()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{orange!10}% for section title background
+\colorlet{color4}{orange!20}%  for tcolorbox background
 <#elseif resume.configuration.isColorRed()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{red!10}% for section title background
+\colorlet{color4}{red!20}%  for tcolorbox background
 <#elseif resume.configuration.isColorPurple()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{purple!10}% for section title background
+\colorlet{color4}{purple!20}%  for tcolorbox background
 <#elseif resume.configuration.isColorGrey()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{grey!10}% for section title background
+\colorlet{color4}{grey!20}%  for tcolorbox background
 </#if>
 
 %
 
 %sections style
 \titleformat{\section}
-            {\LARGE}
+            {\large\bfseries}
             {}
             {1em}
-            {\tikz\node[fill=color0,rounded corners=5pt,minimum width=\linewidth,text width=\dimexpr\linewidth-1.4ex\relax,outer sep=0pt]{%
+            {\tikz\node[fill=color0,rounded corners=8pt,minimum width=\linewidth,text width=\dimexpr\linewidth-1.4ex\relax,outer sep=0pt]{%
                  \raggedright\rule[-4pt]{0pt}{20pt}%
                     \textcolor{color00}{{#1}}};%
             }%
-\titlespacing*{name=\section,numberless}{0cm}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{name=\section,numberless}{0cm}{1.5ex plus 0.7ex minus .2ex}{1ex plus .2ex minus .2ex}
 %
 \usepackage[many]{tcolorbox}
 \tcbuselibrary{skins,breakable}
@@ -96,16 +96,16 @@
 	overlay unbroken and first={
 		\node[anchor=north east,inner ysep=0pt,align=right,text width=1.5in]
 		at ([yshift=-0.55ex]frame.north west) {\hfill#1};
-           \begin{tcbclipinterior}\fill[rounded corners=5pt,color4,opacity=0.25]
+           \begin{tcbclipinterior}\fill[rounded corners=8pt,color4,opacity=0.25]
            (frame.south west) rectangle ([xshift=-${resume.configuration.sectionIndent}]frame.north east);
         \end{tcbclipinterior},
 	},
    overlay middle={
-           \begin{tcbclipinterior}\fill[rounded corners=5pt,color4,opacity=0.25]
+           \begin{tcbclipinterior}\fill[rounded corners=8pt,color4,opacity=0.25]
            (frame.south west) rectangle ([xshift=-${resume.configuration.sectionIndent}]frame.north east);
         \end{tcbclipinterior}},
    overlay last={
-           \begin{tcbclipinterior}\fill[rounded corners=5pt,color4,opacity=0.25]
+           \begin{tcbclipinterior}\fill[rounded corners=8pt,color4,opacity=0.25]
            (frame.south west) rectangle ([xshift=-${resume.configuration.sectionIndent}]frame.north east);
         \end{tcbclipinterior}},
 	before=\vskip\itemsep\noindent
@@ -383,8 +383,8 @@
 % usage: \emaillink[optional text]{link}
 \newcommand*{\emaillink}[2][]{%
   \ifthenelse{\equal{#1}{}}%
-    {\href{mailto:#2}{\emailsymbol~\ttfamily #2}}%
-    {\href{mailto:#2}{\emailsymbol~\ttfamily #1}}}
+    {\href{mailto:#2}{\makebox[0pt][l]{\emailsymbol~\ttfamily #2}}}%
+    {\href{mailto:#2}{\makebox[0pt][l]{\emailsymbol~\ttfamily #1}}}}
 
 \widowpenalty=8000
 \clubpenalty=8000
@@ -471,7 +471,7 @@ ${resume.contact.addressLine} \par
 \maketitle
 
 <#if resume.hasSummary()>
-\centering ${resume.summary.headline}
+{\centering ${resume.summary.headline}\par}
 </#if>
 
 <#-- show sections based on order -->

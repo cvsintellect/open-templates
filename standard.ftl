@@ -60,7 +60,7 @@
 
 %sections style
 \titleformat{\section}
-            {\LARGE}
+            {\large\bfseries}
             {}
             {1em}
             {\colorbox{color0}{\parbox[t]{%
@@ -68,7 +68,7 @@
 	               {\raggedright\rule[-4pt]{0pt}{20pt}%
                     \textcolor{color00}{{#1}}}}%
             }
-\titlespacing*{name=\section,numberless}{0cm}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{name=\section,numberless}{0cm}{1.5ex plus 0.7ex minus .2ex}{1ex plus .2ex minus .2ex}
 %
 \usepackage[many]{tcolorbox}
 \tcbuselibrary{skins,breakable}
@@ -384,8 +384,8 @@
 % usage: \emaillink[optional text]{link}
 \newcommand*{\emaillink}[2][]{%
   \ifthenelse{\equal{#1}{}}%
-    {\href{mailto:#2}{\emailsymbol~\ttfamily #2}}%
-    {\href{mailto:#2}{\emailsymbol~\ttfamily #1}}}
+    {\href{mailto:#2}{\makebox[0pt][l]{\emailsymbol~\ttfamily #2}}}%
+    {\href{mailto:#2}{\makebox[0pt][l]{\emailsymbol~\ttfamily #1}}}}
 
 \widowpenalty=8000
 \clubpenalty=8000
@@ -472,7 +472,7 @@ ${resume.contact.addressLine} \par
 \maketitle
 
 <#if resume.hasSummary()>
-\centering ${resume.summary.headline}
+{\centering ${resume.summary.headline}\par}
 </#if>
 
 <#-- show sections based on order -->

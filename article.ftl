@@ -72,7 +72,7 @@
 
 %sections style
 \titleformat{\section}
-            {\LARGE}
+            {\large\bfseries}
             {}
             {1em}
             {\colorbox{color0!0}{\parbox[t]{%
@@ -81,7 +81,7 @@
                     \textcolor{color00}{{#1}}}}%    Removed \uppercase
             }
             [\titleline{\color{color1}\titlerule[0pt]}]
-\titlespacing*{name=\section,numberless}{0cm}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{name=\section,numberless}{0cm}{1.5ex plus 0.7ex minus .2ex}{1ex plus .2ex minus .2ex}
 %
 %
 \usepackage[many]{tcolorbox}
@@ -510,7 +510,7 @@
 \maketitle
 
 <#if resume.hasSummary()>
-\centering ${resume.summary.headline}
+{\centering ${resume.summary.headline}\par}
 </#if>
 
 <#-- show sections based on order -->
@@ -619,35 +619,25 @@ ${patent.summary}
 <#-- personal -->
 <#if sectionDetail.isPersonalSection()>
 \section*{${sectionDetail.heading}}
+\begin{description}[before={\renewcommand\makelabel[1]{##1:\hfill}},align=left,nosep,leftmargin=4cm,style=sameline]
 <#if helper.isNotEmpty("${resume.personal.gender}")>
-\begin{cvitem}
-Gender ${resume.personal.gender}
-\end{cvitem}
+\item[Gender] ${resume.personal.gender}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.dateOfBirth}")>
-\begin{cvitem}
-Date of Birth ${resume.personal.dateOfBirth}
-\end{cvitem}
+\item[Date of Birth] ${resume.personal.dateOfBirth}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.maritalStatus}")>
-\begin{cvitem}
-Marital Status ${resume.personal.maritalStatus}
-\end{cvitem}
+\item[Marital Status] ${resume.personal.maritalStatus}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.nationality}")>
-\begin{cvitem}
-Nationality ${resume.personal.nationality}
-\end{cvitem}
+\item[Nationality] ${resume.personal.nationality}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.languages}")>
-\begin{cvitem}
-Languages ${resume.personal.languages}
-\end{cvitem}
+\item[Languages] ${resume.personal.languages}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.hobbies}")>
-\begin{cvitem}
-Hobbies ${resume.personal.hobbies}
-\end{cvitem}
+\item[Hobbies] ${resume.personal.hobbies}
+\end{description}
 </#if>
 
 </#if>
