@@ -67,7 +67,7 @@
 \ecvpersonalinfo[20pt]
 
 <#if resume.hasSummary()>
-\ecvitem{}{${resume.summary.headline}}
+\ecvitem{}{\textit{${resume.summary.headline}}}
 </#if>
 
 <#-- show sections based on order -->
@@ -77,24 +77,22 @@
 <#if sectionDetail.isCertificationSection()><#if resume.hasCertifications()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.certifications as certification>
-\ecvitem{${certification.startDateAndEndDate}}{\textit{${certification.name}} - ${certification.authorityName}}
+\ecvitem{${certification.startDateAndEndDate}}{\textit{${certification.name}} - \textit{${certification.authorityName}}}
 <#if helper.isNotEmpty("${certification.number}")>
 \ecvitem{}{${certification.number}}
 </#if>
-<#if certification_has_next>
-\ecvitem{}{}
-</#if>
+<#if certification_has_next>\ecvitem{}{}</#if>
 </#list>
 </#if></#if>
 
 <#-- custom section -->
-<#if sectionDetail.isCustomSection()><#assign customSection = resume.getCustomSection("${sectionDetail.sectionId}")><#if customSection.hasCustomSectionEntries()>
+<#if sectionDetail.isCustomSection()>
+<#assign customSection = resume.getCustomSection("${sectionDetail.sectionId}")>
+<#if customSection.hasCustomSectionEntries()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list customSection.entries as entry>
-\ecvitem{${sectionDetail.heading}}{${entry.text}}
-<#if entry_has_next>
-\ecvitem{}{}
-</#if>
+\ecvitem{${entry.heading}}{${entry.text}}
+<#if entry_has_next>\ecvitem{}{}</#if>
 </#list>
 </#if></#if>
 
@@ -102,24 +100,22 @@
 <#if sectionDetail.isEducationSection()><#if resume.hasEducation()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.educations as education>
-\ecvitem{${education.startDateAndEndDate}}{\textbf{${education.degree}}, ${education.fieldOfStudy}}
+<#assign degreeString = helper.joinStringsWith(" in ", "\\textbf{${education.degree}}", "\\textbf{${education.fieldOfStudy}}")>
 <#assign collegeString = helper.getCommaSeperatedString("${education.university}", "${education.schoolName}")>
-\ecvitem{}{${collegeString}}
+\ecvitem{${education.startDateAndEndDate}}{${degreeString} <#if helper.isNotEmpty("${collegeString}")>, \textit{${collegeString}}</#if>}
 <#if helper.isNotEmpty("${education.summary}")>
 \ecvitem{}{${education.summary}}
 </#if>
-<#if education_has_next>
-\ecvitem{}{}
-</#if>
+<#if education_has_next>\ecvitem{}{}</#if>
 </#list>
 </#if></#if>
 
 <#-- languages -->
 <#if sectionDetail.isLanguageSection()><#if resume.hasLanguages()>
-  \ecvsection{${sectionDetail.heading}}
-  <#list resume.languages as language>
-    \ecvitem{${language.name}}{${language.read} ${language.write} ${language.speak}}
-  </#list>
+\ecvsection{${sectionDetail.heading}}
+<#list resume.languages as language>
+\ecvitem{${language.name}}{${language.read} ${language.write} ${language.speak}}
+</#list>
 </#if></#if>
 
 <#-- objective -->
@@ -132,17 +128,15 @@
 <#if sectionDetail.isPatentSection()><#if resume.hasPatents()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.patents as patent>
-\ecvitem{${patent.date}}{\textit{${patent.title}} - ${patent.inventors}}
-<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.status}")>
+\ecvitem{${resume.patents?size - patent_index}}{\textit{${patent.title}} - \textit{${patent.inventors}}}
+<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}")>
 <#if helper.isNotEmpty("${patentString}")>
 \ecvitem{}{${patentString}}
 </#if>
 <#if helper.isNotEmpty("${patent.summary}")>
 \ecvitem{}{${patent.summary}}
 </#if>
-<#if patent_has_next>
-\ecvitem{}{}
-</#if>
+<#if patent_has_next>\ecvitem{}{}</#if>
 </#list>
 </#if></#if>
 
@@ -164,13 +158,12 @@
 <#if sectionDetail.isPositionSection()><#if resume.hasPositions()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.positions as position>
-\ecvitem{${position.startDateAndEndDate}}{\textbf{${position.title}}, ${position.companyName}}
+<#assign positionString = helper.joinStringsWith(" at ", "\\textbf{${position.title}}", "\\textbf{${position.companyName}}")>
+\ecvitem{${position.startDateAndEndDate}}{${positionString}<#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if>}
 <#if helper.isNotEmpty("${position.summary}")>
 \ecvitem{}{${position.summary}}
 </#if>
-<#if position_has_next>
-\ecvitem{}{}
-</#if>
+<#if position_has_next>\ecvitem{}{}</#if>
 </#list>
 </#if></#if>
 
@@ -178,22 +171,13 @@
 <#if sectionDetail.isProjectSection()><#if resume.hasProjects()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.projects as project>
-\ecvitem{${project.startDateAndEndDate}}{\textbf{${project.name}}}
-<#if helper.isNotEmpty("${project.companyName}")>
-\ecvitem{}{${project.companyName}}
-</#if>
-<#if helper.isNotEmpty("${project.clientName}")>
-\ecvitem{}{${project.clientName}}
-</#if>
-<#if helper.isNotEmpty("${project.role}")>
-\ecvitem{}{${project.role}}
-</#if>
+<#assign projectString = helper.joinStringsWith(" on ", "\\textbf{${project.role}}", "\\textbf{${project.name}}")>
+<#assign companyString = helper.joinStringsWith(" for ", "${project.companyName}", "${project.clientName}")>
+\ecvitem{${project.startDateAndEndDate}}{${projectString}<#if helper.isNotEmpty("${companyString}")>, ${companyString}</#if>}
 <#if helper.isNotEmpty("${project.summary}")>
 \ecvitem{}{${project.summary}}
 </#if>
-<#if project_has_next>
-\ecvitem{}{}
-</#if>
+<#if project_has_next>\ecvitem{}{}</#if>
 </#list>
 </#if></#if>
 
@@ -201,19 +185,15 @@
 <#if sectionDetail.isPublicationSection()><#if resume.hasPublications()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.publications as publication>
-\ecvitem{${publication.date}}{\textit{${publication.title}} - ${publication.authors}}
-<#if helper.isNotEmpty("${publication.publisherName}")>
-\ecvitem{}{${publication.publisherName}}
-</#if>
-<#if helper.isNotEmpty("${publication.url}")>
-\ecvitem{}{${publication.url}}
+<#assign publicationString = helper.getCommaSeperatedString("${publication.publisherName}", "${publication.date}", "${publication.url}")>
+\ecvitem{${resume.publications?size - publication_index}}{\textit{${publication.title}} - \textit{${publication.authors}}}
+<#if helper.isNotEmpty("${publicationString}")>
+\ecvitem{}{${publicationString}}
 </#if>
 <#if helper.isNotEmpty("${publication.summary}")>
 \ecvitem{}{${publication.summary}}
 </#if>
-<#if publication_has_next>
-\ecvitem{}{}
-</#if>
+<#if publication_has_next>\ecvitem{}{}</#if>
 </#list>
 </#if></#if>
 
@@ -221,12 +201,9 @@
 <#if sectionDetail.isRecommendationSection()><#if resume.hasRecommendations()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.recommendations as recommendation>
-<#assign recommendationString = helper.getCommaSeperatedString("\\textbf{${recommendation.name}}", "${recommendation.type}")>
-\ecvitem{}{${recommendationString}}
+\ecvitem{}{\textbf{${recommendation.name}}, \textit{${recommendation.type}}}
 \ecvitem{}{${recommendation.text}}
-<#if recommendation_has_next>
-\ecvitem{}{}
-</#if>
+<#if recommendation_has_next>\ecvitem{}{}</#if>
 </#list>
 </#if></#if>
 
@@ -239,25 +216,21 @@
 \begin{multicols}{3}
 \begin{itemize}
 <#list skillGroup.skills as skill>
-   \item ${skill}
+\item ${skill}
 </#list>
 \end{itemize}
 \end{multicols}
 </#if>
 }
-<#if skillGroup_has_next>
-\ecvitem{}{}
-</#if>
+<#if skillGroup_has_next>\ecvitem{}{}</#if>
 </#list>
 </#if></#if>
 
 <#-- summary -->
 <#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
-  \ecvsection{${sectionDetail.heading}}
-  \ecvitem{}{
-<#if resume.summary.keywords??>
-<#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list> \newline
-</#if>
+\ecvsection{${sectionDetail.heading}}
+\ecvitem{}{
+<#if resume.summary.keywords??><#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list>\newline</#if>
 ${resume.summary.summary}}
 </#if></#if>
 
@@ -265,17 +238,15 @@ ${resume.summary.summary}}
 <#if sectionDetail.isTalkSection()><#if resume.hasTalks()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.talks as talk>
-\ecvitem{${talk.date}}{\textit{${talk.title}} - ${talk.speakers}}
-\ecvitem{}{${talk.event}}
-<#if helper.isNotEmpty("${talk.url}")>
-\ecvitem{}{${talk.url}}
+<#assign talkString = helper.getCommaSeperatedString("${talk.event}", "${talk.date}", "${talk.url}")>
+\ecvitem{${resume.talks?size - talk_index}}{\textit{${talk.title}} - \textit{${talk.speakers}}}
+<#if helper.isNotEmpty("${talkString}")>
+\ecvitem{}{${talkString}}
 </#if>
 <#if helper.isNotEmpty("${talk.summary}")>
 \ecvitem{}{${talk.summary}}
 </#if>
-<#if talk_has_next>
-\ecvitem{}{}
-</#if>
+<#if talk_has_next>\ecvitem{}{}</#if>
 </#list>
 </#if></#if>
 
@@ -283,14 +254,11 @@ ${resume.summary.summary}}
 <#if sectionDetail.isVolunteerSection()><#if resume.hasVolunteers()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.volunteers as volunteer>
-\ecvitem{}{\textit{${volunteer.cause}}, ${volunteer.organizationName}}
-\ecvitem{}{${volunteer.role}}
+\ecvitem{}{\textit{${volunteer.role}}, ${volunteer.cause}, ${volunteer.organizationName}}
 <#if helper.isNotEmpty("${volunteer.summary}")>
 \ecvitem{}{${volunteer.summary}}
 </#if>
-<#if volunteer_has_next>
-\ecvitem{}{}
-</#if>
+<#if volunteer_has_next>\ecvitem{}{}</#if>
 </#list>
 </#if></#if>
 
