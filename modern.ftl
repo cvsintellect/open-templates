@@ -22,15 +22,15 @@
 \firstname{${resume.personal.firstName}}
 \familyname{${resume.personal.lastName}}
 <#if helper.atleastOneIsNotEmpty("${resume.contact.addressLine}", "${resume.contact.city}", "${resume.contact.state}", "${resume.contact.country}", "${resume.contact.pincode}")>
-  <#assign cityStateString = helper.getCommaSeperatedString("${resume.contact.city}", "${resume.contact.state}")>
-  <#assign countryCodeString = helper.joinStringsWith(" - ", "${resume.contact.country}", "${resume.contact.pincode}")>
-  \address{${resume.contact.addressLine}}{${cityStateString}}{${countryCodeString}}
+<#assign cityStateString = helper.getCommaSeperatedString("${resume.contact.city}", "${resume.contact.state}")>
+<#assign countryCodeString = helper.joinStringsWith(" - ", "${resume.contact.country}", "${resume.contact.pincode}")>
+\address{${resume.contact.addressLine}}{${cityStateString}}{${countryCodeString}}
 </#if>
 <#if helper.isNotEmpty("${resume.contact.phoneNumber}")>
-  \phone{${resume.contact.phoneNumber}}
+\phone{${resume.contact.phoneNumber}}
 </#if>
 <#if helper.isNotEmpty("${resume.contact.emailId}")>
-  \email{${resume.contact.emailId}}
+\email{${resume.contact.emailId}}
 </#if>
 
 <#if resume.hasSummary()>
