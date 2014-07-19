@@ -150,7 +150,7 @@
 <#if sectionDetail.isCertificationSection()><#if resume.hasCertifications()>
 \section{${sectionDetail.heading}}
 <#list resume.certifications as certification>
-<#assign certificateString = helper.joinStringsWith(" by ", "\\textbf{${certification.name}}", "\\textit{${certification.authorityName}}")>
+<#assign certificateString = helper.joinStringsWith(" by ", "\\textit{${certification.name}}", "\\textit{${certification.authorityName}}")>
 ${certification.startDateAndEndDate} - ${certificateString}\par
 <#if helper.isNotEmpty("${certification.number}")>Number: ${certification.number}</#if>
 <#if certification_has_next >\newline</#if>
@@ -172,13 +172,15 @@ ${entry.text}
 \section{${sectionDetail.heading}}
 
 <#list resume.educations as education>
-<#assign degreeString = helper.joinStringsWith(" in ", "\\textbf{${education.degree}}", "\\textit{${education.fieldOfStudy}}")>
-<#assign collegeString = helper.getCommaSeperatedString("\\textit{${education.schoolName}}", "\\textit{${education.university}}")>
-<#assign scoreString = helper.joinStringsWith(": ", "\\textit{${education.scoreType}}", "${education.totalScore}")>
+<#assign degreeString = helper.joinStringsWith(" in ", "\\textbf{${education.degree}}", "\\textbf{${education.fieldOfStudy}}")>
+<#assign collegeString = helper.getCommaSeperatedString("${education.schoolName}", "${education.university}")>
+<#assign scoreString = helper.joinStringsWith(": ", "${education.scoreType}", "${education.totalScore}")>
 ${education.startDateAndEndDate} - ${degreeString}\par
-<#if helper.isNotEmpty("${collegeString}")>${collegeString}\par</#if>
+<#if helper.isNotEmpty("${collegeString}")>\textit{${collegeString}}\par</#if>
 <#if helper.isNotEmpty("${scoreString}")>${scoreString}\par</#if>
+<#if helper.isNotEmpty("${education.summary}")>
 ${education.summary}
+</#if>
 <#if education_has_next >\newline</#if>
 </#list>
 </#if></#if>
@@ -204,11 +206,12 @@ ${resume.objective.text}
 <#if sectionDetail.isPatentSection()><#if resume.hasPatents()>
 \section{${sectionDetail.heading}}
 <#list resume.patents as patent>
-<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.date}", "${patent.status}")>
-\textbf{${patent.title}} - \textit{${patent.inventors}}\par
-<#if helper.isNotEmpty("${patent.number}")>Number: ${patent.number}\par</#if>
+<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}")>
+${resume.patents?size - patent_index}. \textit{${patent.title}} - \textit{${patent.inventors}}\par
 <#if helper.isNotEmpty("${patentString}")>${patentString}\par</#if>
+<#if helper.isNotEmpty("${patent.summary}")>
 ${patent.summary}
+</#if>
 <#if patent_has_next >\newline</#if>
 </#list>
 </#if></#if>
@@ -242,9 +245,11 @@ ${patent.summary}
 <#if sectionDetail.isPositionSection()><#if resume.hasPositions()>
 \section{${sectionDetail.heading}}
 <#list resume.positions as position>
-<#assign positionString = helper.joinStringsWith(" at ", "\\textbf{${position.title}}", "\\textit{${position.companyName}}")>
+<#assign positionString = helper.joinStringsWith(" at ", "\\textbf{${position.title}}", "\\textbf{${position.companyName}}")>
 ${position.startDateAndEndDate} - ${positionString}<#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if>\par
+<#if helper.isNotEmpty("${position.summary}")>
 ${position.summary}
+</#if>
 <#if position_has_next >\newline</#if>
 </#list>
 </#if></#if>
@@ -253,11 +258,13 @@ ${position.summary}
 <#if sectionDetail.isProjectSection()><#if resume.hasProjects()>
 \section{${sectionDetail.heading}}
 <#list resume.projects as project>
-<#assign projectString = helper.joinStringsWith(" on ", "\\textbf{${project.role}}", "\\textit{${project.name}}")>
-<#assign companyString = helper.joinStringsWith(" for ", "\\textit{${project.companyName}}", "\\textit{${project.clientName}}")>
+<#assign projectString = helper.joinStringsWith(" on ", "\\textbf{${project.role}}", "\\textbf{${project.name}}")>
+<#assign companyString = helper.joinStringsWith(" for ", "${project.companyName}", "${project.clientName}")>
 ${project.startDateAndEndDate} - ${projectString}\par
-${companyString}\par 
+${companyString}\par
+<#if helper.isNotEmpty("${project.summary}")>
 ${project.summary}
+</#if>
 <#if project_has_next >\newline</#if>
 </#list>
 </#if></#if>
@@ -267,9 +274,11 @@ ${project.summary}
 \section{${sectionDetail.heading}}
 <#list resume.publications as publication>
 <#assign publicationString = helper.getCommaSeperatedString("${publication.publisherName}", "${publication.date}", "${publication.url}")>
-\textbf{${publication.title}} - \textit{${publication.authors}}\par
+${resume.publications?size - publication_index}. \textit{${publication.title}} - \textit{${publication.authors}}\par
 <#if helper.isNotEmpty("${publicationString}")>${publicationString}\par</#if>
+<#if helper.isNotEmpty("${publication.summary}")>
 ${publication.summary}
+</#if>
 <#if publication_has_next >\newline</#if>
 </#list>
 </#if></#if>
@@ -289,7 +298,9 @@ ${recommendation.text}
 \section{${sectionDetail.heading}}
 <#list resume.skillGroups as skillGroup>
 \textbf{${skillGroup.skillGroup}}\par
-<#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}\par</#if>
+<#if helper.isNotEmpty("${skillGroup.description}")>
+${skillGroup.description}
+</#if>
 <#if skillGroup.skills??><#list skillGroup.skills as skill>\textit{${skill}}<#if skill_has_next >, </#if></#list>\par</#if>
 <#if skillGroup_has_next >\newline</#if>
 </#list>
@@ -298,7 +309,7 @@ ${recommendation.text}
 <#-- summary -->
 <#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
 \section{${sectionDetail.heading}}
-<#if resume.summary.keywords??>{\centering <#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list>}\par</#if>
+<#if resume.summary.keywords??>{\centering <#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list>\par}</#if>
 ${resume.summary.summary}
 </#if></#if>
 
@@ -307,9 +318,11 @@ ${resume.summary.summary}
 \section{${sectionDetail.heading}}
 <#list resume.talks as talk>
 <#assign talkString = helper.getCommaSeperatedString("${talk.event}", "${talk.date}", "${talk.url}")>
-\textbf{${talk.title}} - \textit{${talk.speakers}}\par
+${resume.talks?size - talk_index}. \textit{${talk.title}} - \textit{${talk.speakers}}\par
 <#if helper.isNotEmpty("${talkString}")>${talkString}\par</#if>
+<#if helper.isNotEmpty("${talk.summary}")>
 ${talk.summary}
+</#if>
 <#if talk_has_next >\newline</#if>
 </#list>
 </#if></#if>
@@ -318,8 +331,10 @@ ${talk.summary}
 <#if sectionDetail.isVolunteerSection()><#if resume.hasVolunteers()>
 \section{${sectionDetail.heading}}
 <#list resume.volunteers as volunteer>
-\textbf{${volunteer.role}}, \textit{${volunteer.cause}}, \textit{${volunteer.organizationName}}\par
+\textit{${volunteer.role}}, ${volunteer.cause}, ${volunteer.organizationName}\par
+<#if helper.isNotEmpty("${volunteer.summary}")>
 ${volunteer.summary}
+</#if>
 <#if volunteer_has_next >\newline</#if>
 </#list>
 </#if></#if>
