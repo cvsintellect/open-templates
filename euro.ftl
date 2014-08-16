@@ -129,7 +129,7 @@
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.patents as patent>
 \ecvitem{${resume.patents?size - patent_index}}{\textit{${patent.title}} - \textit{${patent.inventors}}}
-<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}")>
+<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}", "${patent.url}")>
 <#if helper.isNotEmpty("${patentString}")>
 \ecvitem{}{${patentString}}
 </#if>
@@ -143,8 +143,17 @@
 <#-- personal -->
 <#if sectionDetail.isPersonalSection()><#if helper.atleastOneIsNotEmpty("${resume.personal.maritalStatus}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+<#if helper.isNotEmpty("${resume.personal.fathersName}")>
+\ecvitem{Father's Name}{${resume.personal.fathersName}}
+</#if>
+<#if helper.isNotEmpty("${resume.personal.mothersName}")>
+\ecvitem{Mother's Name}{${resume.personal.mothersName}}
+</#if>
 <#if helper.isNotEmpty("${resume.personal.maritalStatus}")>
 \ecvitem{Marital Status}{${resume.personal.maritalStatus}}
+</#if>
+<#if helper.isNotEmpty("${resume.personal.passportNumber}")>
+\ecvitem{Passport Number}{${resume.personal.passportNumber}}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.languages}")>
 \ecvitem{Languages}{${resume.personal.languages}}
@@ -159,7 +168,7 @@
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.positions as position>
 <#assign positionString = helper.joinStringsWith(" at ", "\\textbf{${position.title}}", "\\textbf{${position.companyName}}")>
-\ecvitem{${position.startDateAndEndDate}}{${positionString}<#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if>}
+\ecvitem{${position.startDateAndEndDate}}{${positionString}<#if helper.isNotEmpty("${position.companyURL}")>, ${position.companyURL}</#if><#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if>}
 <#if helper.isNotEmpty("${position.summary}")>
 \ecvitem{}{${position.summary}}
 </#if>

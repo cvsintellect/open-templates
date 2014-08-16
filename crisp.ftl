@@ -206,7 +206,7 @@ ${resume.objective.text}
 <#if sectionDetail.isPatentSection()><#if resume.hasPatents()>
 \section{${sectionDetail.heading}}
 <#list resume.patents as patent>
-<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}")>
+<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}", "${patent.url}")>
 ${resume.patents?size - patent_index}. \textit{${patent.title}} - \textit{${patent.inventors}}\par
 <#if helper.isNotEmpty("${patentString}")>${patentString}\par</#if>
 <#if helper.isNotEmpty("${patent.summary}")>
@@ -226,11 +226,20 @@ ${patent.summary}
 <#if helper.isNotEmpty("${resume.personal.dateOfBirth}")>
 \item{\textit{Date of Birth}}{${resume.personal.dateOfBirth}}
 </#if>
+<#if helper.isNotEmpty("${resume.personal.fathersName}")>
+\item{\textit{Father's Name}}{${resume.personal.fathersName}}
+</#if>
+<#if helper.isNotEmpty("${resume.personal.mothersName}")>
+\item{\textit{Mother's Name}}{${resume.personal.mothersName}}
+</#if>
 <#if helper.isNotEmpty("${resume.personal.maritalStatus}")>
 \item{\textit{Marital Status}}{${resume.personal.maritalStatus}}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.nationality}")>
 \item{\textit{Nationality}}{${resume.personal.nationality}}
+</#if>
+<#if helper.isNotEmpty("${resume.personal.passportNumber}")>
+\item{\textit{Passport Number}}{${resume.personal.passportNumber}}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.languages}")>
 \item{\textit{Languages}}{${resume.personal.languages}}
@@ -246,7 +255,7 @@ ${patent.summary}
 \section{${sectionDetail.heading}}
 <#list resume.positions as position>
 <#assign positionString = helper.joinStringsWith(" at ", "\\textbf{${position.title}}", "\\textbf{${position.companyName}}")>
-${position.startDateAndEndDate} - ${positionString}<#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if>\par
+${position.startDateAndEndDate} - ${positionString}<#if helper.isNotEmpty("${position.companyURL}")>, ${position.companyURL}</#if><#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if>\par
 <#if helper.isNotEmpty("${position.summary}")>
 ${position.summary}
 </#if>

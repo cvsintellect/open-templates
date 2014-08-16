@@ -97,7 +97,7 @@
 <#if sectionDetail.isPatentSection()><#if resume.hasPatents()>
 \section{${sectionDetail.heading}}
 <#list resume.patents as patent>
-<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}")>
+<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}", "${patent.url}")>
 \cventry{}{${patentString}}{${patent.title} - ${patent.inventors}}{${resume.patents?size - patent_index}}{}{${patent.summary}}
 </#list>
 </#if></#if>

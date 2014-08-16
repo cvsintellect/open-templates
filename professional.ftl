@@ -564,7 +564,7 @@ ${resume.objective.text}
 <#list resume.patents as patent>
 \begin{leftrulebox}[${resume.patents?size - patent_index} ]
 \textit{${patent.title}} - \textit{${patent.inventors}}\par
-<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}")>
+<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}", "${patent.url}")>
 <#if helper.isNotEmpty("${patentString}")>
 ${patentString}\par
 </#if>
@@ -588,6 +588,16 @@ ${resume.personal.gender}
 ${resume.personal.dateOfBirth}
 \end{leftrulebox}
 </#if>
+<#if helper.isNotEmpty("${resume.personal.fathersName}")>
+\begin{leftrulebox}[\textit{Father's Name}]
+${resume.personal.fathersName}
+\end{leftrulebox}
+</#if>
+<#if helper.isNotEmpty("${resume.personal.mothersName}")>
+\begin{leftrulebox}[\textit{Mother's Name}]
+${resume.personal.mothersName}
+\end{leftrulebox}
+</#if>
 <#if helper.isNotEmpty("${resume.personal.maritalStatus}")>
 \begin{leftrulebox}[\textit{Marital Status}]
 ${resume.personal.maritalStatus}
@@ -596,6 +606,11 @@ ${resume.personal.maritalStatus}
 <#if helper.isNotEmpty("${resume.personal.nationality}")>
 \begin{leftrulebox}[\textit{Nationality}]
 ${resume.personal.nationality}
+\end{leftrulebox}
+</#if>
+<#if helper.isNotEmpty("${resume.personal.passportNumber}")>
+\begin{leftrulebox}[\textit{Passport Number}]
+${resume.personal.passportNumber}
 \end{leftrulebox}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.languages}")>
@@ -616,7 +631,7 @@ ${resume.personal.hobbies}
 <#list resume.positions as position>
 <#assign positionString = helper.joinStringsWith(" at ", "\\textbf{${position.title}}", "\\textbf{${position.companyName}}")>
 \begin{leftrulebox}[${position.startDateAndEndDate}]
-${positionString}<#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if>\par
+${positionString}<#if helper.isNotEmpty("${position.companyURL}")>, ${position.companyURL}</#if><#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if>\par
 <#if helper.isNotEmpty("${position.summary}")>
 ${position.summary}
 </#if>

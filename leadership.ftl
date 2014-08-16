@@ -601,7 +601,7 @@ ${resume.objective.text}
 <#list resume.patents as patent>
 \begin{cvitem}
 ${resume.patents?size - patent_index}. \textit{${patent.title}} - \textit{${patent.inventors}}\par
-<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}")>
+<#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}", "${patent.url}")>
 <#if helper.isNotEmpty("${patentString}")>
 ${patentString}\par
 </#if>
@@ -622,11 +622,20 @@ ${patent.summary}
 <#if helper.isNotEmpty("${resume.personal.dateOfBirth}")>
 \item[\textit{Date of Birth}] ${resume.personal.dateOfBirth}
 </#if>
+<#if helper.isNotEmpty("${resume.personal.fathersName}")>
+\item[\textit{Father's Name}] ${resume.personal.fathersName}
+</#if>
+<#if helper.isNotEmpty("${resume.personal.mothersName}")>
+\item[\textit{Mother's Name}] ${resume.personal.mothersName}
+</#if>
 <#if helper.isNotEmpty("${resume.personal.maritalStatus}")>
 \item[\textit{Marital Status}] ${resume.personal.maritalStatus}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.nationality}")>
 \item[\textit{Nationality}] ${resume.personal.nationality}
+</#if>
+<#if helper.isNotEmpty("${resume.personal.passportNumber}")>
+\item[\textit{Passport Number}] ${resume.personal.passportNumber}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.languages}")>
 \item[\textit{Languages}] ${resume.personal.languages}
@@ -644,7 +653,7 @@ ${patent.summary}
 <#list resume.positions as position>
 <#assign positionString = helper.joinStringsWith(" at ", "\\textbf{${position.title}}", "\\textbf{${position.companyName}}")>
 \begin{cvitem}
-${positionString}<#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if>, ${position.startDateAndEndDate}\par
+${positionString}<#if helper.isNotEmpty("${position.companyURL}")>, ${position.companyURL}</#if><#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if>, ${position.startDateAndEndDate}\par
 <#if helper.isNotEmpty("${position.summary}")>
 ${position.summary}
 </#if>
