@@ -576,7 +576,7 @@ ${patent.summary}
 </#if></#if>
 
 <#-- personal -->
-<#if sectionDetail.isPersonalSection()>
+<#if sectionDetail.isPersonalSection()><#if helper.atleastOneIsNotEmpty("${resume.personal.gender}", "${resume.personal.dateOfBirth}","${resume.personal.fathersName}","${resume.personal.mothersName}", "${resume.personal.maritalStatus}", "${resume.personal.nationality}","${resume.personal.passportNumber}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
 \section*{${sectionDetail.heading}}
 <#if helper.isNotEmpty("${resume.personal.gender}")>
 \begin{leftrulebox}[\textit{Gender}]
@@ -623,7 +623,7 @@ ${resume.personal.languages}
 ${resume.personal.hobbies}
 \end{leftrulebox}
 </#if>
-</#if>
+</#if></#if>
 
 <#-- positions -->
 <#if sectionDetail.isPositionSection()><#if resume.hasPositions()>

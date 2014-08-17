@@ -613,7 +613,7 @@ ${patent.summary}
 </#if></#if>
 
 <#-- personal -->
-<#if sectionDetail.isPersonalSection()>
+<#if sectionDetail.isPersonalSection()><#if helper.atleastOneIsNotEmpty("${resume.personal.gender}", "${resume.personal.dateOfBirth}","${resume.personal.fathersName}","${resume.personal.mothersName}", "${resume.personal.maritalStatus}", "${resume.personal.nationality}","${resume.personal.passportNumber}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
 \section*{${sectionDetail.heading}}
 \begin{description}[before={\renewcommand\makelabel[1]{##1:\hfill}},align=left,nosep,leftmargin=4cm,style=sameline]
 <#if helper.isNotEmpty("${resume.personal.gender}")>
@@ -644,8 +644,7 @@ ${patent.summary}
 \item[\textit{Hobbies}] ${resume.personal.hobbies}
 \end{description}
 </#if>
-
-</#if>
+</#if></#if>
 
 <#-- positions -->
 <#if sectionDetail.isPositionSection()><#if resume.hasPositions()>

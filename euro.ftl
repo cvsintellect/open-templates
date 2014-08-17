@@ -141,7 +141,7 @@
 </#if></#if>
 
 <#-- personal -->
-<#if sectionDetail.isPersonalSection()><#if helper.atleastOneIsNotEmpty("${resume.personal.maritalStatus}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
+<#if sectionDetail.isPersonalSection()><#if helper.atleastOneIsNotEmpty("${resume.personal.fathersName}", "${resume.personal.mothersName}", "${resume.personal.maritalStatus}", "${resume.personal.passportNumber}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#if helper.isNotEmpty("${resume.personal.fathersName}")>
 \ecvitem{Father's Name}{${resume.personal.fathersName}}
