@@ -642,8 +642,8 @@ ${patent.summary}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.hobbies}")>
 \item[\textit{Hobbies}] ${resume.personal.hobbies}
-\end{description}
 </#if>
+\end{description}
 </#if></#if>
 
 <#-- positions -->
