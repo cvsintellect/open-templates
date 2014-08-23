@@ -172,17 +172,17 @@ ${publication.summary}}
 <#if sectionDetail.isSkillsSection()><#if resume.hasSkills()>
 \section{${sectionDetail.heading}}
 <#list resume.skillGroups as skillGroup>
-\cvitem{${skillGroup.skillGroup}}{<#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}</#if>
-<#if skillGroup.skills??>
-\begin{multicols}{3}
-\begin{itemize}
-<#list skillGroup.skills as skill>
-\item ${skill}
-</#list>
-\end{itemize}
-\end{multicols}
-</#if>
-}
+\begin{description}[nosep,topsep=0.5em,leftmargin=*,labelwidth=\hintscolumnwidth,labelsep=\separatorcolumnwidth,leftmargin=!,align=right]
+ \item[${skillGroup.skillGroup}]
+ <#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}\newline</#if>
+ <#if skillGroup.skills??>
+ \begin{itemize*}[leftmargin=*, itemjoin={{\qquad}}]
+  <#list skillGroup.skills as skill>
+  \item \makebox[0.2\maincolumnwidth][l]{${skill}}
+  </#list>
+ \end{itemize*}
+ </#if>
+\end{description}
 </#list>
 </#if></#if>
 
