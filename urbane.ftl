@@ -105,25 +105,25 @@ ${patent.summary}}
 <#-- personal -->
 <#if sectionDetail.isPersonalSection()>
 \section{${sectionDetail.heading}}
+\begin{description}[nosep,labelwidth=1.25in,labelsep=3ex,leftmargin=!,align=right]
 <#assign cityStateString = helper.getCommaSeperatedString("${resume.contact.city}", "${resume.contact.state}")>
 <#assign countryCodeString = helper.joinStringsWith(" - ", "${resume.contact.country}", "${resume.contact.pincode}")>
-\cvitem{Address}{${resume.contact.addressLine}\newline
-${cityStateString}\newline
-${countryCodeString}}
-<#if helper.isNotEmpty("${resume.contact.phoneNumber}")>\cvitem{Phone}{${resume.contact.phoneNumber}}</#if>
-<#if helper.isNotEmpty("${resume.contact.emailId}")>\cvitem{Email}{${resume.contact.emailId}}</#if>
+\item[Address] ${resume.contact.addressLine}, ${cityStateString}, ${countryCodeString}
+<#if helper.isNotEmpty("${resume.contact.phoneNumber}")>\item[Phone] ${resume.contact.phoneNumber}</#if>
+<#if helper.isNotEmpty("${resume.contact.emailId}")>\item[Email] ${resume.contact.emailId}</#if>
 <#if resume.links??><#list resume.links as link>
-\cvitem{${link.name}}{${link.getLastPartOfURL()}}
+\item[${link.name}] ${link.getLastPartOfURL()}
 </#list></#if>
-<#if helper.isNotEmpty("${resume.personal.gender}")>\cvitem{Gender}{${resume.personal.gender}}</#if>
-<#if helper.isNotEmpty("${resume.personal.dateOfBirth}")>\cvitem{Date of Birth}{${resume.personal.dateOfBirth}}</#if>
-<#if helper.isNotEmpty("${resume.personal.fathersName}")>\cvitem{Fathers Name}{${resume.personal.fathersName}}</#if>
-<#if helper.isNotEmpty("${resume.personal.mothersName}")>\cvitem{Mothers Name}{${resume.personal.mothersName}}</#if>
-<#if helper.isNotEmpty("${resume.personal.maritalStatus}")>\cvitem{Marital Status}{${resume.personal.maritalStatus}}</#if>
-<#if helper.isNotEmpty("${resume.personal.nationality}")>\cvitem{Nationality}{${resume.personal.nationality}}</#if>
-<#if helper.isNotEmpty("${resume.personal.passportNumber}")>\cvitem{Passport Number}{${resume.personal.passportNumber}}</#if>
-<#if helper.isNotEmpty("${resume.personal.languages}")>\cvitem{Languages}{${resume.personal.languages}}</#if>
-<#if helper.isNotEmpty("${resume.personal.hobbies}")>\cvitem{Hobbies}{${resume.personal.hobbies}}</#if>
+<#if helper.isNotEmpty("${resume.personal.gender}")>\item[Gender] ${resume.personal.gender}</#if>
+<#if helper.isNotEmpty("${resume.personal.dateOfBirth}")>\item[Date of Birth] ${resume.personal.dateOfBirth}</#if>
+<#if helper.isNotEmpty("${resume.personal.fathersName}")>\item[Fathers Name] ${resume.personal.fathersName}</#if>
+<#if helper.isNotEmpty("${resume.personal.mothersName}")>\item[Mothers Name] ${resume.personal.mothersName}</#if>
+<#if helper.isNotEmpty("${resume.personal.maritalStatus}")>\item[Marital Status] ${resume.personal.maritalStatus}</#if>
+<#if helper.isNotEmpty("${resume.personal.nationality}")>\item[Nationality] ${resume.personal.nationality}</#if>
+<#if helper.isNotEmpty("${resume.personal.passportNumber}")>\item[Passport Number] ${resume.personal.passportNumber}</#if>
+<#if helper.isNotEmpty("${resume.personal.languages}")>\item[Languages] ${resume.personal.languages}</#if>
+<#if helper.isNotEmpty("${resume.personal.hobbies}")>\item[Hobbies] ${resume.personal.hobbies}</#if>
+ \end{description}
 </#if>
 
 <#-- positions -->

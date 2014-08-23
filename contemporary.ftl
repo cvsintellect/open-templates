@@ -121,15 +121,17 @@
 <#-- personal -->
 <#if sectionDetail.isPersonalSection()><#if helper.atleastOneIsNotEmpty("${resume.personal.gender}", "${resume.personal.dateOfBirth}","${resume.personal.fathersName}","${resume.personal.mothersName}", "${resume.personal.maritalStatus}", "${resume.personal.nationality}","${resume.personal.passportNumber}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
 \section{${sectionDetail.heading}}
-<#if helper.isNotEmpty("${resume.personal.gender}")>\cvitem{Gender}{${resume.personal.gender}}</#if>
-<#if helper.isNotEmpty("${resume.personal.dateOfBirth}")>\cvitem{Date of Birth}{${resume.personal.dateOfBirth}}</#if>
-<#if helper.isNotEmpty("${resume.personal.fathersName}")>\cvitem{Fathers Name}{${resume.personal.fathersName}}</#if>
-<#if helper.isNotEmpty("${resume.personal.mothersName}")>\cvitem{Mothers Name}{${resume.personal.mothersName}}</#if>
-<#if helper.isNotEmpty("${resume.personal.maritalStatus}")>\cvitem{Marital Status}{${resume.personal.maritalStatus}}</#if>
-<#if helper.isNotEmpty("${resume.personal.nationality}")>\cvitem{Nationality}{${resume.personal.nationality}}</#if>
-<#if helper.isNotEmpty("${resume.personal.passportNumber}")>\cvitem{Passport Number}{${resume.personal.passportNumber}}</#if>
-<#if helper.isNotEmpty("${resume.personal.languages}")>\cvitem{Languages}{${resume.personal.languages}}</#if>
-<#if helper.isNotEmpty("${resume.personal.hobbies}")>\cvitem{Hobbies}{${resume.personal.hobbies}}</#if>
+\begin{description}[nosep,labelwidth=1.25in,labelsep=3ex,leftmargin=!,align=right]
+<#if helper.isNotEmpty("${resume.personal.gender}")>\item[Gender] ${resume.personal.gender}</#if>
+<#if helper.isNotEmpty("${resume.personal.dateOfBirth}")>\item[Date of Birth] ${resume.personal.dateOfBirth}</#if>
+<#if helper.isNotEmpty("${resume.personal.fathersName}")>\item[Fathers Name] ${resume.personal.fathersName}</#if>
+<#if helper.isNotEmpty("${resume.personal.mothersName}")>\item[Mothers Name] ${resume.personal.mothersName}</#if>
+<#if helper.isNotEmpty("${resume.personal.maritalStatus}")>\item[Marital Status] ${resume.personal.maritalStatus}</#if>
+<#if helper.isNotEmpty("${resume.personal.nationality}")>\item[Nationality] ${resume.personal.nationality}</#if>
+<#if helper.isNotEmpty("${resume.personal.passportNumber}")>\item[Passport Number] ${resume.personal.passportNumber}</#if>
+<#if helper.isNotEmpty("${resume.personal.languages}")>\item[Languages] ${resume.personal.languages}</#if>
+<#if helper.isNotEmpty("${resume.personal.hobbies}")>\item[Hobbies] ${resume.personal.hobbies}</#if>
+\end{description}
 </#if></#if>
 
 <#-- positions -->

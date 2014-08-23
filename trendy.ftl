@@ -34,26 +34,26 @@
 \colorlet{color3}{black}%  for foot rule, footer and link
 
 <#if resume.configuration.isColorBlack()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{${resume.configuration.color}!10}% for section title background
+\colorlet{color4}{${resume.configuration.color}!5}%  for tcolorbox background
 <#elseif resume.configuration.isColorBlue()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{${resume.configuration.color}!10}% for section title background
+\colorlet{color4}{${resume.configuration.color}!5}%  for tcolorbox background
 <#elseif resume.configuration.isColorGreen()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{${resume.configuration.color}!10}% for section title background
+\colorlet{color4}{${resume.configuration.color}!5}%  for tcolorbox background
 <#elseif resume.configuration.isColorOrange()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{${resume.configuration.color}!10}% for section title background
+\colorlet{color4}{${resume.configuration.color}!5}%  for tcolorbox background
 <#elseif resume.configuration.isColorRed()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{${resume.configuration.color}!10}% for section title background
+\colorlet{color4}{${resume.configuration.color}!5}%  for tcolorbox background
 <#elseif resume.configuration.isColorPurple()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{${resume.configuration.color}!10}% for section title background
+\colorlet{color4}{${resume.configuration.color}!5}%  for tcolorbox background
 <#elseif resume.configuration.isColorGrey()>
-\colorlet{color0}{${resume.configuration.color}!2}% for section title background
-\colorlet{color4}{${resume.configuration.color}!10}%  for tcolorbox background
+\colorlet{color0}{${resume.configuration.color}!10}% for section title background
+\colorlet{color4}{${resume.configuration.color}!5}%  for tcolorbox background
 </#if>
 
 %
@@ -702,9 +702,9 @@ ${recommendation.text}
 \begin{cvitem}
 \textbf{${skillGroup.skillGroup}}: <#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}</#if>\par
 <#if skillGroup.skills??>
-\begin{itemize*}[leftmargin=*, itemjoin={{\hfill}}]
+\begin{itemize*}[leftmargin=*, itemjoin={{\quad}}]
 <#list skillGroup.skills as skill>
-\item \makebox[1.5in][l]{${skill}}
+\item \makebox[0.3\linewidth][l]{${skill}}
 </#list>
 \end{itemize*}
 </#if>
