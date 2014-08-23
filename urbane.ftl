@@ -3,6 +3,7 @@
 \moderncvcolor{${resume.configuration.color}}
 \usepackage[left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin}]{geometry}
 \usepackage{multicol}
+\usepackage[inline]{enumitem}
 
 <#-- font -->
 \usepackage[T1]{fontenc}
@@ -65,8 +66,23 @@
 <#-- languages -->
 <#if sectionDetail.isLanguageSection()><#if resume.hasLanguages()>
 \section{${sectionDetail.heading}}
- <#list resume.languages as language>
-\cvitem{${language.name}}{${language.read} ${language.write} ${language.speak}}
+\begin{description}[nosep,labelwidth=1in,labelsep=\separatorcolumnwidth,leftmargin=!]
+ \item[\phantom{\hspace{1in}}]
+ \begin{itemize*}[leftmargin=*, itemjoin={{\hfil}}]
+  \item[\phantom{\large$\circ$}] \makebox[1in][l]{\textit{Read}}
+  \item[\phantom{\large$\circ$}] \makebox[1in][l]{\textit{Write}}
+  \item[\phantom{\large$\circ$}] \makebox[1in][l]{\textit{Speak}}
+ \end{itemize*}
+\end{description}
+<#list resume.languages as language>
+\begin{description}[nosep,labelwidth=1in,labelsep=\separatorcolumnwidth,leftmargin=!,align=right]
+ \item[${language.name}]
+ \begin{itemize*}[leftmargin=*, itemjoin={{\hfil}}]
+  \item \makebox[1in][l]{${language.read}}
+  \item \makebox[1in][l]{${language.write}}
+  \item \makebox[1in][l]{${language.speak}}
+ \end{itemize*}
+\end{description}
 </#list>
 </#if></#if>
 
@@ -151,15 +167,13 @@ ${publication.summary}}
 <#if sectionDetail.isSkillsSection()><#if resume.hasSkills()>
 \section{${sectionDetail.heading}}
 <#list resume.skillGroups as skillGroup>
-\cvitem{${skillGroup.skillGroup}}{<#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}</#if>
+\cvitem{${skillGroup.skillGroup}}{<#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}</#if>\newline
 <#if skillGroup.skills??>
-\begin{multicols}{3}
-\begin{itemize}
+\begin{itemize*}[leftmargin=*, itemjoin={{\qquad}}]
 <#list skillGroup.skills as skill>
-\item ${skill}
+\item \makebox[0.2\maincolumnwidth][l]{${skill}}
 </#list>
-\end{itemize}
-\end{multicols}
+\end{itemize*}
 </#if>
 }
 </#list>
@@ -168,7 +182,7 @@ ${publication.summary}}
 <#-- summary -->
 <#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
 \section{${sectionDetail.heading}}
-\cventry{}{<#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list>}{}{}{}{${resume.summary.summary}}
+\cventry{}{<#if resume.summary.keywords??><#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list></#if>}{}{}{}{${resume.summary.summary}}
 </#if></#if>
 
 <#-- talks -->

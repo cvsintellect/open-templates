@@ -689,9 +689,9 @@ ${recommendation.text}
 \begin{leftrulebox}[\textbf{${skillGroup.skillGroup}}]
 <#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}\par</#if>
 <#if skillGroup.skills??>
-\begin{itemize*}[leftmargin=*, itemjoin={{\quad}}]
+\begin{itemize*}[leftmargin=*, itemjoin={{\hfill}}]
 <#list skillGroup.skills as skill>
-\item \makebox[0.3\linewidth][l]{${skill}}
+\item \makebox[1.5in][l]{${skill}}
 </#list>
 \end{itemize*}
 </#if>
