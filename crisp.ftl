@@ -15,6 +15,30 @@
 <#-- spacing -->
 \linespread{${resume.configuration.lineSpacing}}
 
+<#-- color -->
+<#if resume.configuration.isColorBlack()>
+\colorlet{color0}{black!20}%  for tcolorbox background
+\definecolor{color1}{rgb}{0,0,0}% for section title text
+<#elseif resume.configuration.isColorBlue()>
+\colorlet{color0}{blue!20}%  for tcolorbox background
+\definecolor{color1}{rgb}{0.22,0.45,0.70}% for section title text
+<#elseif resume.configuration.isColorGreen()>
+\colorlet{color0}{green!20}%  for tcolorbox background
+\definecolor{color1}{rgb}{0.35,0.70,0.30}% for section title text
+<#elseif resume.configuration.isColorOrange()>
+\colorlet{color0}{orange!20}%  for tcolorbox background
+\definecolor{color1}{rgb}{0.95,0.55,0.15}% for section title text
+<#elseif resume.configuration.isColorRed()>
+\colorlet{color0}{red!20}%  for tcolorbox background
+\definecolor{color1}{rgb}{0.95,0.20,0.20}% for section title text
+<#elseif resume.configuration.isColorPurple()>
+\colorlet{color0}{purple!20}%  for tcolorbox background
+\definecolor{color1}{rgb}{0.50,0.33,0.80}% for section title text
+<#elseif resume.configuration.isColorGrey()>
+\colorlet{color0}{grey!20}%  for personal box background
+\definecolor{color1}{rgb}{0.55,0.55,0.55}% for section title text
+</#if>
+
 %
 %\ucwords[optional: miminum length]{text}
 \newcommand\ucwords[2][3]{%
@@ -39,7 +63,6 @@
 \setlength\parindent{0pt}
 \color[HTML]{303030} % Default foreground color
 \definecolor{link}{HTML}{505090} % Hyperlinks
-\definecolor{color0}{HTML}{F5BD9D} % personal box color
 \hypersetup{colorlinks,breaklinks,urlcolor=link,linkcolor=link}
 \setkomafont{disposition}{\color[HTML]{804010}}
 \setkomafont{section}{\scshape\Large\mdseries}
@@ -170,7 +193,6 @@ ${entry.text}
 <#-- education -->
 <#if sectionDetail.isEducationSection()><#if resume.hasEducation()>
 \section{${sectionDetail.heading}}
-
 <#list resume.educations as education>
 <#assign degreeString = helper.joinStringsWith(" in ", "\\textbf{${education.degree}}", "\\textbf{${education.fieldOfStudy}}")>
 <#assign collegeString = helper.getCommaSeperatedString("${education.schoolName}", "${education.university}")>
@@ -189,9 +211,15 @@ ${education.summary}
 <#if sectionDetail.isLanguageSection()><#if resume.hasLanguages()>
 \section{${sectionDetail.heading}}
 \begin{factlist}
-\item{}{\textit{Read} \textit{Write} \textit{Speak}}
+\item{}{%
+ \makebox[0.23\columnwidth][l]{\phantom{$\circ$\,}\textit{Read}}
+ \makebox[0.23\columnwidth][l]{\phantom{$\circ$\,}\textit{Write}}
+ \makebox[0.23\columnwidth][l]{\phantom{$\circ$\,}\textit{Speak}}}
 <#list resume.languages as language>
-\item{\textbf{${language.name}}}{${language.read} ${language.write} ${language.speak}}
+\item{\textbf{${language.name}}}{%
+ \makebox[0.23\columnwidth][l]{$\circ$\,${language.read}}
+ \makebox[0.23\columnwidth][l]{$\circ$\,${language.write}}
+ \makebox[0.23\columnwidth][l]{$\circ$\,${language.speak}}}
 </#list>
 \end{factlist}
 </#if></#if>
@@ -349,5 +377,4 @@ ${volunteer.summary}
 </#if></#if>
 
 </#list>
-
 \end{document}

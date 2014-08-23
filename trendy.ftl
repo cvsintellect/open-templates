@@ -605,6 +605,7 @@ ${patent.summary}
 <#-- personal -->
 <#if sectionDetail.isPersonalSection()><#if helper.atleastOneIsNotEmpty("${resume.personal.gender}", "${resume.personal.dateOfBirth}","${resume.personal.fathersName}","${resume.personal.mothersName}", "${resume.personal.maritalStatus}", "${resume.personal.nationality}","${resume.personal.passportNumber}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
 \section*{${sectionDetail.heading}}
+\begin{cvitem}
 \begin{description}[before={\renewcommand\makelabel[1]{##1:\hfill}},align=left,nosep,leftmargin=4cm,style=sameline]
 <#if helper.isNotEmpty("${resume.personal.gender}")>
 \item[\textit{Gender}] ${resume.personal.gender}
@@ -632,8 +633,9 @@ ${patent.summary}
 </#if>
 <#if helper.isNotEmpty("${resume.personal.hobbies}")>
 \item[\textit{Hobbies}] ${resume.personal.hobbies}
-</#if>
 \end{description}
+\end{cvitem}
+</#if>
 </#if></#if>
 
 <#-- positions -->
@@ -698,15 +700,13 @@ ${recommendation.text}
 \section*{${sectionDetail.heading}}
 <#list resume.skillGroups as skillGroup>
 \begin{cvitem}
-\textbf{${skillGroup.skillGroup}}: <#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}</#if>
+\textbf{${skillGroup.skillGroup}}: <#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}</#if>\par
 <#if skillGroup.skills??>
-\begin{multicols}{4}
-\begin{itemize}
+\begin{itemize*}[leftmargin=*, itemjoin={{\quad}}]
 <#list skillGroup.skills as skill>
-\item ${skill}
+\item \makebox[0.3\linewidth][l]{${skill}}
 </#list>
-\end{itemize}
-\end{multicols}
+\end{itemize*}
 </#if>
 \end{cvitem}
 </#list>

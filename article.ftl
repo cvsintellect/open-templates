@@ -71,17 +71,16 @@
 %
 
 %sections style
-\titleformat{\section}
+\titleformat{name=\section,numberless}
             {\large\bfseries}
             {}
             {1em}
             {\colorbox{color0!0}{\parbox[t]{%
 	           \dimexpr\linewidth-2\fboxsep\relax}%
 	               {\rule[-4pt]{0pt}{20pt}%
-                    \textcolor{color00}{{#1}}}}%    Removed \uppercase
+                    \textcolor{color00}{{#1}}}}%
             }
-            [\titleline{\color{color1}\titlerule[0pt]}]
-\titlespacing*{name=\section,numberless}{0cm}{1.5ex plus 0.7ex minus .2ex}{1ex plus .2ex minus .2ex}
+\titlespacing*{name=\section,numberless}{-2.5ex}{1.5ex plus 0.7ex minus .2ex}{1ex plus .2ex minus .2ex}
 %
 %
 \usepackage[many]{tcolorbox}
@@ -615,6 +614,7 @@ ${patent.summary}
 <#-- personal -->
 <#if sectionDetail.isPersonalSection()><#if helper.atleastOneIsNotEmpty("${resume.personal.gender}", "${resume.personal.dateOfBirth}","${resume.personal.fathersName}","${resume.personal.mothersName}", "${resume.personal.maritalStatus}", "${resume.personal.nationality}","${resume.personal.passportNumber}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
 \section*{${sectionDetail.heading}}
+\begin{cvitem}
 \begin{description}[before={\renewcommand\makelabel[1]{##1:\hfill}},align=left,nosep,leftmargin=4cm,style=sameline]
 <#if helper.isNotEmpty("${resume.personal.gender}")>
 \item[\textit{Gender}] ${resume.personal.gender}
@@ -644,6 +644,7 @@ ${patent.summary}
 \item[\textit{Hobbies}] ${resume.personal.hobbies}
 </#if>
 \end{description}
+\end{cvitem}
 </#if></#if>
 
 <#-- positions -->
@@ -708,15 +709,13 @@ ${recommendation.text}
 \section*{${sectionDetail.heading}}
 <#list resume.skillGroups as skillGroup>
 \begin{cvitem}
-\textbf{${skillGroup.skillGroup}}: <#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}</#if>
+\textbf{${skillGroup.skillGroup}}: <#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}</#if>\par
 <#if skillGroup.skills??>
-\begin{multicols}{4}
-\begin{itemize}
+\begin{itemize*}[leftmargin=*, itemjoin={{\quad}}]
 <#list skillGroup.skills as skill>
-\item ${skill}
+\item \makebox[0.3\linewidth][l]{${skill}}
 </#list>
-\end{itemize}
-\end{multicols}
+\end{itemize*}
 </#if>
 \end{cvitem}
 </#list>

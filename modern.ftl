@@ -17,7 +17,6 @@
 \setlength{\hintscolumnwidth}{${resume.configuration.sectionIndent}}
 \linespread{${resume.configuration.lineSpacing}}
 
-
 <#-- personal -->
 \firstname{${resume.personal.firstName}}
 \familyname{${resume.personal.lastName}}
@@ -54,7 +53,7 @@
 \section{${sectionDetail.heading}}
 <#list resume.certifications as certification>
 <#assign certificateString = helper.joinStringsWith(" by ", "${certification.name}", "${certification.authorityName}")>
-\cventry{${certification.startDateAndEndDate}}{${certificateString}}{}{<#if helper.isNotEmpty("${certification.number}")>Number: ${certification.number}</#if>}{}{}
+\cvitem{${certification.startDateAndEndDate}}{\textbf{${certificateString}}<#if helper.isNotEmpty("${certification.number}")>, Number: ${certification.number}</#if>}
 </#list>
 </#if></#if>
 
@@ -174,9 +173,7 @@ ${publication.summary}}
 <#-- summary -->
 <#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
 \section{${sectionDetail.heading}}
-\cvitem{}{
-<#if resume.summary.keywords??><#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list>\newline</#if>
-${resume.summary.summary}}
+\cventry{}{<#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list>}{}{}{}{${resume.summary.summary}}
 </#if></#if>
 
 <#-- talks -->
