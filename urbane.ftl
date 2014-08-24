@@ -18,7 +18,6 @@
 \setlength{\hintscolumnwidth}{${resume.configuration.sectionIndent}}
 \linespread{${resume.configuration.lineSpacing}}
 
-
 <#-- personal -->
 \firstname{${resume.personal.firstName}}
 \familyname{${resume.personal.lastName}}
