@@ -362,7 +362,6 @@
 
 <#assign cityStateString = helper.getCommaSeperatedString("${resume.contact.city}", "${resume.contact.state}")>
 <#assign countyPincodeString = helper.joinStringsWith(" - ", "${resume.contact.country}", "${resume.contact.pincode}")>
-
 {
 \newcommand\SYMBOL[1]{\raisebox{-2pt}{\Large\ding{#1}}}%
     \needspace{0.5\textheight}%
@@ -513,7 +512,7 @@ ${position.summary}
 <#assign projectString = helper.joinStringsWith(" on ", "\\textbf{${project.role}}", "\\textbf{${project.name}}")>
 <#assign companyString = helper.joinStringsWith(" for ", "${project.companyName}", "${project.clientName}")>
 <#if helper.isNotEmpty("${project.startDateAndEndDate}")>${project.startDateAndEndDate} - </#if>${projectString}\newline
-${companyString}\newline
+<#if helper.isNotEmpty("${companyString}")>${companyString}\newline</#if>
 <#if helper.isNotEmpty("${project.summary}")>
 ${project.summary}
 </#if>
@@ -539,7 +538,7 @@ ${publication.summary}
 <#if sectionDetail.isRecommendationSection()><#if resume.hasRecommendations()>
 \section{${sectionDetail.heading}}
 <#list resume.recommendations as recommendation>
-\textbf{${recommendation.name}}, \textit{${recommendation.type}}\newline
+\textbf{${recommendation.name}}<#if helper.isNotEmpty("${recommendation.type}")>, \textit{${recommendation.type}}\newline</#if>
 ${recommendation.text}
 <#if recommendation_has_next>\par\vskip3pt</#if>
 </#list>
@@ -551,9 +550,9 @@ ${recommendation.text}
 <#list resume.skillGroups as skillGroup>
 \textbf{${skillGroup.skillGroup}}\newline
 <#if helper.isNotEmpty("${skillGroup.description}")>
-${skillGroup.description}
+${skillGroup.description}\newline
 </#if>
-<#if skillGroup.skills??><#list skillGroup.skills as skill>\textit{${skill}}<#if skill_has_next >, </#if></#list>\newline</#if>
+<#if skillGroup.skills??><#list skillGroup.skills as skill>\textit{${skill}}<#if skill_has_next>, </#if></#list></#if>
 <#if skillGroup_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
@@ -561,7 +560,7 @@ ${skillGroup.description}
 <#-- summary -->
 <#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
 \section{${sectionDetail.heading}}
-<#if resume.summary.keywords??>{\centering <#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list>\newline}</#if>
+<#if resume.summary.keywords??>{\centering <#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next> | </#if></#list>\newline}</#if>
 ${resume.summary.summary}
 </#if></#if>
 

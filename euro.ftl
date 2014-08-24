@@ -83,9 +83,10 @@
 <#if sectionDetail.isCertificationSection()><#if resume.hasCertifications()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 <#list resume.certifications as certification>
-\ecvitem{${certification.startDateAndEndDate}}{\textit{${certification.name}} - \textit{${certification.authorityName}}}
+<#assign certificateString = helper.joinStringsWith(" by ", "\\textit{${certification.name}}", "\\textit{${certification.authorityName}}")>
+\ecvitem{${certification.startDateAndEndDate}}{${certificateString}}
 <#if helper.isNotEmpty("${certification.number}")>
-\ecvitem{}{${certification.number}}
+\ecvitem{}{Number: ${certification.number}}
 </#if>
 </#list>
 </#if></#if>
@@ -106,7 +107,11 @@
 <#list resume.educations as education>
 <#assign degreeString = helper.joinStringsWith(" in ", "\\textbf{${education.degree}}", "\\textbf{${education.fieldOfStudy}}")>
 <#assign collegeString = helper.getCommaSeperatedString("${education.university}", "${education.schoolName}")>
-\ecvitem{${education.startDateAndEndDate}}{${degreeString} <#if helper.isNotEmpty("${collegeString}")>, \textit{${collegeString}}</#if>}
+<#assign scoreString = helper.joinStringsWith(": ", "${education.scoreType}", "${education.totalScore}")>
+\ecvitem{${education.startDateAndEndDate}}{${degreeString}, \textit{${collegeString}}}
+<#if helper.isNotEmpty("${scoreString}")>
+\ecvitem{}{${scoreString}}
+</#if>
 <#if helper.isNotEmpty("${education.summary}")>
 \ecvitem{}{${education.summary}}
 </#if>
@@ -240,8 +245,7 @@
 <#-- summary -->
 <#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
 \ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
-\ecvitem{}{
-<#if resume.summary.keywords??><#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list>\newline</#if>
+\ecvitem{}{<#if resume.summary.keywords??><#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next> | </#if></#list>\newline</#if>
 ${resume.summary.summary}}
 </#if></#if>
 

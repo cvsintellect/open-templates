@@ -95,7 +95,7 @@
 \section{${sectionDetail.heading}}
 <#list resume.patents as patent>
 <#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}", "${patent.url}")>
-\cventry{${resume.patents?size - patent_index}}{${patent.title}}{${patent.inventors}}{}{}{<#if helper.isNotEmpty("${patentString}")>${patentString} \newline</#if>
+\cventry{${resume.patents?size - patent_index}}{${patent.title}}{${patent.inventors}}{}{}{<#if helper.isNotEmpty("${patentString}")>${patentString}\newline</#if>
 ${patent.summary}}
 </#list>
 </#if></#if>
@@ -104,9 +104,11 @@ ${patent.summary}}
 <#if sectionDetail.isPersonalSection()>
 \section{${sectionDetail.heading}}
 \begin{description}[nosep,labelwidth=1.25in,labelsep=3ex,leftmargin=!,align=right]
+<#if helper.atleastOneIsNotEmpty("${resume.contact.addressLine}", "${resume.contact.city}", "${resume.contact.state}", "${resume.contact.country}", "${resume.contact.pincode}")>
 <#assign cityStateString = helper.getCommaSeperatedString("${resume.contact.city}", "${resume.contact.state}")>
 <#assign countryCodeString = helper.joinStringsWith(" - ", "${resume.contact.country}", "${resume.contact.pincode}")>
 \item[Address] ${resume.contact.addressLine}, ${cityStateString}, ${countryCodeString}
+</#if>
 <#if helper.isNotEmpty("${resume.contact.phoneNumber}")>\item[Phone] ${resume.contact.phoneNumber}</#if>
 <#if helper.isNotEmpty("${resume.contact.emailId}")>\item[Email] ${resume.contact.emailId}</#if>
 <#if resume.links??><#list resume.links as link>
@@ -148,7 +150,7 @@ ${patent.summary}}
 \section{${sectionDetail.heading}}
 <#list resume.publications as publication>
 <#assign publicationString = helper.getCommaSeperatedString("${publication.publisherName}", "${publication.date}", "${publication.url}")>
-\cventry{${resume.publications?size - publication_index}}{${publication.title}}{${publication.authors}}{}{}{<#if helper.isNotEmpty("${publicationString}")>${publicationString} \newline</#if>
+\cventry{${resume.publications?size - publication_index}}{${publication.title}}{${publication.authors}}{}{}{<#if helper.isNotEmpty("${publicationString}")>${publicationString}\newline</#if>
 ${publication.summary}}
 </#list>
 </#if></#if>
@@ -180,7 +182,7 @@ ${publication.summary}}
 <#-- summary -->
 <#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
 \section{${sectionDetail.heading}}
-\cventry{}{<#if resume.summary.keywords??><#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list></#if>}{}{}{}{${resume.summary.summary}}
+\cventry{}{<#if resume.summary.keywords??><#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next> | </#if></#list></#if>}{}{}{}{${resume.summary.summary}}
 </#if></#if>
 
 <#-- talks -->
@@ -188,7 +190,7 @@ ${publication.summary}}
 \section{${sectionDetail.heading}}
 <#list resume.talks as talk>
 <#assign talkString = helper.getCommaSeperatedString("${talk.event}", "${talk.date}", "${talk.url}")>
-\cventry{${resume.talks?size - talk_index}}{${talk.title}}{${talk.speakers}}{}{}{<#if helper.isNotEmpty("${talkString}")>${talkString} \newline</#if>
+\cventry{${resume.talks?size - talk_index}}{${talk.title}}{${talk.speakers}}{}{}{<#if helper.isNotEmpty("${talkString}")>${talkString}\newline</#if>
 ${talk.summary}}
 </#list>
 </#if></#if>

@@ -188,7 +188,7 @@ ${publication.summary}}
 <#-- summary -->
 <#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
 \section{${sectionDetail.heading}}
-\cventry{}{<#if resume.summary.keywords??><#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list></#if>}{}{}{}{${resume.summary.summary}}
+\cventry{}{<#if resume.summary.keywords??><#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next> | </#if></#list></#if>}{}{}{}{${resume.summary.summary}}
 </#if></#if>
 
 <#-- talks -->
