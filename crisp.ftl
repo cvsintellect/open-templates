@@ -63,7 +63,6 @@
 %
 \pagestyle{empty}
 \setlength\parindent{0pt}
-\setlength\parskip{5pt}
 \color{color00} % Default foreground color. keep it black
 \hypersetup{colorlinks,breaklinks,urlcolor=color1,linkcolor=color1}
 \setkomafont{disposition}{\color{color2}}
@@ -310,20 +309,6 @@
   ~}
 
 \usepackage{xparse}
-% \personal[optional: web site without scheme (no http:// prefix)]
-%          {address}{phone number}{email}
-\newcommand\personal[4][]{%
-    \newcommand\SYMBOL[1]{\raisebox{-2pt}{\Large\ding{##1}}}%
-    \needspace{0.5\textheight}%
-    \newdimen\boxwidth%
-    \boxwidth=\dimexpr\linewidth-2\fboxsep\relax%
-    \colorbox{color0}{%
-    \begin{tabularx}{\boxwidth}{c|X}
-    \SYMBOL{45} & {#2}\smallskip\\
-    \SYMBOL{37} & {#3}\smallskip\\
-    \SYMBOL{41} & \href{mailto:#4}{#4}
-    \ifstrempty{#1}{}{\smallskip\\ \SYMBOL{218} & \href{http://#1}{#1}}
-    \end{tabularx}}}
 %
 % Every \item can be followed by one or more paragraphs
 % of description:
@@ -378,11 +363,23 @@
 <#assign cityStateString = helper.getCommaSeperatedString("${resume.contact.city}", "${resume.contact.state}")>
 <#assign countyPincodeString = helper.joinStringsWith(" - ", "${resume.contact.country}", "${resume.contact.pincode}")>
 
-\personal
-    []
-    {<#if helper.isNotEmpty("${resume.contact.addressLine}")>${resume.contact.addressLine}\newline </#if><#if helper.isNotEmpty("${cityStateString}")>${cityStateString}\newline </#if><#if helper.isNotEmpty("${countyPincodeString}")>${countyPincodeString}</#if>}
-    {${resume.contact.phoneNumber}}
-    {${resume.contact.emailId}}
+{
+\newcommand\SYMBOL[1]{\raisebox{-2pt}{\Large\ding{#1}}}%
+    \needspace{0.5\textheight}%
+    \newdimen\boxwidth%
+    \boxwidth=\dimexpr\linewidth-2\fboxsep\relax%
+    \colorbox{color0}{%
+    \begin{tabularx}{\boxwidth}{c|X}
+    \SYMBOL{45} & {<#if helper.isNotEmpty("${resume.contact.addressLine}")>${resume.contact.addressLine}\newline </#if><#if helper.isNotEmpty("${cityStateString}")>${cityStateString}\newline </#if><#if helper.isNotEmpty("${countyPincodeString}")>${countyPincodeString}</#if>}\smallskip\\
+    \SYMBOL{37} & {${resume.contact.phoneNumber}}\smallskip\\
+    \SYMBOL{41} & \href{mailto:${resume.contact.emailId}}{${resume.contact.emailId}}
+<#if resume.links??>
+<#list resume.links as link>
+    \smallskip \\ \${link.name}symbol & \href{${link.getUrl()}}{${link.getLastPartOfURL()}}
+</#list>
+</#if>
+    \end{tabularx}
+}
 
 <#-- show sections based on order -->
 <#list resume.configuration.sectionDetails as sectionDetail>
@@ -394,7 +391,7 @@
 <#assign certificateString = helper.joinStringsWith(" by ", "\\textit{${certification.name}}", "\\textit{${certification.authorityName}}")>
 ${certificateString}<#if helper.isNotEmpty("${certification.startDateAndEndDate}")>, ${certification.startDateAndEndDate}</#if>\newline
 <#if helper.isNotEmpty("${certification.number}")>Number: ${certification.number}</#if>
-<#if certification_has_next>\par</#if>
+<#if certification_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
 
@@ -404,7 +401,7 @@ ${certificateString}<#if helper.isNotEmpty("${certification.startDateAndEndDate}
 <#list customSection.entries as entry>
 \textbf{${entry.heading}}\newline
 ${entry.text}
-<#if entry_has_next>\par</#if>
+<#if entry_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
 
@@ -421,7 +418,7 @@ ${entry.text}
 <#if helper.isNotEmpty("${education.summary}")>
 ${education.summary}
 </#if>
-<#if education_has_next>\par</#if>
+<#if education_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
 
@@ -458,7 +455,7 @@ ${resume.patents?size - patent_index}. \textit{${patent.title}} - \textit{${pate
 <#if helper.isNotEmpty("${patent.summary}")>
 ${patent.summary}
 </#if>
-<#if patent_has_next>\par</#if>
+<#if patent_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
 
@@ -505,7 +502,7 @@ ${patent.summary}
 <#if helper.isNotEmpty("${position.summary}")>
 ${position.summary}
 </#if>
-<#if position_has_next>\par</#if>
+<#if position_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
 
@@ -520,7 +517,7 @@ ${companyString}\newline
 <#if helper.isNotEmpty("${project.summary}")>
 ${project.summary}
 </#if>
-<#if project_has_next>\par</#if>
+<#if project_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
 
@@ -534,7 +531,7 @@ ${resume.publications?size - publication_index}. \textit{${publication.title}} -
 <#if helper.isNotEmpty("${publication.summary}")>
 ${publication.summary}
 </#if>
-<#if publication_has_next>\par</#if>
+<#if publication_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
 
@@ -544,7 +541,7 @@ ${publication.summary}
 <#list resume.recommendations as recommendation>
 \textbf{${recommendation.name}}, \textit{${recommendation.type}}\newline
 ${recommendation.text}
-<#if recommendation_has_next>\par</#if>
+<#if recommendation_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
 
@@ -557,7 +554,7 @@ ${recommendation.text}
 ${skillGroup.description}
 </#if>
 <#if skillGroup.skills??><#list skillGroup.skills as skill>\textit{${skill}}<#if skill_has_next >, </#if></#list>\newline</#if>
-<#if skillGroup_has_next>\par</#if>
+<#if skillGroup_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
 
@@ -578,7 +575,7 @@ ${resume.talks?size - talk_index}. \textit{${talk.title}} - \textit{${talk.speak
 <#if helper.isNotEmpty("${talk.summary}")>
 ${talk.summary}
 </#if>
-<#if talk_has_next>\par</#if>
+<#if talk_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
 
@@ -590,7 +587,7 @@ ${talk.summary}
 <#if helper.isNotEmpty("${volunteer.summary}")>
 ${volunteer.summary}
 </#if>
-<#if volunteer_has_next>\par</#if>
+<#if volunteer_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
 
