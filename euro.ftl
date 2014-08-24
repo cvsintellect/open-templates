@@ -66,6 +66,13 @@
 \begin{europecv}
 \ecvpersonalinfo[20pt]
 
+<#if resume.links??>
+<#list resume.links as link>
+\ecvitem{${helper.capitalize("${link.name}")}}{\href{${link.getUrl()}}{${link.getLastPartOfURL()}}}
+</#list>
+\ecvitem{}{}
+</#if>
+
 <#if resume.hasSummary()>
 \ecvitem{}{\textit{${resume.summary.headline}}}
 </#if>

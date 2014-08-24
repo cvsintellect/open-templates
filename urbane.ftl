@@ -111,7 +111,7 @@ ${patent.summary}}
 <#if helper.isNotEmpty("${resume.contact.phoneNumber}")>\item[Phone] ${resume.contact.phoneNumber}</#if>
 <#if helper.isNotEmpty("${resume.contact.emailId}")>\item[Email] ${resume.contact.emailId}</#if>
 <#if resume.links??><#list resume.links as link>
-\item[${link.name}] ${link.getLastPartOfURL()}
+\item[${helper.capitalize("${link.name}")}] \href{${link.getUrl()}}{${link.getLastPartOfURL()}}
 </#list></#if>
 <#if helper.isNotEmpty("${resume.personal.gender}")>\item[Gender] ${resume.personal.gender}</#if>
 <#if helper.isNotEmpty("${resume.personal.dateOfBirth}")>\item[Date of Birth] ${resume.personal.dateOfBirth}</#if>
