@@ -11,7 +11,6 @@
 \usepackage{graphicx}
 \fi
 \usepackage{xcolor}
-\usepackage{multicol}
 \usepackage[a4paper,left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin}]{geometry}
 
 <#-- color -->

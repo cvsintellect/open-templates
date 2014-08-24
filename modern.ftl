@@ -2,7 +2,6 @@
 \moderncvstyle{casual}
 \moderncvcolor{${resume.configuration.color}}
 \usepackage[left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin}]{geometry}
-\usepackage{multicol}
 \usepackage[inline]{enumitem}
 
 <#-- font -->

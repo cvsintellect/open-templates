@@ -4,7 +4,6 @@
 \usepackage{array}
 \usepackage{ifthen}
 \usepackage[inline]{enumitem}
-\usepackage{multicol}
 \usepackage{marvosym}
 \usepackage{graphicx}
 \usepackage{microtype}
