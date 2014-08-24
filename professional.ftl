@@ -646,7 +646,7 @@ ${position.summary}
 <#assign projectString = helper.joinStringsWith(" on ", "\\textbf{${project.role}}", "\\textbf{${project.name}}")>
 <#assign companyString = helper.joinStringsWith(" for ", "${project.companyName}", "${project.clientName}")>
 \begin{leftrulebox}[${project.startDateAndEndDate}]
-${projectString}, ${companyString}\par
+${projectString}<#if helper.isNotEmpty("${companyString}")>, ${companyString}</#if>\par
 <#if helper.isNotEmpty("${project.summary}")>
 ${project.summary}
 </#if>
@@ -676,7 +676,7 @@ ${publication.summary}
 \section*{${sectionDetail.heading}}
 <#list resume.recommendations as recommendation>
 \begin{leftrulebox}
-\textbf{${recommendation.name}}, \textit{${recommendation.type}}\par
+\textbf{${recommendation.name}}<#if helper.isNotEmpty("${recommendation.type}")>, \textit{${recommendation.type}}</#if>\par
 ${recommendation.text}
 \end{leftrulebox}
 </#list>
@@ -703,7 +703,7 @@ ${recommendation.text}
 <#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
 \section*{${sectionDetail.heading}}
 \begin{leftrulebox}
-<#if resume.summary.keywords??>{\centering <#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list>\par}</#if>
+<#if resume.summary.keywords??>{\centering <#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next> | </#if></#list>\par}</#if>
 ${resume.summary.summary}
 \end{leftrulebox}
 </#if></#if>

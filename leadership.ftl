@@ -485,7 +485,7 @@
 \addtofooter{{\Large\fixedphonesymbol}~\small ${resume.contact.phoneNumber}}
 </#if>
 <#if helper.isNotEmpty("${resume.contact.emailId}")>
-\addtofooter{{\emailsymbol}~\ttfamily ${resume.contact.emailId}}
+\addtofooter{{\emailsymbol}~\ttfamily \href{mailto:${resume.contact.emailId}}{${resume.contact.emailId}}}
 </#if>
         \flushfooter%
        \end{minipage}
@@ -551,7 +551,9 @@ ${entry.text}
 <#assign educationString = helper.getCommaSeperatedString("${scoreString}", "${education.startDateAndEndDate}")>
 \begin{cvitem}
 ${degreeString}, \textit{${collegeString}}\par
+<#if helper.isNotEmpty("${educationString}")>
 ${educationString}\par
+</#if>
 <#if helper.isNotEmpty("${education.summary}")>
 ${education.summary}
 </#if>
@@ -654,7 +656,7 @@ ${patent.summary}
 <#list resume.positions as position>
 <#assign positionString = helper.joinStringsWith(" at ", "\\textbf{${position.title}}", "\\textbf{${position.companyName}}")>
 \begin{cvitem}
-${positionString}<#if helper.isNotEmpty("${position.companyURL}")>, ${position.companyURL}</#if><#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if>, ${position.startDateAndEndDate}\par
+${positionString}<#if helper.isNotEmpty("${position.companyURL}")>, ${position.companyURL}</#if><#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if><#if helper.isNotEmpty("${position.startDateAndEndDate}")>, ${position.startDateAndEndDate}</#if>\par
 <#if helper.isNotEmpty("${position.summary}")>
 ${position.summary}
 </#if>
@@ -669,7 +671,7 @@ ${position.summary}
 <#assign projectString = helper.joinStringsWith(" on ", "\\textbf{${project.role}}", "\\textbf{${project.name}}")>
 <#assign companyString = helper.joinStringsWith(" for ", "${project.companyName}", "${project.clientName}")>
 \begin{cvitem}
-${projectString}, ${companyString}, ${project.startDateAndEndDate}\par
+${projectString}<#if helper.isNotEmpty("${companyString}")>, ${companyString}</#if><#if helper.isNotEmpty("${project.startDateAndEndDate}")>, ${project.startDateAndEndDate}</#if>\par
 <#if helper.isNotEmpty("${project.summary}")>
 ${project.summary}
 </#if>
@@ -699,7 +701,7 @@ ${publication.summary}
 \section*{${sectionDetail.heading}}
 <#list resume.recommendations as recommendation>
 \begin{cvitem}
-\textbf{${recommendation.name}}, \textit{${recommendation.type}}\par
+\textbf{${recommendation.name}}<#if helper.isNotEmpty("${recommendation.type}")>, \textit{${recommendation.type}}</#if>\par
 ${recommendation.text}
 \end{cvitem}
 </#list>
@@ -726,7 +728,7 @@ ${recommendation.text}
 <#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
 \section*{${sectionDetail.heading}}
 \begin{cvitem}
-<#if resume.summary.keywords??>{\centering <#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list>\par}</#if>
+<#if resume.summary.keywords??>{\centering <#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next> | </#if></#list>\par}</#if>
 ${resume.summary.summary}
 \end{cvitem}
 </#if></#if>
