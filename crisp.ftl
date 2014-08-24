@@ -1,7 +1,7 @@
 \documentclass[${resume.configuration.fontSize}]{scrartcl}
 \usepackage[english]{babel}
 \usepackage[a4paper,left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin},twocolumn,columnsep=1.25cm]{geometry}
-\usepackage{bookman,etoolbox,hyperref,needspace,pifont,tabularx,xcolor,microtype}
+\usepackage{bookman,etoolbox,hyperref,needspace,pifont,marvosym,tabularx,xcolor,microtype}
 
 <#-- font -->
 \usepackage[T1]{fontenc}
@@ -16,27 +16,29 @@
 \linespread{${resume.configuration.lineSpacing}}
 
 <#-- color -->
+\colorlet{color00}{black}% % Default foreground color. keep it black
+\colorlet{color1}{black}%  url color. % Hyperlinks
 <#if resume.configuration.isColorBlack()>
-\colorlet{color0}{black!20}%  for tcolorbox background
-\definecolor{color1}{rgb}{0,0,0}% for section title text
+\colorlet{color0}{black!5}%  for personal box background
+\definecolor{color2}{rgb}{0,0,0}% for section title text
 <#elseif resume.configuration.isColorBlue()>
-\colorlet{color0}{blue!20}%  for tcolorbox background
-\definecolor{color1}{rgb}{0.22,0.45,0.70}% for section title text
+\colorlet{color0}{blue!5}%  for personal box background
+\definecolor{color2}{rgb}{0.22,0.45,0.70}% for section title text
 <#elseif resume.configuration.isColorGreen()>
-\colorlet{color0}{green!20}%  for tcolorbox background
-\definecolor{color1}{rgb}{0.35,0.70,0.30}% for section title text
+\colorlet{color0}{green!5}%  for personal box background
+\definecolor{color2}{rgb}{0.35,0.70,0.30}% for section title text
 <#elseif resume.configuration.isColorOrange()>
-\colorlet{color0}{orange!20}%  for tcolorbox background
-\definecolor{color1}{rgb}{0.95,0.55,0.15}% for section title text
+\colorlet{color0}{orange!5}%  for personal box background
+\definecolor{color2}{rgb}{0.95,0.55,0.15}% for section title text
 <#elseif resume.configuration.isColorRed()>
-\colorlet{color0}{red!20}%  for tcolorbox background
-\definecolor{color1}{rgb}{0.95,0.20,0.20}% for section title text
+\colorlet{color0}{red!5}%  for personal box background
+\definecolor{color2}{rgb}{0.95,0.20,0.20}% for section title text
 <#elseif resume.configuration.isColorPurple()>
-\colorlet{color0}{purple!20}%  for tcolorbox background
-\definecolor{color1}{rgb}{0.50,0.33,0.80}% for section title text
+\colorlet{color0}{purple!5}%  for personal box background
+\definecolor{color2}{rgb}{0.50,0.33,0.80}% for section title text
 <#elseif resume.configuration.isColorGrey()>
-\colorlet{color0}{grey!20}%  for personal box background
-\definecolor{color1}{rgb}{0.55,0.55,0.55}% for section title text
+\colorlet{color0}{grey!5}%  for personal box background
+\definecolor{color2}{rgb}{0.55,0.55,0.55}% for section title text
 </#if>
 
 %
@@ -61,10 +63,9 @@
 %
 \pagestyle{empty}
 \setlength\parindent{0pt}
-\color[HTML]{303030} % Default foreground color
-\definecolor{link}{HTML}{505090} % Hyperlinks
-\hypersetup{colorlinks,breaklinks,urlcolor=link,linkcolor=link}
-\setkomafont{disposition}{\color[HTML]{804010}}
+\color{color00} % Default foreground color. keep it black
+\hypersetup{colorlinks,breaklinks,urlcolor=color1,linkcolor=color1}
+\setkomafont{disposition}{\color{color2}}
 \setkomafont{section}{\scshape\Large\mdseries}
 %
 \renewcommand\part[1]{%
@@ -92,6 +93,222 @@
     \ifdefstrequal{\JOBNAME}{\PIVOT}{#2}{#3}%
 }
 %
+
+%%% Symbols
+\newcommand*{\marvosymbol}[1]{}
+\renewcommand*{\marvosymbol}[1]{%
+    {\fontfamily{mvs}\fontencoding{U}\fontseries{m}\fontshape{n}\selectfont\char#1}%
+  }%
+%% if needed in case
+%\newcommand*{\mobilephonesymbol}   {\marvosymbol{72}~}
+%\newcommand*{\fixedphonesymbol}    {\marvosymbol{84}~}
+%\newcommand*{\faxphonesymbol}      {\marvosymbol{117}~}
+%\newcommand*{\emailsymbol}         {\marvosymbol{66}~}
+\newcommand*{\homepagesymbol}      {{\Large\marvosymbol{205}}}
+%
+\usepackage{tikz}
+\newcommand*{\linkedinsymbol}{%
+  \protect\raisebox{-0.0000165em}{%
+    \protect\begin{tikzpicture}[x=0.08em, y=0.08em, xscale=0.25, yscale=-0.25, inner sep=0pt, outer
+                                     sep=0pt]
+      \protect\begin{scope}[cm={{0.60,0.0,0.0,0.60,(346.39,123.07)}}]
+        \protect\path[fill=color2]
+          (381,202) -- (434,202) .. controls (439,202) and (442,205) ..
+          (442,210) -- (442,264) .. controls (442,268) and (439,272) ..
+          (434,272) -- (381,272) .. controls (376,272) and (372,268) ..
+          (372,264) -- (372,210) .. controls (372,205) and (376,202) ..
+          (381,202) -- cycle;
+        \protect\begin{scope}[xscale=0.98, yscale=1.02, fill=white]
+          \protect\path[fill=white]
+            (403,253) -- (403,224) -- (394,224) -- (394,253) --
+            cycle(398,211) .. controls (397,211) and (395,212) ..
+            (395,213) .. controls (394,213) and (393,215) ..
+            (393,216) .. controls (393,217) and (394,218) ..
+            (395,219) .. controls (395,220) and (397,220) ..
+            (398,220) .. controls (400,220) and (401,220) ..
+            (402,219) .. controls (402,218) and (403,217) ..
+            (403,216) .. controls (403,215) and (402,213) ..
+            (402,213) .. controls (401,212) and (400,211) ..
+            (398,211) -- cycle;
+          \protect\path[fill=white]
+            (410,253) -- (419,253) --
+            (419,236) .. controls (419,236) and (419,235) ..
+            (419,235) .. controls (419,235) and (419,234) ..
+            (419,234) .. controls (419,233) and (420,232) ..
+            (421,232) .. controls (422,231) and (423,231) ..
+            (424,231) .. controls (425,231) and (427,231) ..
+            (427,232) .. controls (428,234) and (428,235) ..
+            (428,237) -- (428,253) -- (437,253) --
+            (437,236) .. controls (437,232) and (436,228) ..
+            (434,226) .. controls (433,224) and (430,223) ..
+            (427,223) .. controls (425,223) and (423,224) ..
+            (421,225) .. controls (420,226) and (419,227) ..
+            (418,228) -- (418,228) -- (417,224) --
+            (410,224) .. controls (410,225) and (410,227) ..
+            (410,228) .. controls (410,230) and (410,231) ..
+            (410,233) -- cycle;
+        \protect\end{scope}%
+      \protect\end{scope}%
+    \protect\end{tikzpicture}}%
+  ~}
+\newcommand*{\twittersymbol} {%
+  \protect\raisebox{0em}{%
+    \protect\begin{tikzpicture}[x=0.08em, y=0.08em, xscale=0.005, yscale=-0.005, inner sep=0pt, outer
+                                 sep=0pt]
+      \protect\path[fill=color2]
+        (2000, 192) .. controls (1926, 225) and (1847, 247) ..
+        (1764, 257) .. controls (1849, 206) and (1914, 126) ..
+        (1945,  30) .. controls (1865,  77) and (1778, 111) ..
+        (1684, 130) .. controls (1609,  50) and (1503,   0) ..
+        (1385,   0) .. controls (1158,   0) and ( 974, 184) ..
+        ( 974, 410) .. controls ( 974, 442) and ( 978, 474) ..
+        ( 985, 504) .. controls ( 644, 487) and ( 342, 323) ..
+        ( 139,  75) .. controls ( 104, 136) and (  84, 206) ..
+        (  84, 281) .. controls (  84, 424) and ( 156, 549) ..
+        ( 266, 623) .. controls ( 199, 621) and ( 136, 602) ..
+        (  80, 572) .. controls (  80, 573) and (  80, 575) ..
+        (  80, 577) .. controls (  80, 776) and ( 222, 941) ..
+        ( 409, 979) .. controls ( 375, 988) and ( 339, 993) ..
+        ( 301, 993) .. controls ( 275, 993) and ( 249, 991) ..
+        ( 224, 986) .. controls ( 276,1149) and ( 428,1268) ..
+        ( 607,1271) .. controls ( 467,1381) and ( 290,1447) ..
+        (  98,1447) .. controls (  65,1447) and (  32,1445) ..
+        (   0,1441) .. controls ( 182,1557) and ( 397,1625) ..
+        ( 629,1625) .. controls (1384,1625) and (1796,1000) ..
+        (1796, 458) .. controls (1796, 440) and (1796, 422) ..
+        (1795, 405) .. controls (1875, 347) and (1945, 275) ..
+        (2000, 192);
+    \protect\end{tikzpicture}}%
+  ~}
+\newcommand*{\githubsymbol}  {%
+  \protect\raisebox{-0.15em}{%
+    \protect\begin{tikzpicture}[x=0.08em, y=0.08em, xscale=0.25, yscale=-0.25, inner sep=0pt, outer
+                                 sep=0pt]
+      \protect\begin{scope}[shift={(507,387)}]
+        \protect\path[fill=color2]
+          (117, 60) .. controls (117, 71) and (108, 81) ..
+          ( 96, 81) .. controls ( 85, 81) and ( 75, 71) ..
+          ( 75, 60) .. controls ( 75, 48) and ( 85, 39) ..
+          ( 96, 39) .. controls (108, 39) and (117, 48) ..
+          (117, 60) -- cycle;
+        \protect\path[cm={{0.88,0.0,0.0,0.88,(11.10,6.89)}}, fill=white]
+          (117, 60) .. controls (117, 71) and (108, 81) ..
+          ( 96, 81) .. controls ( 85, 81) and ( 75, 71) ..
+          ( 75, 60) .. controls ( 75, 48) and ( 85, 39) ..
+          ( 96, 39) .. controls (108, 39) and (117, 48) ..
+          (117, 60) -- cycle;
+        \protect\path[fill=color2, nonzero rule]
+          (103, 45) .. controls (103, 45) and (101, 46) ..
+          (101, 47) -- (100, 47) --
+          ( 99, 47) .. controls ( 99, 47) and ( 98, 47) ..
+          ( 97, 47) .. controls ( 94, 47) and ( 93, 47) ..
+          ( 92, 47) -- ( 92, 47) --
+          ( 91, 47) .. controls ( 90, 46) and ( 88, 45) ..
+          ( 88, 45) .. controls ( 88, 45) and ( 88, 45) ..
+          ( 87, 45) .. controls ( 87, 45) and ( 87, 45) ..
+          ( 87, 45) .. controls ( 86, 46) and ( 86, 48) ..
+          ( 86, 49) -- ( 87, 50) --
+          ( 86, 51) .. controls ( 85, 51) and ( 85, 52) ..
+          ( 85, 53) .. controls ( 85, 54) and ( 85, 57) ..
+          ( 85, 58) .. controls ( 85, 58) and ( 85, 58) ..
+          ( 82, 59) .. controls ( 79, 59) and ( 77, 59) ..
+          ( 77, 59) .. controls ( 77, 59) and ( 77, 59) ..
+          ( 78, 59) .. controls ( 80, 59) and ( 83, 59) ..
+          ( 85, 59) .. controls ( 85, 59) and ( 85, 59) ..
+          ( 85, 59) .. controls ( 86, 59) and ( 86, 59) ..
+          ( 86, 59) .. controls ( 86, 59) and ( 85, 59) ..
+          ( 84, 59) .. controls ( 82, 60) and ( 80, 60) ..
+          ( 79, 60) .. controls ( 78, 61) and ( 77, 61) ..
+          ( 77, 61) .. controls ( 77, 61) and ( 78, 61) ..
+          ( 79, 61) .. controls ( 81, 60) and ( 83, 60) ..
+          ( 85, 60) .. controls ( 86, 60) and ( 86, 60) ..
+          ( 86, 60) .. controls ( 86, 60) and ( 87, 61) ..
+          ( 88, 62) .. controls ( 89, 63) and ( 90, 63) ..
+          ( 92, 63) .. controls ( 92, 63) and ( 93, 64) ..
+          ( 93, 64) .. controls ( 93, 64) and ( 93, 64) ..
+          ( 93, 64) .. controls ( 92, 64) and ( 92, 65) ..
+          ( 92, 65) .. controls ( 92, 66) and ( 90, 66) ..
+          ( 89, 66) .. controls ( 88, 66) and ( 88, 66) ..
+          ( 87, 65) .. controls ( 87, 64) and ( 86, 63) ..
+          ( 86, 63) .. controls ( 85, 63) and ( 84, 63) ..
+          ( 84, 63) .. controls ( 84, 63) and ( 84, 63) ..
+          ( 84, 63) .. controls ( 85, 64) and ( 86, 65) ..
+          ( 86, 66) .. controls ( 87, 67) and ( 87, 68) ..
+          ( 88, 68) .. controls ( 89, 68) and ( 89, 68) ..
+          ( 90, 68) -- ( 92, 68) -- ( 92, 70) -- ( 92, 72) --
+          ( 91, 72) .. controls ( 91, 72) and ( 91, 73) ..
+          ( 91, 73) .. controls ( 90, 73) and ( 90, 73) ..
+          ( 91, 73) .. controls ( 92, 73) and ( 92, 73) ..
+          ( 92, 73) .. controls ( 93, 73) and ( 93, 73) ..
+          ( 93, 70) .. controls ( 93, 67) and ( 93, 67) ..
+          ( 94, 66) -- ( 94, 66) --
+          ( 94, 69) .. controls ( 94, 71) and ( 94, 73) ..
+          ( 94, 73) .. controls ( 94, 73) and ( 94, 73) ..
+          ( 93, 74) .. controls ( 93, 74) and ( 93, 74) ..
+          ( 93, 74) .. controls ( 93, 74) and ( 93, 74) ..
+          ( 94, 74) .. controls ( 94, 74) and ( 95, 74) ..
+          ( 96, 73) .. controls ( 96, 72) and ( 96, 71) ..
+          ( 96, 68) -- ( 96, 66) -- ( 96, 66) --
+          ( 96, 69) .. controls ( 96, 72) and ( 96, 72) ..
+          ( 97, 73) .. controls ( 97, 74) and ( 99, 74) ..
+          ( 99, 74) .. controls ( 99, 74) and ( 99, 74) ..
+          ( 99, 73) .. controls ( 99, 73) and ( 98, 73) ..
+          ( 98, 72) .. controls ( 98, 72) and ( 98, 66) ..
+          ( 98, 66) .. controls ( 98, 66) and ( 99, 66) ..
+          ( 99, 66) .. controls ( 99, 67) and ( 99, 67) ..
+          ( 99, 69) .. controls ( 99, 71) and ( 99, 72) ..
+          ( 99, 72) .. controls ( 99, 73) and (100, 73) ..
+          (100, 73) .. controls (101, 73) and (101, 73) ..
+          (101, 73) .. controls (102, 73) and (102, 73) ..
+          (102, 73) .. controls (101, 72) and (101, 72) ..
+          (101, 69) .. controls (101, 66) and (101, 65) ..
+          (100, 65) .. controls (100, 64) and (100, 64) ..
+          (100, 64) -- ( 99, 64) --
+          (100, 63) .. controls (101, 63) and (102, 63) ..
+          (103, 63) .. controls (104, 62) and (106, 61) ..
+          (106, 60) -- (106, 60) --
+          (107, 60) .. controls (109, 60) and (113, 60) ..
+          (115, 61) .. controls (115, 61) and (115, 61) ..
+          (115, 61) .. controls (115, 60) and (111, 60) ..
+          (108, 59) .. controls (107, 59) and (107, 59) ..
+          (107, 59) .. controls (107, 59) and (107, 59) ..
+          (107, 59) -- (107, 59) --
+          (108, 59) .. controls (110, 59) and (112, 59) ..
+          (114, 59) .. controls (115, 59) and (115, 59) ..
+          (115, 59) .. controls (115, 59) and (112, 59) ..
+          (109, 59) .. controls (108, 58) and (107, 58) ..
+          (107, 58) .. controls (107, 58) and (107, 58) ..
+          (107, 58) .. controls (107, 57) and (107, 56) ..
+          (107, 55) .. controls (107, 53) and (107, 53) ..
+          (107, 53) .. controls (107, 52) and (106, 51) ..
+          (106, 50) -- (105, 50) --
+          (105, 48) .. controls (105, 47) and (105, 46) ..
+          (105, 46) -- (105, 45) --
+          (104, 45) .. controls (104, 45) and (104, 45) ..
+          (103, 45) -- cycle;
+      \protect\end{scope}%
+    \protect\end{tikzpicture}}%
+  ~}
+\newcommand*{\facebooksymbol} {%
+  \protect\raisebox{0em}{%
+    \protect\begin{tikzpicture}[x=0.08em, y=0.08em, xscale=0.022, yscale=-0.022, inner sep=0pt, outer
+                                 sep=0pt]
+    \protect\path[fill=color2,even odd rule] (31.9490,431.7110) .. controls
+        (31.9490,451.7890) and (48.2130,468.0510) .. (68.2890,468.0510) --
+        (431.7100,468.0510) .. controls (451.7880,468.0510) and (468.0500,451.7890) ..
+        (468.0500,431.7110) -- (468.0500,68.2900) .. controls (468.0500,48.2130) and
+        (451.7880,31.9500) .. (431.7100,31.9500) -- (68.2900,31.9500) .. controls
+        (48.2130,31.9500) and (31.9500,48.2140) .. (31.9500,68.2900) --
+        (31.9500,431.7110) -- cycle(259.0860,413.5380) -- (259.0860,268.1720) --
+        (222.7440,268.1720) -- (222.7440,213.6580) -- (259.0860,213.6580) .. controls
+        (259.0860,119.9870) and (263.0790,113.7190) .. (377.1980,113.7190) --
+        (377.1980,168.2320) .. controls (317.0490,168.2320) and (322.6840,171.5940) ..
+        (322.6840,213.6590) -- (377.1980,213.6590) -- (377.1980,268.1730) --
+        (322.6840,268.1730) -- (322.6840,413.5390) -- (259.0860,413.5390) -- cycle;
+    \protect\end{tikzpicture}}%
+  ~}
+
+\usepackage{xparse}
 % \personal[optional: web site without scheme (no http:// prefix)]
 %          {address}{phone number}{email}
 \newcommand\personal[4][]{%
@@ -174,7 +391,7 @@
 \section{${sectionDetail.heading}}
 <#list resume.certifications as certification>
 <#assign certificateString = helper.joinStringsWith(" by ", "\\textit{${certification.name}}", "\\textit{${certification.authorityName}}")>
-${certification.startDateAndEndDate} - ${certificateString}\par
+${certificateString}<#if helper.isNotEmpty("${certification.startDateAndEndDate}")>, ${certification.startDateAndEndDate}</#if>\par
 <#if helper.isNotEmpty("${certification.number}")>Number: ${certification.number}</#if>
 <#if certification_has_next >\newline</#if>
 </#list>

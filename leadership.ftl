@@ -522,7 +522,7 @@
 <#list resume.certifications as certification>
 <#assign certificateString = helper.joinStringsWith(" by ", "\\textit{${certification.name}}", "\\textit{${certification.authorityName}}")>
 \begin{cvitem}
-${certificateString}, ${certification.startDateAndEndDate}\par
+${certificateString}<#if helper.isNotEmpty("${certification.startDateAndEndDate}")>, ${certification.startDateAndEndDate}</#if>\par
 <#if helper.isNotEmpty("${certification.number}")>
 Number: ${certification.number}\par
 </#if>

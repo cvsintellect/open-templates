@@ -423,7 +423,7 @@
 \patchcmd{\@maketitle}
     {\begin{tabular}[t]{c}%
 	   \@author \end{tabular}}
-    {\begin{minipage}[t]{\textwidth}%
+    {\normalsize\begin{minipage}[t]{\textwidth}%
 	   \begin{minipage}[t]{0.33\textwidth}
 <#if helper.isNotEmpty("${resume.contact.addressLine}")>
 ${resume.contact.addressLine} \par
