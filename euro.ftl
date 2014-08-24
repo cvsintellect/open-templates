@@ -109,7 +109,7 @@
 
 <#-- languages -->
 <#if sectionDetail.isLanguageSection()><#if resume.hasLanguages()>
-\ecvsection{${sectionDetail.heading}}
+\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 \ecvitem{}{%
  \makebox[0.23\columnwidth][l]{\phantom{$\circ$\,}\textit{Read}}
  \makebox[0.23\columnwidth][l]{\phantom{$\circ$\,}\textit{Write}}
@@ -233,7 +233,7 @@
 
 <#-- summary -->
 <#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
-\ecvsection{${sectionDetail.heading}}
+\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
 \ecvitem{}{
 <#if resume.summary.keywords??><#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next > | </#if></#list>\newline</#if>
 ${resume.summary.summary}}

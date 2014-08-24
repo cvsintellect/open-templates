@@ -476,15 +476,15 @@
 <#list resume.links as link>
 \addtofooter{\${link.name}detail[${link.getLastPartOfURL()}]}
 </#list>
-</#if>
         \flushfooter%
             \par
         \firstfooterelementtrue%
+</#if>
 <#if helper.isNotEmpty("${resume.contact.phoneNumber}")>
-\addtofooter{{\Large\fixedphonesymbol}~${resume.contact.phoneNumber}}
+\addtofooter{{\Large\fixedphonesymbol}~\small ${resume.contact.phoneNumber}}
 </#if>
 <#if helper.isNotEmpty("${resume.contact.emailId}")>
-\addtofooter{{\emailsymbol}~${resume.contact.emailId}}
+\addtofooter{{\emailsymbol}~\ttfamily ${resume.contact.emailId}}
 </#if>
         \flushfooter%
        \end{minipage}
