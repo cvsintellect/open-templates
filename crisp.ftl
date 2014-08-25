@@ -398,7 +398,7 @@ ${certificateString}<#if helper.isNotEmpty("${certification.startDateAndEndDate}
 <#if sectionDetail.isCustomSection()><#assign customSection = resume.getCustomSection("${sectionDetail.sectionId}")><#if customSection.hasCustomSectionEntries()>
 \section{${sectionDetail.heading}}
 <#list customSection.entries as entry>
-\textbf{${entry.heading}}\newline
+<#if helper.isNotEmpty("${entry.heading}")>\textbf{${entry.heading}}\newline</#if>
 ${entry.text}
 <#if entry_has_next>\par\vskip3pt</#if>
 </#list>

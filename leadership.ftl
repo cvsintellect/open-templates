@@ -77,7 +77,7 @@
             {\colorbox{color0!0}{\parbox[t]{%
 	           \dimexpr\linewidth-2\fboxsep\relax}%
 	               {\filcenter\rule[-4pt]{0pt}{20pt}%
-                    \textcolor{color00}{{#1}}}}%    Removed \uppercase
+                    \textcolor{color00}{{#1}}}}%
             }
             [\titleline{\color{color1}\titlerule[0.4pt]}]
 \titlespacing*{name=\section,numberless}{-2.5ex}{1.5ex plus 0.7ex minus .2ex}{1ex plus .2ex minus .2ex}
@@ -88,7 +88,7 @@
 %
 
 \newtcolorbox{cvitem}[1][]{%
-	colback=white,
+	colback=color4,
 	colframe=white,
 	left=0pt,
 	top=0pt,
@@ -484,7 +484,7 @@
 \addtofooter{{\Large\fixedphonesymbol}~\small ${resume.contact.phoneNumber}}
 </#if>
 <#if helper.isNotEmpty("${resume.contact.emailId}")>
-\addtofooter{{\emailsymbol}~\ttfamily \href{mailto:${resume.contact.emailId}}{${resume.contact.emailId}}}
+\addtofooter{\href{mailto:${resume.contact.emailId}}{\emailsymbol~\ttfamily ${resume.contact.emailId}}}
 </#if>
         \flushfooter%
        \end{minipage}
@@ -534,7 +534,7 @@ Number: ${certification.number}\par
 \section*{${sectionDetail.heading}}
 <#list customSection.entries as entry>
 \begin{cvitem}
-${entry.heading}\par
+<#if helper.isNotEmpty("${entry.heading}")>${entry.heading}\par</#if>
 ${entry.text}
 \end{cvitem}
 </#list>

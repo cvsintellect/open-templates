@@ -30,7 +30,7 @@
 \colorlet{color00}{black}% for section title text
 \colorlet{color1}{white}%  for section rule and vertical rule
 \colorlet{color2}{black}%  url color.
-\colorlet{color3}{white}%  for foot rule, footer and link
+\colorlet{color3}{black}%  for foot rule, footer and link
 
 <#if resume.configuration.isColorBlack()>
 \colorlet{color0}{black!10}% for section title background
