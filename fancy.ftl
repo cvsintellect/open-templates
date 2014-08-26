@@ -33,26 +33,26 @@
 \colorlet{color3}{black}%  for foot rule, footer and link
 
 <#if resume.configuration.isColorBlack()>
-\colorlet{color0}{black!10}% for section title background
-\colorlet{color4}{black!5}%  for tcolorbox background
+\colorlet{color0}{black!18}% for section title background
+\colorlet{color4}{black!12}%  for tcolorbox background
 <#elseif resume.configuration.isColorBlue()>
-\colorlet{color0}{blue!10}% for section title background
-\colorlet{color4}{blue!5}%  for tcolorbox background
+\colorlet{color0}{blue!16}% for section title background
+\colorlet{color4}{blue!8}%  for tcolorbox background
 <#elseif resume.configuration.isColorGreen()>
-\colorlet{color0}{green!10}% for section title background
-\colorlet{color4}{green!5}%  for tcolorbox background
+\colorlet{color0}{green!20}% for section title background
+\colorlet{color4}{green!12}%  for tcolorbox background
 <#elseif resume.configuration.isColorOrange()>
-\colorlet{color0}{orange!10}% for section title background
-\colorlet{color4}{orange!5}%  for tcolorbox background
+\colorlet{color0}{orange!16}% for section title background
+\colorlet{color4}{orange!18}%  for tcolorbox background
 <#elseif resume.configuration.isColorRed()>
-\colorlet{color0}{red!10}% for section title background
-\colorlet{color4}{red!5}%  for tcolorbox background
+\colorlet{color0}{red!16}% for section title background
+\colorlet{color4}{red!10}%  for tcolorbox background
 <#elseif resume.configuration.isColorPurple()>
-\colorlet{color0}{purple!10}% for section title background
-\colorlet{color4}{purple!5}%  for tcolorbox background
+\colorlet{color0}{purple!16}% for section title background
+\colorlet{color4}{purple!8}%  for tcolorbox background
 <#elseif resume.configuration.isColorGrey()>
-\colorlet{color0}{grey!10}% for section title background
-\colorlet{color4}{grey!5}%  for tcolorbox background
+\colorlet{color0}{grey!20}% for section title background
+\colorlet{color4}{grey!8}%  for tcolorbox background
 </#if>
 
 %

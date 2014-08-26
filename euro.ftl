@@ -14,13 +14,21 @@
 \usepackage[a4paper,left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin}]{geometry}
 
 <#-- color -->
-\definecolor{black}{rgb}{0,0,0}
-\definecolor{blue}{rgb}{0.22,0.45,0.70}
-\definecolor{green}{rgb}{0.35,0.70,0.30}
-\definecolor{orange}{rgb}{0.95,0.55,0.15}
-\definecolor{purple}{rgb}{0.50,0.33,0.80}
-\definecolor{red}{rgb}{0.95,0.20,0.20}
-\definecolor{grey}{rgb}{0.45,0.45,0.45}
+<#if resume.configuration.isColorBlack()>
+\colorlet{color00}{black!90}% for section title text
+<#elseif resume.configuration.isColorBlue()>
+\colorlet{color00}{blue!70}% for section title text
+<#elseif resume.configuration.isColorGreen()>
+\colorlet{color00}{green!60}% for section title text
+<#elseif resume.configuration.isColorOrange()>
+\colorlet{color00}{orange!40}% for section title text
+<#elseif resume.configuration.isColorRed()>
+\colorlet{color00}{red!70}% for section title text
+<#elseif resume.configuration.isColorPurple()>
+\colorlet{color00}{purple!60}% for section title text
+<#elseif resume.configuration.isColorGrey()>
+\colorlet{color00}{grey!90}% for section title text
+</#if>
 
 <#-- font -->
 \usepackage[T1]{fontenc}
@@ -81,7 +89,7 @@
 
 <#-- certifications -->
 <#if sectionDetail.isCertificationSection()><#if resume.hasCertifications()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 <#list resume.certifications as certification>
 <#assign certificateString = helper.joinStringsWith(" by ", "\\textit{${certification.name}}", "\\textit{${certification.authorityName}}")>
 \ecvitem{${certification.startDateAndEndDate}}{${certificateString}}
@@ -95,7 +103,7 @@
 <#if sectionDetail.isCustomSection()>
 <#assign customSection = resume.getCustomSection("${sectionDetail.sectionId}")>
 <#if customSection.hasCustomSectionEntries()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 <#list customSection.entries as entry>
 \ecvitem{${entry.heading}}{${entry.text}}
 </#list>
@@ -103,7 +111,7 @@
 
 <#-- education -->
 <#if sectionDetail.isEducationSection()><#if resume.hasEducation()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 <#list resume.educations as education>
 <#assign degreeString = helper.joinStringsWith(" in ", "\\textbf{${education.degree}}", "\\textbf{${education.fieldOfStudy}}")>
 <#assign collegeString = helper.getCommaSeperatedString("${education.university}", "${education.schoolName}")>
@@ -120,7 +128,7 @@
 
 <#-- languages -->
 <#if sectionDetail.isLanguageSection()><#if resume.hasLanguages()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 \ecvitem{}{%
  \makebox[0.23\columnwidth][l]{\phantom{$\circ$\,}\textit{Read}}
  \makebox[0.23\columnwidth][l]{\phantom{$\circ$\,}\textit{Write}}
@@ -135,13 +143,13 @@
 
 <#-- objective -->
 <#if sectionDetail.isObjectiveSection()><#if resume.hasObjective()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 \ecvitem{}{${resume.objective.text}}
 </#if></#if>
 
 <#-- patents -->
 <#if sectionDetail.isPatentSection()><#if resume.hasPatents()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 <#list resume.patents as patent>
 \ecvitem{${resume.patents?size - patent_index}}{\textit{${patent.title}} - \textit{${patent.inventors}}}
 <#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}", "${patent.url}")>
@@ -156,7 +164,7 @@
 
 <#-- personal -->
 <#if sectionDetail.isPersonalSection()><#if helper.atleastOneIsNotEmpty("${resume.personal.fathersName}", "${resume.personal.mothersName}", "${resume.personal.maritalStatus}", "${resume.personal.passportNumber}", "${resume.personal.languages}", "${resume.personal.hobbies}")>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 <#if helper.isNotEmpty("${resume.personal.fathersName}")>
 \ecvitem{Father's Name}{${resume.personal.fathersName}}
 </#if>
@@ -179,7 +187,7 @@
 
 <#-- positions -->
 <#if sectionDetail.isPositionSection()><#if resume.hasPositions()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 <#list resume.positions as position>
 <#assign positionString = helper.joinStringsWith(" at ", "\\textbf{${position.title}}", "\\textbf{${position.companyName}}")>
 \ecvitem{${position.startDateAndEndDate}}{${positionString}<#if helper.isNotEmpty("${position.companyURL}")>, ${position.companyURL}</#if><#if helper.isNotEmpty("${position.companyLocation}")>, \textit{${position.companyLocation}}</#if>}
@@ -191,7 +199,7 @@
 
 <#-- projects -->
 <#if sectionDetail.isProjectSection()><#if resume.hasProjects()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 <#list resume.projects as project>
 <#assign projectString = helper.joinStringsWith(" on ", "\\textbf{${project.role}}", "\\textbf{${project.name}}")>
 <#assign companyString = helper.joinStringsWith(" for ", "${project.companyName}", "${project.clientName}")>
@@ -204,7 +212,7 @@
 
 <#-- publications -->
 <#if sectionDetail.isPublicationSection()><#if resume.hasPublications()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 <#list resume.publications as publication>
 <#assign publicationString = helper.getCommaSeperatedString("${publication.publisherName}", "${publication.date}", "${publication.url}")>
 \ecvitem{${resume.publications?size - publication_index}}{\textit{${publication.title}} - \textit{${publication.authors}}}
@@ -219,7 +227,7 @@
 
 <#-- recommendations -->
 <#if sectionDetail.isRecommendationSection()><#if resume.hasRecommendations()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 <#list resume.recommendations as recommendation>
 \ecvitem{\textbf{${recommendation.name}}}{\textit{${recommendation.type}}}
 \ecvitem{}{${recommendation.text}}
@@ -228,7 +236,7 @@
 
 <#-- skills -->
 <#if sectionDetail.isSkillsSection()><#if resume.hasSkills()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 <#list resume.skillGroups as skillGroup>
 \ecvitem{${skillGroup.skillGroup}}{<#if helper.isNotEmpty("${skillGroup.description}")>${skillGroup.description}\newline</#if>
 <#if skillGroup.skills??>
@@ -244,14 +252,14 @@
 
 <#-- summary -->
 <#if sectionDetail.isSummarySection()><#if resume.hasSummary()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 \ecvitem{}{<#if resume.summary.keywords??><#list resume.summary.keywords as keyword>\textbf{${keyword}}<#if keyword_has_next> | </#if></#list>\newline</#if>
 ${resume.summary.summary}}
 </#if></#if>
 
 <#-- talks -->
 <#if sectionDetail.isTalkSection()><#if resume.hasTalks()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 <#list resume.talks as talk>
 <#assign talkString = helper.getCommaSeperatedString("${talk.event}", "${talk.date}", "${talk.url}")>
 \ecvitem{${resume.talks?size - talk_index}}{\textit{${talk.title}} - \textit{${talk.speakers}}}
@@ -266,7 +274,7 @@ ${resume.summary.summary}}
 
 <#-- volunteers -->
 <#if sectionDetail.isVolunteerSection()><#if resume.hasVolunteers()>
-\ecvsection{\color{${resume.configuration.color}}${sectionDetail.heading}}
+\ecvsection{\color{color00}${sectionDetail.heading}}
 <#list resume.volunteers as volunteer>
 \ecvitem{\textit{${volunteer.role}}}{${volunteer.cause}, ${volunteer.organizationName}}
 <#if helper.isNotEmpty("${volunteer.summary}")>

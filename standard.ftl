@@ -33,26 +33,26 @@
 \colorlet{color4}{white}%  for tcolorbox background
 
 <#if resume.configuration.isColorBlack()>
-\definecolor{color00}{rgb}{0,0,0}% for section title text
-\definecolor{color3}{rgb}{0,0,0}%  for foot rule, footer and link
+\colorlet{color00}{black!90}% for section title text
+\colorlet{color3}{black!100}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorBlue()>
-\definecolor{color00}{rgb}{0.22,0.45,0.70}% for section title text
-\definecolor{color3}{rgb}{0.22,0.45,0.70}%  for foot rule, footer and link
+\colorlet{color00}{blue!70}% for section title text
+\colorlet{color3}{blue!90}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorGreen()>
-\definecolor{color00}{rgb}{0.35,0.70,0.30}% for section title text
-\definecolor{color3}{rgb}{0.35,0.70,0.30}%  for foot rule, footer and link
+\colorlet{color00}{green!60}% for section title text
+\colorlet{color3}{green!60}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorOrange()>
-\definecolor{color00}{rgb}{0.95,0.55,0.15}% for section title text
-\definecolor{color3}{rgb}{0.95,0.55,0.15}%  for foot rule, footer and link
+\colorlet{color00}{orange!40}% for section title text
+\colorlet{color3}{orange!50}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorRed()>
-\definecolor{color00}{rgb}{0.95,0.20,0.20}% for section title text
-\definecolor{color3}{rgb}{0.95,0.20,0.20}%  for foot rule, footer and link
+\colorlet{color00}{red!70}% for section title text
+\colorlet{color3}{red!80}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorPurple()>
-\definecolor{color00}{rgb}{0.50,0.33,0.80}% for section title text
-\definecolor{color3}{rgb}{0.50,0.33,0.80}%  for foot rule, footer and link
+\colorlet{color00}{purple!60}% for section title text
+\colorlet{color3}{purple!80}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorGrey()>
-\definecolor{color00}{rgb}{0.55,0.55,0.55}% for section title text
-\definecolor{color3}{rgb}{0.55,0.55,0.55}%  for foot rule, footer and link
+\colorlet{color00}{grey!90}% for section title text
+\colorlet{color3}{grey!80}%  for foot rule, footer and link
 </#if>
 
 %
@@ -96,16 +96,16 @@
 	overlay unbroken and first={
 		\node[anchor=north east,inner ysep=0pt,align=right,text width=1.5in]
 		at ([yshift=-0.55ex]frame.north west) {\hfill#1};
-           \begin{tcbclipinterior}\fill[color4,opacity=0.25]
+           \begin{tcbclipinterior}\fill[color4,opacity=1]
            (frame.south west) rectangle ([xshift=-${resume.configuration.sectionIndent}]frame.north east);
         \end{tcbclipinterior},
 	},
    overlay middle={
-           \begin{tcbclipinterior}\fill[color4,opacity=0.25]
+           \begin{tcbclipinterior}\fill[color4,opacity=1]
            (frame.south west) rectangle ([xshift=-${resume.configuration.sectionIndent}]frame.north east);
         \end{tcbclipinterior}},
    overlay last={
-           \begin{tcbclipinterior}\fill[color4,opacity=0.25]
+           \begin{tcbclipinterior}\fill[color4,opacity=1]
            (frame.south west) rectangle ([xshift=-${resume.configuration.sectionIndent}]frame.north east);
         \end{tcbclipinterior}},
 	before=\vskip\itemsep\noindent

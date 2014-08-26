@@ -16,29 +16,29 @@
 \linespread{${resume.configuration.lineSpacing}}
 
 <#-- color -->
-\colorlet{color00}{black}% % Default foreground color. keep it black
-\colorlet{color1}{black}%  url color. % Hyperlinks
+\colorlet{color5}{black}% % Default foreground color. keep it black
+\colorlet{color2}{black}%  url color. % Hyperlinks
 <#if resume.configuration.isColorBlack()>
-\colorlet{color0}{black!5}%  for personal box background
-\definecolor{color2}{rgb}{0,0,0}% for section title text
+\colorlet{color0}{black!90}% for section title text
+\colorlet{color4}{black!12}%  for personal box background
 <#elseif resume.configuration.isColorBlue()>
-\colorlet{color0}{blue!5}%  for personal box background
-\definecolor{color2}{rgb}{0.22,0.45,0.70}% for section title text
+\colorlet{color0}{blue!70}% for section title text
+\colorlet{color4}{blue!8}%  for personal box background
 <#elseif resume.configuration.isColorGreen()>
-\colorlet{color0}{green!5}%  for personal box background
-\definecolor{color2}{rgb}{0.35,0.70,0.30}% for section title text
+\colorlet{color0}{green!60}% for section title text
+\colorlet{color4}{green!12}%  for personal box background
 <#elseif resume.configuration.isColorOrange()>
-\colorlet{color0}{orange!5}%  for personal box background
-\definecolor{color2}{rgb}{0.95,0.55,0.15}% for section title text
+\colorlet{color0}{orange!40}% for section title text
+\colorlet{color4}{orange!18}%  for personal box background
 <#elseif resume.configuration.isColorRed()>
-\colorlet{color0}{red!5}%  for personal box background
-\definecolor{color2}{rgb}{0.95,0.20,0.20}% for section title text
+\colorlet{color0}{red!70}% for section title text
+\colorlet{color4}{red!10}%  for personal box background
 <#elseif resume.configuration.isColorPurple()>
-\colorlet{color0}{purple!5}%  for personal box background
-\definecolor{color2}{rgb}{0.50,0.33,0.80}% for section title text
+\colorlet{color0}{purple!60}% for section title text
+\colorlet{color4}{purple!8}%  for personal box background
 <#elseif resume.configuration.isColorGrey()>
-\colorlet{color0}{grey!5}%  for personal box background
-\definecolor{color2}{rgb}{0.55,0.55,0.55}% for section title text
+\colorlet{color0}{grey!90}% for section title text
+\colorlet{color4}{grey!8}%  for personal box background
 </#if>
 
 %
@@ -63,9 +63,9 @@
 %
 \pagestyle{empty}
 \setlength\parindent{0pt}
-\color{color00} % Default foreground color. keep it black
-\hypersetup{colorlinks,breaklinks,urlcolor=color1,linkcolor=color1}
-\setkomafont{disposition}{\color{color2}}
+\color{color5} % Default foreground color. keep it black
+\hypersetup{colorlinks,breaklinks,urlcolor=color2,linkcolor=color2}
+\setkomafont{disposition}{\color{color0}}
 \setkomafont{section}{\scshape\Large\mdseries}
 %
 \renewcommand\part[1]{%
@@ -367,7 +367,7 @@
     \needspace{0.5\textheight}%
     \newdimen\boxwidth%
     \boxwidth=\dimexpr\linewidth-2\fboxsep\relax%
-    \colorbox{color0}{%
+    \colorbox{color4}{%
     \begin{tabularx}{\boxwidth}{c|X}
     \SYMBOL{45} & {<#if helper.isNotEmpty("${resume.contact.addressLine}")>${resume.contact.addressLine}\newline </#if><#if helper.isNotEmpty("${cityStateString}")>${cityStateString}\newline </#if><#if helper.isNotEmpty("${countyPincodeString}")>${countyPincodeString}</#if>}\smallskip\\
     \SYMBOL{37} & {${resume.contact.phoneNumber}}\smallskip\\
