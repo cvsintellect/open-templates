@@ -439,7 +439,7 @@
     {\vskip-1em\centering\linespread{1}\small
      \begin{minipage}[t]{0.9\textwidth}
 \setlength{\footerwidth}{0.9\textwidth}%
-        \color{color3}\centering
+        \color{color2}\centering
 \firstfooterelementtrue%
 <#if helper.isNotEmpty("${resume.contact.addressLine}")>
 \addtofooter{${resume.contact.addressLine}}
@@ -458,7 +458,7 @@
        \vspace{-0.9\baselineskip}
        \begin{minipage}[t]{0.9\textwidth}
          \setlength{\footerwidth}{0.9\textwidth}%
-         \centering\color{color3}
+         \centering\color{color2}
         \vspace{\baselineskip}% forces a white line to ensure space between main text and footer (as footer
                                     % height can't be known in advance)
         \firstfooterelementtrue%

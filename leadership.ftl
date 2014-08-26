@@ -28,42 +28,36 @@
 %
 %% colors
 \colorlet{color0}{white}% for section title background
+\colorlet{color2}{black}%  url color
 \colorlet{color4}{white}%  for tcolorbox background
 
 <#if resume.configuration.isColorBlack()>
 \definecolor{color00}{rgb}{0,0,0}% for section title text
 \definecolor{color1}{rgb}{0,0,0}%  for section rule and vertical rule
-\definecolor{color2}{rgb}{0,0,0}%  url color
 \definecolor{color3}{rgb}{0,0,0}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorBlue()>
 \definecolor{color00}{rgb}{0.22,0.45,0.70}% for section title text
 \definecolor{color1}{rgb}{0.22,0.45,0.70}%  for section rule and vertical rule
-\definecolor{color2}{rgb}{0.22,0.45,0.70}%  url color
 \definecolor{color3}{rgb}{0.22,0.45,0.70}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorGreen()>
 \definecolor{color00}{rgb}{0.35,0.70,0.30}% for section title text
 \definecolor{color1}{rgb}{0.35,0.70,0.30}%  for section rule and vertical rule
-\definecolor{color2}{rgb}{0.35,0.70,0.30}%  url color
 \definecolor{color3}{rgb}{0.35,0.70,0.30}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorOrange()>
 \definecolor{color00}{rgb}{0.95,0.55,0.15}% for section title text
 \definecolor{color1}{rgb}{0.95,0.55,0.15}%  for section rule and vertical rule
-\definecolor{color2}{rgb}{0.95,0.55,0.15}%  url color
 \definecolor{color3}{rgb}{0.95,0.55,0.15}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorRed()>
 \definecolor{color00}{rgb}{0.95,0.20,0.20}% for section title text
 \definecolor{color1}{rgb}{0.95,0.20,0.20}%  for section rule and vertical rule
-\definecolor{color2}{rgb}{0.95,0.20,0.20}%  url color
 \definecolor{color3}{rgb}{0.95,0.20,0.20}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorPurple()>
 \definecolor{color00}{rgb}{0.50,0.33,0.80}% for section title text
 \definecolor{color1}{rgb}{0.50,0.33,0.80}%  for section rule and vertical rule
-\definecolor{color2}{rgb}{0.50,0.33,0.80}%  url color
 \definecolor{color3}{rgb}{0.50,0.33,0.80}%  for foot rule, footer and link
 <#elseif resume.configuration.isColorGrey()>
 \definecolor{color00}{rgb}{0.55,0.55,0.55}% for section title text
 \definecolor{color1}{rgb}{0.55,0.55,0.55}%  for section rule and vertical rule
-\definecolor{color2}{rgb}{0.55,0.55,0.55}%  url color
 \definecolor{color3}{rgb}{0.55,0.55,0.55}%  for foot rule, footer and link
 </#if>
 
@@ -449,7 +443,7 @@
     {\vskip-1em\centering\linespread{1}\small
      \begin{minipage}[t]{0.9\textwidth}
 \setlength{\footerwidth}{0.9\textwidth}%
-        \color{color3}\centering
+        \color{color2}\centering
 \firstfooterelementtrue%
 <#if helper.isNotEmpty("${resume.contact.addressLine}")>
 \addtofooter{${resume.contact.addressLine}}
@@ -468,7 +462,7 @@
        \vspace{-0.9\baselineskip}
        \begin{minipage}[t]{0.9\textwidth}
          \setlength{\footerwidth}{0.9\textwidth}%
-         \centering\color{color3}
+         \centering\color{color2}
         \vspace{\baselineskip}% forces a white line to ensure space between main text and footer (as footer
                                     % height can't be known in advance)
         \firstfooterelementtrue%
