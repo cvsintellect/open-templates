@@ -502,7 +502,7 @@
 \begin{document}
 \maketitle
 
-<#if resume.hasSummary()>
+<#if resume.hasHeadline()>
 {\centering \textit{${resume.summary.headline}}\par}
 </#if>
 

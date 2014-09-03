@@ -80,7 +80,7 @@
 \ecvitem{}{}
 </#if>
 
-<#if resume.hasSummary()>
+<#if resume.hasHeadline()>
 \ecvitem{}{\textit{${resume.summary.headline}}}
 </#if>
 

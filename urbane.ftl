@@ -21,7 +21,7 @@
 \firstname{${resume.personal.firstName}}
 \familyname{${resume.personal.lastName}}
 
-<#if resume.hasSummary()>
+<#if resume.hasHeadline()>
 \quote{${resume.summary.headline}}
 </#if>
 

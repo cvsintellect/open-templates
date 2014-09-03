@@ -32,7 +32,7 @@
 \email{${resume.contact.emailId}}
 </#if>
 
-<#if resume.hasSummary()>
+<#if resume.hasHeadline()>
 \quote{${resume.summary.headline}}
 </#if>
 

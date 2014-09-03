@@ -73,7 +73,7 @@
     \begin{center}
 	\vskip-\lastskip%
 	{\usekomafont{part} #1} \medskip\\
-	{\fontfamily{pzc}\selectfont\Large <#if resume.hasSummary()>${resume.summary.headline}</#if>}
+	{\fontfamily{pzc}\selectfont\Large <#if resume.hasHeadline()>${resume.summary.headline}</#if>}
 	\bigskip
     \end{center}]}
 %
