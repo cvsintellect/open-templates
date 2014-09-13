@@ -32,6 +32,10 @@
 \email{${resume.contact.emailId}}
 </#if>
 
+<#if resume.hasPhoto()>
+\photo{picture}
+</#if>
+
 <#if resume.hasHeadline()>
 \quote{${resume.summary.headline}}
 </#if>

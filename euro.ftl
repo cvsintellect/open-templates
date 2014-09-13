@@ -67,6 +67,10 @@
 \ecvdateofbirth{${resume.personal.dateOfBirth}}
 </#if>
 
+<#if resume.hasPhoto()>
+\ecvpicture[width=60pt]{picture}
+</#if>
+
 \begin{document}
 \fancyfoot{}
 \selectlanguage{english}

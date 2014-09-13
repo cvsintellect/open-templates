@@ -356,7 +356,23 @@
 %
 \setcounter{secnumdepth}{-1}
 %%%%%
+
+\usepackage{eso-pic}
+\newcommand\AtPageUpperMyleft[1]{\AtPageUpperLeft{%
+ \put(\LenToUnit{\dimexpr\paperwidth-100pt\relax},\LenToUnit{-3.5cm}){#1}%
+ }}%
+\newcommand{\photo}[1]{%
+\AddToShipoutPictureBG*{%
+\AtPageUpperMyleft{\fboxsep1.5pt\fcolorbox{color0}{white}%
+{\includegraphics[width=60pt,height=3cm,keepaspectratio]{#1}}}
+}
+}
+
 \begin{document}
+
+<#if resume.hasPhoto()>
+\photo{picture}
+</#if>
 
 \part{${resume.personal.firstName} ${resume.personal.lastName}}
 

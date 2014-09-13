@@ -21,6 +21,10 @@
 \firstname{${resume.personal.firstName}}
 \familyname{${resume.personal.lastName}}
 
+<#if resume.hasPhoto()>
+\photo{picture}
+</#if>
+
 <#if resume.hasHeadline()>
 \quote{${resume.summary.headline}}
 </#if>

@@ -495,8 +495,24 @@
 ]{hyperref}
 
 %
+
+\usepackage{eso-pic}
+\newcommand\AtPageUpperMyleft[1]{\AtPageUpperLeft{%
+ \put(\LenToUnit{\dimexpr\paperwidth-120pt\relax},\LenToUnit{-3.5cm}){#1}%
+ }}%
+\newcommand{\photo}[1]{%
+\AddToShipoutPictureBG*{%
+\AtPageUpperMyleft{\fboxsep1.5pt\fcolorbox{color3}{white}%
+{\includegraphics[width=60pt,height=3cm,keepaspectratio]{#1}}}
+}
+}
+
 \begin{document}
 \maketitle
+
+<#if resume.hasPhoto()>
+\photo{picture}
+</#if>
 
 <#if resume.hasHeadline()>
 {\centering \textit{${resume.summary.headline}}\par}
