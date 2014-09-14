@@ -405,7 +405,9 @@
 <#list resume.certifications as certification>
 <#assign certificateString = helper.joinStringsWith(" by ", "\\textit{${certification.name}}", "\\textit{${certification.authorityName}}")>
 ${certificateString}<#if helper.isNotEmpty("${certification.startDateAndEndDate}")>, ${certification.startDateAndEndDate}</#if>\newline
-<#if helper.isNotEmpty("${certification.number}")>Number: ${certification.number}</#if>
+<#if helper.isNotEmpty("${certification.number}")>
+Number: ${certification.number}
+</#if>
 <#if certification_has_next>\par\vskip3pt</#if>
 </#list>
 </#if></#if>
@@ -414,7 +416,9 @@ ${certificateString}<#if helper.isNotEmpty("${certification.startDateAndEndDate}
 <#if sectionDetail.isCustomSection()><#assign customSection = resume.getCustomSection("${sectionDetail.sectionId}")><#if customSection.hasCustomSectionEntries()>
 \section{${sectionDetail.heading}}
 <#list customSection.entries as entry>
-<#if helper.isNotEmpty("${entry.heading}")>\textbf{${entry.heading}}\newline</#if>
+<#if helper.isNotEmpty("${entry.heading}")>
+\textbf{${entry.heading}}\newline
+</#if>
 ${entry.text}
 <#if entry_has_next>\par\vskip3pt</#if>
 </#list>
@@ -429,7 +433,9 @@ ${entry.text}
 <#assign scoreString = helper.joinStringsWith(": ", "${education.scoreType}", "${education.totalScore}")>
 <#if helper.isNotEmpty("${education.startDateAndEndDate}")>${education.startDateAndEndDate} - </#if>${degreeString}\newline
 <#if helper.isNotEmpty("${collegeString}")>\textit{${collegeString}}\newline</#if>
-<#if helper.isNotEmpty("${scoreString}")>${scoreString}\newline</#if>
+<#if helper.isNotEmpty("${scoreString}")>
+${scoreString}\newline
+</#if>
 <#if helper.isNotEmpty("${education.summary}")>
 ${education.summary}
 </#if>
@@ -466,7 +472,9 @@ ${resume.objective.text}
 <#list resume.patents as patent>
 <#assign patentString = helper.getCommaSeperatedString("${patent.officeName}", "${patent.number}", "${patent.date}", "${patent.status}", "${patent.url}")>
 ${resume.patents?size - patent_index}. \textit{${patent.title}} - \textit{${patent.inventors}}\newline
-<#if helper.isNotEmpty("${patentString}")>${patentString}\newline</#if>
+<#if helper.isNotEmpty("${patentString}")>
+${patentString}\newline
+</#if>
 <#if helper.isNotEmpty("${patent.summary}")>
 ${patent.summary}
 </#if>
@@ -528,7 +536,9 @@ ${position.summary}
 <#assign projectString = helper.joinStringsWith(" on ", "\\textbf{${project.role}}", "\\textbf{${project.name}}")>
 <#assign companyString = helper.joinStringsWith(" for ", "${project.companyName}", "${project.clientName}")>
 <#if helper.isNotEmpty("${project.startDateAndEndDate}")>${project.startDateAndEndDate} - </#if>${projectString}\newline
-<#if helper.isNotEmpty("${companyString}")>${companyString}\newline</#if>
+<#if helper.isNotEmpty("${companyString}")>
+${companyString}\newline
+</#if>
 <#if helper.isNotEmpty("${project.summary}")>
 ${project.summary}
 </#if>
@@ -542,7 +552,9 @@ ${project.summary}
 <#list resume.publications as publication>
 <#assign publicationString = helper.getCommaSeperatedString("${publication.publisherName}", "${publication.date}", "${publication.url}")>
 ${resume.publications?size - publication_index}. \textit{${publication.title}} - \textit{${publication.authors}}\newline
-<#if helper.isNotEmpty("${publicationString}")>${publicationString}\newline</#if>
+<#if helper.isNotEmpty("${publicationString}")>
+${publicationString}\newline
+</#if>
 <#if helper.isNotEmpty("${publication.summary}")>
 ${publication.summary}
 </#if>
@@ -586,7 +598,9 @@ ${resume.summary.summary}
 <#list resume.talks as talk>
 <#assign talkString = helper.getCommaSeperatedString("${talk.event}", "${talk.date}", "${talk.url}")>
 ${resume.talks?size - talk_index}. \textit{${talk.title}} - \textit{${talk.speakers}}\newline
-<#if helper.isNotEmpty("${talkString}")>${talkString}\newline</#if>
+<#if helper.isNotEmpty("${talkString}")>
+${talkString}\newline
+</#if>
 <#if helper.isNotEmpty("${talk.summary}")>
 ${talk.summary}
 </#if>
