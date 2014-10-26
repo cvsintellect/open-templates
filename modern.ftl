@@ -46,6 +46,7 @@
 </#list>
 </#if>
 
+<#if resume.isNotPremiumAccount()>
 %% footer ad
 \usepackage{background}
 \usepackage{tikzpagenodes}
@@ -59,6 +60,7 @@
       \end{tikzpicture}},
   }%
 %%
+</#if>
 
 \begin{document}
 \maketitle

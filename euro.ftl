@@ -71,6 +71,7 @@
 \ecvpicture[width=60pt]{picture}
 </#if>
 
+<#if resume.isNotPremiumAccount()>
 %% footer ad
 \usepackage{eso-pic}
 \usepackage{tikzpagenodes}
@@ -80,6 +81,7 @@
 \end{tikzpicture}
 }
 %%
+</#if>
 
 \begin{document}
 \fancyfoot{}

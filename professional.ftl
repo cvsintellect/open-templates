@@ -485,6 +485,7 @@ ${resume.contact.addressLine} \par
 }
 }
 
+<#if resume.isNotPremiumAccount()>
 %% footer ad
 \usepackage{tikzpagenodes}
 \AddToShipoutPictureBG{%
@@ -493,6 +494,7 @@ ${resume.contact.addressLine} \par
 \end{tikzpicture}
 }
 %%
+</#if>
 
 \begin{document}
 \maketitle

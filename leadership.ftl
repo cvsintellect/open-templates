@@ -511,6 +511,7 @@
 }
 }
 
+<#if resume.isNotPremiumAccount()>
 %% footer ad
 \usepackage{tikzpagenodes}
 \AddToShipoutPictureBG{%
@@ -519,6 +520,7 @@
 \end{tikzpicture}
 }
 %%
+</#if>
 
 \begin{document}
 \maketitle
