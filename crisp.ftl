@@ -368,6 +368,15 @@
 }
 }
 
+%% footer ad
+\usepackage{tikzpagenodes}
+\AddToShipoutPictureBG{%
+\begin{tikzpicture}[remember picture, overlay]
+        \node [anchor=west, text=color2,  inner xsep=0pt] at ([yshift=0.6cm]current page footer area.west) {\textit{powered by \href{www.cvsintellect.com}{CVsIntellect.com}}};
+\end{tikzpicture}
+}
+%%
+
 \begin{document}
 
 <#if resume.hasPhoto()>

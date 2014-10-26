@@ -46,6 +46,20 @@
 </#list>
 </#if>
 
+%% footer ad
+\usepackage{background}
+\usepackage{tikzpagenodes}
+  \backgroundsetup{%
+    angle=0,
+    scale=1,
+    opacity=1,
+    contents={%
+      \begin{tikzpicture}[remember picture, overlay]
+        \node [anchor=west, text=color2,align=center, font=\addressfont] at ([xshift=-1cm]current page footer area.west) {powered by\\ \httplink{CVsIntellect.com}};
+      \end{tikzpicture}},
+  }%
+%%
+
 \begin{document}
 \maketitle
 

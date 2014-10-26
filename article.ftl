@@ -504,6 +504,15 @@
 }
 }
 
+%% footer ad
+\usepackage{tikzpagenodes}
+\AddToShipoutPictureBG{%
+\begin{tikzpicture}[remember picture, overlay]
+        \node [anchor=west, text=color3,  inner xsep=0pt] at (current page footer area.west) {\textit{powered by \href{www.cvsintellect.com}{CVsIntellect.com}}};
+\end{tikzpicture}
+}
+%%
+
 \begin{document}
 \maketitle
 
