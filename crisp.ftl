@@ -364,7 +364,7 @@
 \newcommand{\photo}[1]{%
 \AddToShipoutPictureBG*{%
 \AtPageUpperMyleft{\fboxsep1.5pt\fcolorbox{color0}{white}%
-{\includegraphics[width=60pt,height=3cm,keepaspectratio]{#1}}}
+{\includegraphics[width=${helper.addToMargin("${resume.configuration.rightMargin}", 60)},height=3cm,keepaspectratio]{#1}}}
 }
 }
 
