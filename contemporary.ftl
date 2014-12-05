@@ -32,6 +32,22 @@
 \email{${resume.contact.emailId}}
 </#if>
 
+\patchcmd{\maketitle}
+  {\hfil}
+  {\hspace*{0.15\textwidth}}
+  {}
+  {}
+\patchcmd{\maketitle}
+  {\setlength{\maketitlewidth}{0.8\textwidth}}
+  {\setlength{\maketitlewidth}{0.67\textwidth}}
+  {}
+  {}
+\patchcmd{\maketitle}
+  {\\[2.5em]}
+  {\hfil\raisebox{-.7cm}{\framebox{\includegraphics[width=\@photowidth]{\@photo}}}\\[2.5em]}
+  {}
+  {}
+
 <#if resume.hasPhoto()>
 \photo{picture}
 </#if>
