@@ -32,6 +32,7 @@
 \email{${resume.contact.emailId}}
 </#if>
 
+<#if resume.hasPhoto()>
 \patchcmd{\maketitle}
   {\hfil}
   {\hspace*{0.15\textwidth}}
@@ -48,7 +49,6 @@
   {}
   {}
 
-<#if resume.hasPhoto()>
 \photo{picture}
 </#if>
 
