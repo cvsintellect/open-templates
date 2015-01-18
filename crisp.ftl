@@ -359,13 +359,13 @@
 
 \usepackage{eso-pic}
 \newcommand\AtPageUpperMyleft[1]{\AtPageUpperLeft{%
- \put(\LenToUnit{\dimexpr\paperwidth-100pt\relax},\LenToUnit{-3.5cm}){#1}%
+ \put(\LenToUnit{\dimexpr\paperwidth-${helper.addToMargin("${resume.configuration.rightMargin}", 76)}\relax},\LenToUnit{-3.5cm}){#1}%
  }}%
 \newcommand{\photo}[1]{%
 \AddToShipoutPictureBG*{%
 \AtPageUpperMyleft{\fboxsep1.5pt\fcolorbox{color0}{white}%
-{\includegraphics[width=${helper.addToMargin("${resume.configuration.rightMargin}", 60)},height=3cm,keepaspectratio]{#1}}}
-}
+{\includegraphics[width=70pt,keepaspectratio]{#1}}}
+}%
 }
 
 <#if resume.isNotPremiumAccount()>

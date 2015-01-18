@@ -68,7 +68,7 @@
 </#if>
 
 <#if resume.hasPhoto()>
-\ecvpicture[width=60pt]{picture}
+\ecvpicture[width=70pt]{picture}
 </#if>
 
 <#if resume.isNotPremiumAccount()>

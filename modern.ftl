@@ -33,7 +33,7 @@
 </#if>
 
 <#if resume.hasPhoto()>
-\photo{picture}
+\photo[70pt][0.1pt]{picture}
 </#if>
 
 <#if resume.hasHeadline()>
