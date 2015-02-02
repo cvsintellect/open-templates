@@ -661,7 +661,7 @@ ${position.summary}
 <#if sectionDetail.isProjectSection()><#if resume.hasProjects()>
 \section*{${sectionDetail.heading}}
 <#list resume.projects as project>
-<#assign projectString = helper.joinStringsWith(" on ", "\\textbf{${project.role}}", "\\textbf{${project.name}}")>
+<#assign projectString = helper.joinStringsWith(" on ", "${project.role}", "\\textbf{${project.name}}")>
 <#assign companyString = helper.joinStringsWith(" for ", "${project.companyName}", "${project.clientName}")>
 \begin{leftrulebox}[${project.startDateAndEndDate}]
 ${projectString}<#if helper.isNotEmpty("${companyString}")>, ${companyString}</#if>\par
