@@ -10,7 +10,7 @@
 \usepackage{lastpage}
 \usepackage{fancyhdr}
 \usepackage[explicit]{titlesec}
-\usepackage[a4paper,left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin},footskip=0.25in,heightrounded]{geometry}
+\usepackage[${resume.configuration.paperSize},left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin},footskip=0.25in,heightrounded]{geometry}
 
 <#-- font -->
 \usepackage[T1]{fontenc}

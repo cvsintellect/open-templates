@@ -1,6 +1,6 @@
 \documentclass[${resume.configuration.fontSize}]{scrartcl}
 \usepackage[english]{babel}
-\usepackage[a4paper,left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin},twocolumn,columnsep=1.25cm]{geometry}
+\usepackage[${resume.configuration.paperSize},left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin},twocolumn,columnsep=1.25cm]{geometry}
 \usepackage{bookman,etoolbox,hyperref,needspace,pifont,marvosym,tabularx,xcolor,microtype}
 
 <#-- font -->

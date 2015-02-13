@@ -11,7 +11,7 @@
 \usepackage{graphicx}
 \fi
 \usepackage{xcolor}
-\usepackage[a4paper,left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin}]{geometry}
+\usepackage[${resume.configuration.paperSize},left=${resume.configuration.leftMargin},top=${resume.configuration.topMargin},right=${resume.configuration.rightMargin},bottom=${resume.configuration.bottomMargin}]{geometry}
 
 <#-- color -->
 <#if resume.configuration.isColorBlack()>
