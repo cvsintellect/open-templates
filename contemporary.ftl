@@ -72,7 +72,7 @@
     opacity=1,
     contents={%
       \begin{tikzpicture}[remember picture, overlay]
-        \node [anchor=west, text=color2, font=\addressfont] at (current page footer area.west) {powered by \httplink{CVsIntellect.com}};
+        \node [anchor=west, text=color2, font=\addressfont] at (current page footer area.west) {\textit{powered by \httplink{CVsIntellect.com}}};
       \end{tikzpicture}},
   }%
 %%
